@@ -3,20 +3,18 @@ package com.javonharper.familiar;
 import java.util.ArrayList;
 
 public class HabitController {
+    ArrayList<String> habits;
 
     public HabitController() {
-
-    }
-
-    public ArrayList<String> getIndex() {
-        ArrayList<String> habits = new ArrayList<String>();
-
+        habits = new ArrayList<String>();
         habits.add("Exercise");
         habits.add("Read");
         habits.add("Journal");
         habits.add("Draw");
         habits.add("Practice Guitar");
+    }
 
+    public ArrayList<String> getIndex() {
         return habits;
     }
 }
