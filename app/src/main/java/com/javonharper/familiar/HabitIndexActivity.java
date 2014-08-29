@@ -2,9 +2,12 @@ package com.javonharper.familiar;
 
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -17,6 +20,8 @@ import java.util.Map;
 
 public class HabitIndexActivity extends Activity {
 
+    public static String HABIT_NAME = "habitName";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +31,18 @@ public class HabitIndexActivity extends Activity {
         ArrayList<String> habits = controller.getIndex();
 
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, habits);
-        ListView habitListView = (ListView) findViewById(R.id.habit_list);
+        final ListView habitListView = (ListView) findViewById(R.id.habit_list);
         habitListView.setAdapter(adapter);
+        habitListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                System.out.println("hello world");
+                String habit = (String) habitListView.getItemAtPosition(i);
+                Intent intent = new Intent(view.getContext(), HabitShowActivity.class);
+                intent.putExtra(HABIT_NAME, habit);
+                startActivity(intent);
+            }
+        });
     }
 
 
