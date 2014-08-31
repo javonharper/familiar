@@ -15,9 +15,14 @@ public class HabitShowActivity extends Activity {
         setContentView(R.layout.activity_habit_show);
 
         Intent intent = getIntent();
-        String habit = intent.getStringExtra(HabitIndexActivity.HABIT_NAME);
-        TextView habitNameTextView = (TextView) findViewById(R.id.habit_name);
-        habitNameTextView.setText(habit);
+        Integer habitId = Integer.valueOf(intent.getIntExtra(HabitIndexActivity.HABIT_ID, 0));
+
+        HabitController controller = new HabitController(this);
+        Habit habit = controller.getHabit(habitId);
+
+        TextView nameView = (TextView) findViewById(R.id.habit_name);
+
+        nameView.setText(habit.getName());
     }
 
 
