@@ -24,6 +24,10 @@
             android:name=".HabitNewActivity"
             android:label="@string/title_activity_habit_new" >
         </activity>
+        <activity
+            android:name=".HabitEditActivity"
+            android:label="@string/title_activity_habit_edit" >
+        </activity>
     </application>
 
 </manifest>

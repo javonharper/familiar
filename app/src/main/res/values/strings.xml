@@ -9,6 +9,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="create_habit">Create Habit</string>
     <string name="name">Name</string>
-    <string name="delete_habit">Delete Habit</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="title_activity_habit_edit">HabitEditActivity</string>
+    <string name="done">Done</string>
 
 </resources>

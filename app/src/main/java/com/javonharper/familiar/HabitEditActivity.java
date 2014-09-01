@@ -9,53 +9,47 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class HabitShowActivity extends Activity {
+import com.javonharper.familiar.R;
+
+public class HabitEditActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_habit_show);
+        setContentView(R.layout.activity_habit_edit);
 
         Intent intent = getIntent();
+
         Integer habitId = Integer.valueOf(intent.getIntExtra(HabitIndexActivity.HABIT_ID, 0));
 
         final HabitController controller = new HabitController(this);
+
         final Habit habit = controller.getHabit(habitId);
 
-        TextView nameView = (TextView) findViewById(R.id.habit_name);
+        final TextView nameView = (TextView) findViewById(R.id.name_edit);
 
         nameView.setText(habit.getName());
 
-        Button deleteButton = (Button) findViewById(R.id.delete_habit);
+        Button doneButton = (Button) findViewById(R.id.done_editing);
 
-        deleteButton.setOnClickListener(new View.OnClickListener() {
+        doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                controller.deleteHabit(habit.getId());
+                String newName = nameView.getText().toString();
+                habit.setName(newName);
+                controller.updateHabit(habit);
 
-                Intent intent = new Intent(view.getContext(), HabitIndexActivity.class);
+                Intent intent = new Intent(view.getContext(), HabitShowActivity.class);
                 intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
                 startActivity(intent);
             }
         });
-
-        Button editButton = (Button) findViewById(R.id.edit_habit);
-
-        editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), HabitEditActivity.class);
-                intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
-                startActivity(intent);
-            }
-        });
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.habit_show, menu);
+        getMenuInflater().inflate(R.menu.habit_edit, menu);
         return true;
     }
 

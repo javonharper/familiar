@@ -13,7 +13,6 @@ public class HabitController {
     DatabaseHelper dbHelper;
 
     public HabitController(Context context) {
-
         dbHelper = DatabaseHelper.getInstance(context);
     }
 
