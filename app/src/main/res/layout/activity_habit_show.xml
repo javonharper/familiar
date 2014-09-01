@@ -31,6 +31,8 @@
             android:id="@+id/edit_habit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/button_background_color"
+            android:textColor="@color/button_text_color"
             android:text="@string/edit"/>
 
     </LinearLayout>
@@ -43,6 +45,8 @@
             android:id="@+id/delete_habit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/button_background_color"
+            android:textColor="@color/button_text_color"
             android:text="@string/delete"/>
 
     </LinearLayout>
