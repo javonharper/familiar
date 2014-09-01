@@ -19,6 +19,8 @@ public class HabitNewActivity extends Activity {
         setContentView(R.layout.activity_habit_new);
 
         setTitle(R.string.new_habit);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         final HabitController controller = new HabitController(this);
 
@@ -52,8 +54,14 @@ public class HabitNewActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case android.R.id.home:
+                Intent intent = new Intent(getApplicationContext(), HabitIndexActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                return true;
+            case R.id.action_settings:
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
