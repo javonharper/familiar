@@ -13,5 +13,6 @@
     <string name="edit">Edit</string>
     <string name="title_activity_habit_edit">HabitEditActivity</string>
     <string name="done">Done</string>
+    <string name="cancel">Cancel</string>
 
 </resources>
