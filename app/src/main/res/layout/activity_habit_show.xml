@@ -18,7 +18,8 @@
             android:id="@+id/habit_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="!!HABIT_NAME_PLACEHOLDER!!"/>
+            android:text="!!HABIT_NAME_PLACEHOLDER!!"
+            android:textColor="@color/text_color"/>
     </LinearLayout>
 
     <LinearLayout
