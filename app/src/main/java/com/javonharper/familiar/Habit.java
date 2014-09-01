@@ -1,12 +1,14 @@
 package com.javonharper.familiar;
 
 public class Habit extends FamiliarContract.HabitContract {
-    private Integer id;
-    private String name;
+    private Integer id = null;
+    private String name = null;
+    private Integer timesPerDuration = null;
 
-    public Habit(Integer id, String name) {
+    public Habit(Integer id, String name, Integer timesPerDuration) {
         this.setId(id);
         this.setName(name);
+        this.setTimesPerDuration(timesPerDuration);
     }
 
     public Integer getId() {
@@ -25,6 +27,14 @@ public class Habit extends FamiliarContract.HabitContract {
         this.name = name;
     }
 
+    public Integer getTimesPerDuration() {
+        return this.timesPerDuration;
+    }
+
+    public void setTimesPerDuration(Integer timesPerDuration) {
+        this.timesPerDuration = timesPerDuration;
+    }
+
     public String toString() {
         String id;
 
@@ -33,6 +43,6 @@ public class Habit extends FamiliarContract.HabitContract {
         } else {
             id = this.getId().toString();
         }
-        return "Habit(" + id + ": " + this.getName() + ")";
+        return "Habit(" + id + ": " + this.getName() + "x" + this.getTimesPerDuration().toString() +")";
     }
 }

@@ -40,6 +40,7 @@ public class HabitController {
 
         ContentValues values = new ContentValues();
         values.put(Habit.COLUMN_NAME_NAME, habit.getName());
+        values.put(Habit.COLUMN_NAME_TIMES_PER_DURATION, habit.getTimesPerDuration());
 
         long id = db.insert(Habit.TABLE_NAME, null, values);
 
@@ -69,6 +70,7 @@ public class HabitController {
 
         ContentValues values = new ContentValues();
         values.put(Habit.COLUMN_NAME_NAME, habit.getName());
+        values.put(Habit.COLUMN_NAME_TIMES_PER_DURATION, habit.getTimesPerDuration());
 
         String selection = Habit._ID + " LIKE ?";
         String[] selectionArgs = {String.valueOf(habit.getId())};
@@ -90,9 +92,11 @@ public class HabitController {
     private Habit populateHabit(Cursor cursor) {
         int idIndex = cursor.getColumnIndex(Habit._ID);
         int nameIndex = cursor.getColumnIndex(Habit.COLUMN_NAME_NAME);
+        int timesPerDurationIndex = cursor.getColumnIndex(Habit.COLUMN_NAME_TIMES_PER_DURATION);
 
         Integer id = (int) cursor.getLong(idIndex);
         String name = cursor.getString(nameIndex);
-        return new Habit(id, name);
+        Integer timesPerDuration = Integer.valueOf(cursor.getInt(timesPerDurationIndex));
+        return new Habit(id, name, timesPerDuration);
     }
 }

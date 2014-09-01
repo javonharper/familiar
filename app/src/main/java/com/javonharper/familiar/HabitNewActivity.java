@@ -32,7 +32,10 @@ public class HabitNewActivity extends Activity {
                 EditText nameEdit = (EditText) findViewById(R.id.name_edit);
                 String name = nameEdit.getText().toString().trim();
 
-                Habit habit = new Habit(null, name);
+                EditText timesPerDurationEdit = (EditText) findViewById(R.id.times_per_duration_edit);
+                Integer timesPerDuration = Integer.valueOf(timesPerDurationEdit.getText().toString().trim());
+
+                Habit habit = new Habit(null, name, timesPerDuration);
                 controller.createHabit(habit);
 
                 String message = "Habit \"" + habit.getName() + "\" created.";

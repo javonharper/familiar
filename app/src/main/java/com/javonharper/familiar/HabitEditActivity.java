@@ -31,8 +31,10 @@ public class HabitEditActivity extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         final TextView nameView = (TextView) findViewById(R.id.name_edit);
-
         nameView.setText(habit.getName());
+
+        final TextView timesPerDurationView = (TextView) findViewById(R.id.times_per_duration_edit);
+        timesPerDurationView.setText(habit.getTimesPerDuration().toString());
 
         Button doneButton = (Button) findViewById(R.id.done_editing);
 
@@ -40,7 +42,11 @@ public class HabitEditActivity extends Activity {
             @Override
             public void onClick(View view) {
                 String newName = nameView.getText().toString().trim();
+                Integer newTimesPerDuration = Integer.valueOf(timesPerDurationView.getText().toString().trim());
+
                 habit.setName(newName);
+                habit.setTimesPerDuration(newTimesPerDuration);
+
                 controller.updateHabit(habit);
 
                 String message = "Habit \"" + habit.getName() + "\" updated.";

@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "Familiar.db";
 
     private static DatabaseHelper instance = null;
@@ -13,7 +13,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final java.lang.String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + Habit.TABLE_NAME + " (" +
                     Habit._ID + " INTEGER PRIMARY KEY," +
-                    Habit.COLUMN_NAME_NAME + " TEXT " +
+                    Habit.COLUMN_NAME_NAME + " TEXT, " +
+                    Habit.COLUMN_NAME_TIMES_PER_DURATION + " INTEGER"+
                     ")";
 
     private static final java.lang.String SQL_DELETE_ENTRIES =
