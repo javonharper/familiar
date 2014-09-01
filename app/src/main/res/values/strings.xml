@@ -7,7 +7,7 @@
     <string name="new_habit">New Habit</string>
     <string name="title_activity_habit_new">HabitNewActivity</string>
     <string name="hello_world">Hello world!</string>
-    <string name="create_habit">Create Habit</string>
+    <string name="create">Create</string>
     <string name="name">Name</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>

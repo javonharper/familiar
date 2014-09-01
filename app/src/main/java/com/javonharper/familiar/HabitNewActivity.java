@@ -18,6 +18,8 @@ public class HabitNewActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_new);
 
+        setTitle(R.string.new_habit);
+
         final HabitController controller = new HabitController(this);
 
         Button createButton = (Button) findViewById(R.id.create_habit);

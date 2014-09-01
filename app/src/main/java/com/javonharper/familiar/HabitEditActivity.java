@@ -26,7 +26,7 @@ public class HabitEditActivity extends Activity {
 
         final Habit habit = controller.getHabit(habitId);
 
-        setTitle("Edit  " + habit.getName());
+        setTitle("Edit " + habit.getName());
 
         final TextView nameView = (TextView) findViewById(R.id.name_edit);
 
