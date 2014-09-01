@@ -47,6 +47,8 @@
             android:layout_weight="1"
             android:background="@color/button_background_color"
             android:textColor="@color/button_text_color"
+            android:layout_margin="@dimen/button_margin"
+
             android:text="@string/cancel" />
         <Button
             android:id="@+id/create_habit"
@@ -55,6 +57,7 @@
             android:layout_weight="1"
             android:background="@color/button_background_color"
             android:textColor="@color/button_text_color"
+            android:layout_margin="@dimen/button_margin"
             android:text="@string/create" />
     </LinearLayout>
 </LinearLayout>

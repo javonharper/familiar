@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:background="@color/button_background_color"
         android:textColor="@color/button_text_color"
+        android:layout_margin="@dimen/button_margin"
         android:text="@string/new_habit"/>
 
     <ListView
