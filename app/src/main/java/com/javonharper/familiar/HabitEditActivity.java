@@ -46,7 +46,7 @@ public class HabitEditActivity extends Activity {
                 Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(view.getContext(), HabitIndexActivity.class);
-                
+
                 startActivity(intent);
             }
         });

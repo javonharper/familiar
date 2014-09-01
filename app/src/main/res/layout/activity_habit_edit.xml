@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/background_color"
-    tools:context="com.javonharper.familiar.HabitNewActivity">
+    tools:context="com.javonharper.familiar.HabitEditActivity">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -48,6 +48,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+
             android:text="@string/done" />
 
     </LinearLayout>

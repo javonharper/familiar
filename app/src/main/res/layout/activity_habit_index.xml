@@ -11,7 +11,9 @@
         android:id="@+id/new_habit_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="New Habit"/>
+        android:background="@color/button_color"
+        android:textColor="@color/button_text_color"
+        android:text="@string/new_habit"/>
 
     <ListView
         android:id="@+id/habit_list"
