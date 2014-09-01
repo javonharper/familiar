@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class HabitShowActivity extends Activity {
 
@@ -35,6 +36,9 @@ public class HabitShowActivity extends Activity {
             @Override
             public void onClick(View view) {
                 controller.deleteHabit(habit.getId());
+
+                String message = "Habit \"" + habit.getName() + "\" deleted.";
+                Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(view.getContext(), HabitIndexActivity.class);
                 intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());

@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.javonharper.familiar.R;
 
@@ -33,6 +34,9 @@ public class HabitNewActivity extends Activity {
 
                 Habit habit = new Habit(null, name);
                 controller.createHabit(habit);
+
+                String message = "Habit \"" + habit.getName() + "\" created.";
+                Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(view.getContext(), HabitIndexActivity.class);
                 startActivity(intent);
