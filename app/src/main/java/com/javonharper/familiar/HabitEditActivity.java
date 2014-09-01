@@ -38,7 +38,7 @@ public class HabitEditActivity extends Activity {
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String newName = nameView.getText().toString();
+                String newName = nameView.getText().toString().trim();
                 habit.setName(newName);
                 controller.updateHabit(habit);
 
