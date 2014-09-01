@@ -45,8 +45,8 @@ public class HabitEditActivity extends Activity {
                 String message = "Habit \"" + habit.getName() + "\" updated.";
                 Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(view.getContext(), HabitShowActivity.class);
-                intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
+                Intent intent = new Intent(view.getContext(), HabitIndexActivity.class);
+                
                 startActivity(intent);
             }
         });
