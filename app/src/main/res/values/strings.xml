@@ -9,5 +9,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="create_habit">Create Habit</string>
     <string name="name">Name</string>
+    <string name="delete_habit">Delete Habit</string>
 
 </resources>

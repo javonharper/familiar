@@ -59,8 +59,10 @@ public class HabitController {
         Cursor cursor = db.query(Habit.TABLE_NAME, null, selection, selectionArgs, null, null, null);
         cursor.moveToFirst();
 
+        Habit habit = populateHabit(cursor);
+
         db.close();
-        return populateHabit(cursor);
+        return habit;
     }
 
     public void updateHabit(Habit habit) {
@@ -72,18 +74,18 @@ public class HabitController {
         String selection = Habit._ID + " LIKE ?";
         String[] selectionArgs = {String.valueOf(habit.getId())};
 
-        db.close();
         db.update(Habit.TABLE_NAME, values, selection, selectionArgs);
+        db.close();
     }
 
     public void deleteHabit(int id) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        String selection = Habit._ID + "LIKE ?";
-        String[] selectionArgs = {String.valueOf(id)};
+        String selection = Habit._ID + " LIKE ?";
+        String[] selectionArgs = { String.valueOf(id) };
 
-        db.close();
         db.delete(Habit.TABLE_NAME, selection, selectionArgs);
+        db.close();
     }
 
     private Habit populateHabit(Cursor cursor) {

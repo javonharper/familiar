@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class HabitShowActivity extends Activity {
@@ -17,14 +19,26 @@ public class HabitShowActivity extends Activity {
         Intent intent = getIntent();
         Integer habitId = Integer.valueOf(intent.getIntExtra(HabitIndexActivity.HABIT_ID, 0));
 
-        HabitController controller = new HabitController(this);
-        Habit habit = controller.getHabit(habitId);
+        final HabitController controller = new HabitController(this);
+        final Habit habit = controller.getHabit(habitId);
 
         TextView nameView = (TextView) findViewById(R.id.habit_name);
 
         nameView.setText(habit.getName());
-    }
 
+        Button deleteButton = (Button) findViewById(R.id.delete_habit);
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                controller.deleteHabit(habit.getId());
+
+                Intent intent = new Intent(view.getContext(), HabitIndexActivity.class);
+                startActivity(intent);
+            }
+        });
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
