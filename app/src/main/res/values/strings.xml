@@ -14,5 +14,6 @@
     <string name="title_activity_habit_edit">HabitEditActivity</string>
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
+    <string name="times_per_week">Times per Week</string>
 
 </resources>
