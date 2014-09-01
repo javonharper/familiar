@@ -30,7 +30,7 @@ public class HabitNewActivity extends Activity {
             @Override
             public void onClick(View view) {
                 EditText nameEdit = (EditText) findViewById(R.id.name_edit);
-                String name = nameEdit.getText().toString();
+                String name = nameEdit.getText().toString().trim();
 
                 Habit habit = new Habit(null, name);
                 controller.createHabit(habit);
