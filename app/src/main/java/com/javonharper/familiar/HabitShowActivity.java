@@ -22,6 +22,8 @@ public class HabitShowActivity extends Activity {
         final HabitController controller = new HabitController(this);
         final Habit habit = controller.getHabit(habitId);
 
+        setTitle(habit.getName());
+
         TextView nameView = (TextView) findViewById(R.id.habit_name);
 
         nameView.setText(habit.getName());
