@@ -18,6 +18,8 @@
             android:id="@+id/name_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/label_field_spacing"
+
             android:textColor="@color/app_text_color"
             android:textStyle="bold"
             android:textSize="@dimen/body_text_size"
@@ -35,7 +37,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/app_text_color"
             android:textSize="@dimen/body_text_size"
-            android:layout_marginBottom="@dimen/form_spacing"
+            android:layout_marginBottom="@dimen/fieldset_spacing"
             android:inputType="textCapSentences" />
 
     </LinearLayout>
@@ -50,6 +52,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/app_text_color"
             android:textSize="@dimen/body_text_size"
+            android:layout_marginBottom="@dimen/label_field_spacing"
+
             android:textStyle="bold"
             android:text="@string/days_per_week" />
 
@@ -65,7 +69,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/app_text_color"
             android:textSize="@dimen/body_text_size"
-            android:layout_marginBottom="@dimen/form_spacing"
+            android:layout_marginBottom="@dimen/fieldset_spacing"
             android:inputType="number" />
 
     </LinearLayout>
