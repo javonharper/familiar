@@ -2,6 +2,7 @@ package com.javonharper.familiar;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -40,6 +40,9 @@ public class HabitIndexActivity extends Activity {
         });
 
         Button newHabitButton = (Button) findViewById(R.id.new_habit_button);
+
+        Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
+        newHabitButton.setTypeface(font);
 
         newHabitButton.setOnClickListener(new View.OnClickListener() {
             @Override

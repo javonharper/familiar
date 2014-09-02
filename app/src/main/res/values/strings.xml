@@ -17,5 +17,9 @@
     <string name="times_per_week">Times per Week</string>
     <string name="placeholder">!!!PLACEHOLDER!!!</string>
     <string name="times_per_duration_validation_message">Please enter times per week</string>
+    <string name="body_font">fonts/MuseoSansRounded-700.otf</string>
+
+
+
 
 </resources>
