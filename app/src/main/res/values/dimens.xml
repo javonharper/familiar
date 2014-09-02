@@ -5,7 +5,7 @@
     <dimen name="activity_vertical_margin">@dimen/app_padding</dimen>
     <dimen name="button_margin">@dimen/app_padding</dimen>
 
-    <dimen name="body_text_size">20dp</dimen>
-    <dimen name="title_text_size">24dp</dimen>
+    <dimen name="body_text_size">24dp</dimen>
+    <dimen name="title_text_size">28dp</dimen>
 
 </resources>
