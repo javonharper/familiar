@@ -30,19 +30,25 @@ public class HabitNewActivity extends Activity {
             @Override
             public void onClick(View view) {
                 EditText nameEdit = (EditText) findViewById(R.id.name_edit);
-                String name = nameEdit.getText().toString().trim();
-
                 EditText timesPerDurationEdit = (EditText) findViewById(R.id.times_per_duration_edit);
-                Integer timesPerDuration = Integer.valueOf(timesPerDurationEdit.getText().toString().trim());
 
-                Habit habit = new Habit(null, name, timesPerDuration);
-                controller.createHabit(habit);
+                try {
+                    String name = nameEdit.getText().toString().trim();
+                    Integer timesPerDuration = Integer.valueOf(timesPerDurationEdit.getText().toString().trim());
 
-                String message = "Habit \"" + habit.getName() + "\" created.";
-                Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
+                    Habit habit = new Habit(null, name, timesPerDuration);
+                    controller.createHabit(habit);
 
-                Intent intent = new Intent(view.getContext(), HabitIndexActivity.class);
-                startActivity(intent);
+                    String message = "Habit \"" + habit.getName() + "\" created.";
+                    Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(view.getContext(), HabitIndexActivity.class);
+                    startActivity(intent);
+                } catch (NumberFormatException e) {
+                    timesPerDurationEdit.setError(getString(R.string.times_per_duration_validation_message));
+                    Toast.makeText(view.getContext(), getString(R.string.times_per_duration_validation_message), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
             }
         });
 

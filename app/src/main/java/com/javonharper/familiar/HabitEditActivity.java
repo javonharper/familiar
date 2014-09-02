@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.javonharper.familiar.R;
-
 public class HabitEditActivity extends Activity {
 
     @Override
@@ -30,31 +28,36 @@ public class HabitEditActivity extends Activity {
         setTitle("Edit " + habit.getName());
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
-        final TextView nameView = (TextView) findViewById(R.id.name_edit);
-        nameView.setText(habit.getName());
+        final TextView nameEdit = (TextView) findViewById(R.id.name_edit);
+        nameEdit.setText(habit.getName());
 
-        final TextView timesPerDurationView = (TextView) findViewById(R.id.times_per_duration_edit);
-        timesPerDurationView.setText(habit.getTimesPerDuration().toString());
+        final TextView timesPerDurationEdit = (TextView) findViewById(R.id.times_per_duration_edit);
+        timesPerDurationEdit.setText(habit.getTimesPerDuration().toString());
 
         Button doneButton = (Button) findViewById(R.id.done_editing);
 
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String newName = nameView.getText().toString().trim();
-                Integer newTimesPerDuration = Integer.valueOf(timesPerDurationView.getText().toString().trim());
+                try {
+                    String newName = nameEdit.getText().toString().trim();
+                    Integer newTimesPerDuration = Integer.valueOf(timesPerDurationEdit.getText().toString().trim());
 
-                habit.setName(newName);
-                habit.setTimesPerDuration(newTimesPerDuration);
+                    habit.setName(newName);
+                    habit.setTimesPerDuration(newTimesPerDuration);
 
-                controller.updateHabit(habit);
+                    controller.updateHabit(habit);
 
-                String message = "Habit \"" + habit.getName() + "\" updated.";
-                Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
+                    String message = "Habit \"" + habit.getName() + "\" updated.";
+                    Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(view.getContext(), HabitIndexActivity.class);
+                    Intent intent = new Intent(view.getContext(), HabitIndexActivity.class);
 
-                startActivity(intent);
+                    startActivity(intent);
+                } catch (NumberFormatException e) {
+                    timesPerDurationEdit.setError(getString(R.string.times_per_duration_validation_message));
+                    Toast.makeText(view.getContext(), getString(R.string.times_per_duration_validation_message), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
