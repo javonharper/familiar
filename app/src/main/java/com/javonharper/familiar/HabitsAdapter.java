@@ -25,8 +25,10 @@ public class HabitsAdapter extends ArrayAdapter<Habit> {
         }
 
         TextView nameView = (TextView) convertView.findViewById(R.id.habit_name);
-
         nameView.setText(habit.getName());
+
+        TextView timesPerDurationView = (TextView) convertView.findViewById(R.id.habit_times_per_duration);
+        timesPerDurationView.setText(habit.getTimesPerDuration().toString());
 
         return convertView;
     }

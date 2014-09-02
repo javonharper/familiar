@@ -27,8 +27,10 @@ public class HabitShowActivity extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         TextView nameView = (TextView) findViewById(R.id.habit_name);
-
         nameView.setText(habit.getName());
+
+        TextView timesPerWeekView = (TextView) findViewById(R.id.habit_times_per_week);
+        timesPerWeekView.setText(habit.getTimesPerDuration().toString());
 
         Button deleteButton = (Button) findViewById(R.id.delete_habit);
 
