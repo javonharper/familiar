@@ -4,7 +4,8 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#ff5b5b5b</color>
     <color name="gray">#ffb2b2b2</color>
-    <color name="blue">#3E50B3</color>
+    <color name="blue">#296DDE</color>
+    <color name="red">#C84941</color>
 
     <color name="background_color">@color/white</color>
     <color name="text_color">@color/black</color>

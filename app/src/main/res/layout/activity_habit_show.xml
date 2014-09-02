@@ -86,7 +86,7 @@
             android:id="@+id/delete_habit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/button_background_color"
+            android:background="@color/red"
             android:textColor="@color/button_text_color"
             android:layout_margin="@dimen/button_margin"
             android:textSize="@dimen/body_text_size"
