@@ -29,6 +29,7 @@ public class HabitNewActivity extends Activity {
         nameLabel.setTypeface(font);
         TextView timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
         timesPerDurationLabel.setTypeface(font);
+
         final EditText nameEdit = (EditText) findViewById(R.id.name_edit);
         nameEdit.setTypeface(font);
         final EditText timesPerDurationEdit = (EditText) findViewById(R.id.times_per_duration_edit);

@@ -33,7 +33,7 @@ public class HabitShowActivity extends Activity {
 
         TextView timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
         timesPerDurationLabel.setTypeface(font);
-        
+
         TextView nameView = (TextView) findViewById(R.id.habit_name);
         nameView.setTypeface(font);
         nameView.setText(habit.getName());
