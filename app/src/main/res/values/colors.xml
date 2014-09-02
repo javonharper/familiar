@@ -4,11 +4,16 @@
     <color name="white">#FFFFFF</color>
     <color name="black">#ff5b5b5b</color>
     <color name="gray">#ffb2b2b2</color>
-    <color name="blue">#296DDE</color>
     <color name="red">#C84941</color>
 
-    <color name="background_color">@color/white</color>
-    <color name="text_color">@color/black</color>
-    <color name="button_background_color">@color/blue</color>
+    <color name="primary_color">#4CD499</color>
+
+    
+    <color name="app_background_color">@color/white</color>
+    <color name="app_text_color">@color/black</color>
+
+    <color name="button_background_color">@color/primary_color</color>
     <color name="button_text_color">@color/white</color>
+    <color name="cancel_button_text_color">@color/white</color>
+    <color name="cancel_button_background_color">@color/gray</color>
     </resources>
