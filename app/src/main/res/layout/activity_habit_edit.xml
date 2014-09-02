@@ -50,7 +50,7 @@
             android:textColor="@color/app_text_color"
             android:textSize="@dimen/body_text_size"
             android:textStyle="bold"
-            android:text="@string/times_per_week" />
+            android:text="@string/days_per_week" />
 
     </LinearLayout>
 
