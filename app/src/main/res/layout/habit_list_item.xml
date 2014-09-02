@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/text_color"
         android:textSize="@dimen/text_size"
-        android:text="!!!HABIT NAME PLACEHOLDER!!!"
+        android:text="@string/placeholder"
         />
 
     <TextView
@@ -25,5 +25,5 @@
         android:textColor="@color/text_color"
         android:textSize="@dimen/text_size"
         android:layout_gravity="right"
-        android:text="!!!HABIT TIMES_PER_DURATION PLACEHOLDER!!!"/>
+        android:text="@string/placeholder"/>
 </LinearLayout>
