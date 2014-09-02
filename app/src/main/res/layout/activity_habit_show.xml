@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/body_text_size"
             android:text="@string/name"
+            android:textStyle="bold"
             android:textColor="@color/text_color"/>
     </LinearLayout>
 
@@ -43,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/body_text_size"
+            android:textStyle="bold"
             android:text="@string/times_per_week"
             android:textColor="@color/text_color"/>
     </LinearLayout>
@@ -71,6 +73,7 @@
             android:background="@color/button_background_color"
             android:textColor="@color/button_text_color"
             android:layout_margin="@dimen/button_margin"
+            android:textSize="@dimen/body_text_size"
             android:text="@string/edit"/>
 
     </LinearLayout>
@@ -86,6 +89,7 @@
             android:background="@color/button_background_color"
             android:textColor="@color/button_text_color"
             android:layout_margin="@dimen/button_margin"
+            android:textSize="@dimen/body_text_size"
             android:text="@string/delete"/>
 
     </LinearLayout>
