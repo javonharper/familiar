@@ -15,6 +15,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/name_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/body_text_size"
@@ -41,6 +42,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/times_per_duration_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/body_text_size"

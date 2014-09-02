@@ -2,6 +2,7 @@ package com.javonharper.familiar;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,15 +26,24 @@ public class HabitShowActivity extends Activity {
 
         setTitle(habit.getName());
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
 
+        TextView nameLabel = (TextView) findViewById(R.id.name_label);
+        nameLabel.setTypeface(font);
+
+        TextView timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
+        timesPerDurationLabel.setTypeface(font);
+        
         TextView nameView = (TextView) findViewById(R.id.habit_name);
+        nameView.setTypeface(font);
         nameView.setText(habit.getName());
 
         TextView timesPerWeekView = (TextView) findViewById(R.id.habit_times_per_week);
+        timesPerWeekView.setTypeface(font);
         timesPerWeekView.setText(habit.getTimesPerDuration().toString());
 
         Button deleteButton = (Button) findViewById(R.id.delete_habit);
-
+        deleteButton.setTypeface(font);
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,7 +59,7 @@ public class HabitShowActivity extends Activity {
         });
 
         Button editButton = (Button) findViewById(R.id.edit_habit);
-
+        editButton.setTypeface(font);
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
