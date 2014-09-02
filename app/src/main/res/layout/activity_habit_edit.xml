@@ -35,6 +35,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/app_text_color"
             android:textSize="@dimen/body_text_size"
+            android:layout_marginBottom="@dimen/form_spacing"
             android:inputType="textCapSentences" />
 
     </LinearLayout>
@@ -62,6 +63,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/app_text_color"
+            android:layout_marginBottom="@dimen/form_spacing"
             android:inputType="number" />
 
     </LinearLayout>
@@ -79,7 +81,7 @@
             android:textSize="@dimen/body_text_size"
             android:background="@color/cancel_button_background_color"
             android:textColor="@color/cancel_button_text_color"
-            android:layout_margin="@dimen/button_margin"
+            android:layout_margin="@dimen/app_spacing"
 
             android:text="@string/cancel" />
 
@@ -92,7 +94,7 @@
 
             android:background="@color/button_background_color"
             android:textColor="@color/button_text_color"
-            android:layout_margin="@dimen/button_margin"
+            android:layout_margin="@dimen/app_spacing"
 
             android:text="@string/done" />
 
