@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/background_color"
+    android:background="@color/app_background_color"
     tools:context=".HabitIndexActivity">
 
 
@@ -18,7 +18,7 @@
         android:background="@color/button_background_color"
         android:textColor="@color/button_text_color"
         android:textSize="@dimen/body_text_size"
-        android:layout_margin="@dimen/button_margin"
+        android:layout_margin="@dimen/app_spacing"
         android:text="@string/new_habit"/>
 
     <ListView

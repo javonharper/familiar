@@ -2,12 +2,14 @@ package com.javonharper.familiar;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.javonharper.familiar.R;
@@ -21,16 +23,26 @@ public class HabitNewActivity extends Activity {
 
         setTitle(R.string.new_habit);
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
 
+        TextView nameLabel = (TextView) findViewById(R.id.name_label);
+        nameLabel.setTypeface(font);
+        TextView timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
+        timesPerDurationLabel.setTypeface(font);
+
+        final EditText nameEdit = (EditText) findViewById(R.id.name_edit);
+        nameEdit.setTypeface(font);
+        final EditText timesPerDurationEdit = (EditText) findViewById(R.id.times_per_duration_edit);
+        timesPerDurationEdit.setTypeface(font);
 
         final HabitController controller = new HabitController(this);
 
         Button createButton = (Button) findViewById(R.id.create_habit);
+        createButton.setTypeface(font);
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText nameEdit = (EditText) findViewById(R.id.name_edit);
-                EditText timesPerDurationEdit = (EditText) findViewById(R.id.times_per_duration_edit);
+
 
                 try {
                     String name = nameEdit.getText().toString().trim();
@@ -53,7 +65,7 @@ public class HabitNewActivity extends Activity {
         });
 
         Button cancelButton = (Button) findViewById(R.id.cancel);
-
+        cancelButton.setTypeface(font);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

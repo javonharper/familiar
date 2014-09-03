@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/background_color"
+    android:background="@color/app_background_color"
     tools:context="com.javonharper.familiar.HabitEditActivity">
 
     <LinearLayout
@@ -15,9 +15,11 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/name_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color"
+            android:textColor="@color/app_text_color"
+            android:layout_marginBottom="@dimen/label_field_spacing"
             android:textSize="@dimen/body_text_size"
             android:textStyle="bold"
             android:text="@string/name" />
@@ -32,8 +34,9 @@
             android:id="@+id/name_edit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color"
+            android:textColor="@color/app_text_color"
             android:textSize="@dimen/body_text_size"
+            android:layout_marginBottom="@dimen/fieldset_spacing"
             android:inputType="textCapSentences" />
 
     </LinearLayout>
@@ -42,12 +45,14 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/times_per_duration_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color"
+            android:textColor="@color/app_text_color"
             android:textSize="@dimen/body_text_size"
+            android:layout_marginBottom="@dimen/label_field_spacing"
             android:textStyle="bold"
-            android:text="@string/times_per_week" />
+            android:text="@string/days_per_week" />
 
     </LinearLayout>
 
@@ -59,7 +64,9 @@
             android:id="@+id/times_per_duration_edit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color"
+            android:textColor="@color/app_text_color"
+            android:textSize="@dimen/body_text_size"
+            android:layout_marginBottom="@dimen/fieldset_spacing"
             android:inputType="number" />
 
     </LinearLayout>
@@ -75,9 +82,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="@dimen/body_text_size"
-            android:background="@color/button_background_color"
-            android:textColor="@color/button_text_color"
-            android:layout_margin="@dimen/button_margin"
+            android:background="@color/cancel_button_background_color"
+            android:textColor="@color/cancel_button_text_color"
+            android:layout_margin="@dimen/app_spacing"
 
             android:text="@string/cancel" />
 
@@ -90,7 +97,7 @@
 
             android:background="@color/button_background_color"
             android:textColor="@color/button_text_color"
-            android:layout_margin="@dimen/button_margin"
+            android:layout_margin="@dimen/app_spacing"
 
             android:text="@string/done" />
 

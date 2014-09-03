@@ -22,7 +22,7 @@
         android:id="@+id/habit_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/text_color"
+        android:textColor="@color/app_text_color"
         android:textSize="@dimen/body_text_size"
         android:text="@string/placeholder"
         />

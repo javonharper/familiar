@@ -3,7 +3,10 @@
 
     <dimen name="activity_horizontal_margin">@dimen/app_padding</dimen>
     <dimen name="activity_vertical_margin">@dimen/app_padding</dimen>
-    <dimen name="button_margin">@dimen/app_padding</dimen>
+
+    <dimen name="app_spacing">@dimen/app_padding</dimen>
+    <dimen name="fieldset_spacing">35dp</dimen>
+    <dimen name="label_field_spacing">15dp</dimen>
 
     <dimen name="body_text_size">24dp</dimen>
     <dimen name="title_text_size">28dp</dimen>
