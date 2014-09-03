@@ -19,7 +19,7 @@
         android:textColor="@color/button_text_color"
         android:textSize="@dimen/body_text_size"
         android:layout_margin="@dimen/app_spacing"
-        android:text="@string/new_habit"/>
+        android:text="@string/add_habit"/>
 
     <ListView
         android:id="@+id/habit_list"

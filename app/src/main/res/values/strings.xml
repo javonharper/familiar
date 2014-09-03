@@ -4,7 +4,7 @@
     <string name="app_name">Familiar</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_habit_show">HabitShowActivity</string>
-    <string name="new_habit">New Habit</string>
+    <string name="add_habit">Add Habit</string>
     <string name="title_activity_habit_new">HabitNewActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="create">Create</string>
@@ -18,4 +18,6 @@
     <string name="placeholder">!!!PLACEHOLDER!!!</string>
     <string name="times_per_duration_validation_message">Please enter times per week</string>
     <string name="body_font">fonts/MuseoSansRounded-700.otf</string>
+    <string name="times_per_duration_placeholder_text">How Often?</string>
+    <string name="name_placeholder_text">e.g. Exercise</string>
 </resources>

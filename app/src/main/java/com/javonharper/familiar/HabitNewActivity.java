@@ -12,8 +12,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.javonharper.familiar.R;
-
 public class HabitNewActivity extends Activity {
 
     @Override
@@ -21,7 +19,7 @@ public class HabitNewActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_new);
 
-        setTitle(R.string.new_habit);
+        setTitle(R.string.add_habit);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
 
