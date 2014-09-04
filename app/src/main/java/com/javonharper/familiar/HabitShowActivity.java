@@ -84,7 +84,6 @@ public class HabitShowActivity extends Activity {
                 .show();
             }
         });
-
     }
 
     @Override
@@ -115,14 +114,24 @@ public class HabitShowActivity extends Activity {
                 return true;
 
             case R.id.action_delete:
-                controller.deleteHabit(habit.getId());
+                new AlertDialog.Builder(this)
+                        .setMessage("Are you sure you want to delete \"" + habit.getName() + "\"?")
+                        .setCancelable(true)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                controller.deleteHabit(habit.getId());
 
-                String message = "Habit \"" + habit.getName() + "\" deleted.";
-                Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+                                String message = "Habit \"" + habit.getName() + "\" deleted.";
+                                Toast.makeText(HabitShowActivity.this, message, Toast.LENGTH_SHORT).show();
 
-                intent = new Intent(this, HabitIndexActivity.class);
-                intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
-                startActivity(intent);
+                                Intent intent = new Intent(HabitShowActivity.this, HabitIndexActivity.class);
+                                intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
                 return true;
 
             case R.id.action_settings:
