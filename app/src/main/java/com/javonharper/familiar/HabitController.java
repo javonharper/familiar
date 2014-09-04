@@ -41,6 +41,7 @@ public class HabitController {
         ContentValues values = new ContentValues();
         values.put(Habit.COLUMN_NAME_NAME, habit.getName());
         values.put(Habit.COLUMN_NAME_TIMES_PER_DURATION, habit.getTimesPerDuration());
+        values.put(Habit.COLUMN_NAME_CURRENT_PROGRESS, habit.getCurrentProgress());
 
         long id = db.insert(Habit.TABLE_NAME, null, values);
 
@@ -71,6 +72,7 @@ public class HabitController {
         ContentValues values = new ContentValues();
         values.put(Habit.COLUMN_NAME_NAME, habit.getName());
         values.put(Habit.COLUMN_NAME_TIMES_PER_DURATION, habit.getTimesPerDuration());
+        values.put(Habit.COLUMN_NAME_CURRENT_PROGRESS, habit.getTimesPerDuration());
 
         String selection = Habit._ID + " LIKE ?";
         String[] selectionArgs = {String.valueOf(habit.getId())};
@@ -93,10 +95,12 @@ public class HabitController {
         int idIndex = cursor.getColumnIndex(Habit._ID);
         int nameIndex = cursor.getColumnIndex(Habit.COLUMN_NAME_NAME);
         int timesPerDurationIndex = cursor.getColumnIndex(Habit.COLUMN_NAME_TIMES_PER_DURATION);
+        int currentProgressIndex = cursor.getColumnIndex(Habit.COLUMN_NAME_CURRENT_PROGRESS);
 
         Integer id = (int) cursor.getLong(idIndex);
         String name = cursor.getString(nameIndex);
         Integer timesPerDuration = Integer.valueOf(cursor.getInt(timesPerDurationIndex));
-        return new Habit(id, name, timesPerDuration);
+        Integer currentProgress = Integer.valueOf(cursor.getInt(currentProgressIndex));
+        return new Habit(id, name, timesPerDuration, currentProgress);
     }
 }

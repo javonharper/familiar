@@ -46,7 +46,7 @@ public class HabitNewActivity extends Activity {
                     String name = nameEdit.getText().toString().trim();
                     Integer timesPerDuration = Integer.valueOf(timesPerDurationEdit.getText().toString().trim());
 
-                    Habit habit = new Habit(null, name, timesPerDuration);
+                    Habit habit = new Habit(null, name, timesPerDuration, 0);
                     controller.createHabit(habit);
 
                     String message = "Habit \"" + habit.getName() + "\" created.";

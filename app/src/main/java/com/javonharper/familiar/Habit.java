@@ -4,11 +4,13 @@ public class Habit extends FamiliarContract.HabitContract {
     private Integer id = null;
     private String name = null;
     private Integer timesPerDuration = null;
+    private Integer currentProgress = null;
 
-    public Habit(Integer id, String name, Integer timesPerDuration) {
+    public Habit(Integer id, String name, Integer timesPerDuration, Integer currentProgress) {
         this.setId(id);
         this.setName(name);
         this.setTimesPerDuration(timesPerDuration);
+        this.setCurrentProgress(currentProgress);
     }
 
     public Integer getId() {
@@ -35,6 +37,14 @@ public class Habit extends FamiliarContract.HabitContract {
         this.timesPerDuration = timesPerDuration;
     }
 
+    public Integer getCurrentProgress() {
+        return currentProgress;
+    }
+
+    public void setCurrentProgress(Integer currentProgress) {
+        this.currentProgress = currentProgress;
+    }
+
     public String toString() {
         String id;
 
@@ -43,6 +53,6 @@ public class Habit extends FamiliarContract.HabitContract {
         } else {
             id = this.getId().toString();
         }
-        return "Habit(" + id + ": " + this.getName() + "x" + this.getTimesPerDuration().toString() +")";
+        return "Habit[" + id + ": " + this.getName() + " (" + this.getCurrentProgress().toString() +"/" + this.getTimesPerDuration().toString() + ")]";
     }
 }
