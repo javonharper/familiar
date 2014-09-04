@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HabitsAdapter extends ArrayAdapter<Habit> {
@@ -27,13 +26,17 @@ public class HabitsAdapter extends ArrayAdapter<Habit> {
 
         Typeface font = Typeface.createFromAsset(getContext().getAssets(), getContext().getString(R.string.body_font));
 
-        TextView nameView = (TextView) convertView.findViewById(R.id.habit_name);
-        nameView.setTypeface(font);
-        nameView.setText(habit.getName());
+        TextView progress = (TextView) convertView.findViewById(R.id.current_progress);
+        progress.setTypeface(font);
+        progress.setText(habit.getCurrentProgress().toString());
 
-        TextView timesPerDurationView = (TextView) convertView.findViewById(R.id.habit_times_per_duration);
-        timesPerDurationView.setTypeface(font);
-        timesPerDurationView.setText(habit.getTimesPerDuration().toString());
+        TextView timesPerDuration = (TextView) convertView.findViewById(R.id.times_per_duration);
+        timesPerDuration.setTypeface(font);
+        timesPerDuration.setText(habit.getTimesPerDuration().toString());
+
+        TextView name = (TextView) convertView.findViewById(R.id.name);
+        name.setTypeface(font);
+        name.setText(habit.getName());
 
         return convertView;
     }

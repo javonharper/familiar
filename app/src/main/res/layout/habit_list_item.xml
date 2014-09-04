@@ -10,20 +10,34 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/habit_times_per_duration"
+        android:id="@+id/current_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/title_text_size"
+        android:text="2"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/title_text_size"
+        android:text="@string/current_progress_divider"/>
+    <TextView
+        android:id="@+id/times_per_duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/gray"
         android:textSize="@dimen/title_text_size"
         android:layout_marginRight="@dimen/app_padding"
-        android:text="@string/placeholder"/>
+        android:text="4"/>
 
     <TextView
-        android:id="@+id/habit_name"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/app_text_color"
-        android:textSize="@dimen/body_text_size"
-        android:text="@string/placeholder"
+        android:textSize="@dimen/title_text_size"
+
+        android:text="Excercise"
         />
 </LinearLayout>

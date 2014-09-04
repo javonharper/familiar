@@ -31,7 +31,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/habit_name"
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/body_text_size"
@@ -75,14 +75,14 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/edit_habit"
+            android:id="@+id/increment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/button_background_color"
             android:textColor="@color/button_text_color"
             android:layout_margin="@dimen/app_spacing"
             android:textSize="@dimen/body_text_size"
-            android:text="@string/edit"/>
+            android:text="Increment Counter"/>
 
     </LinearLayout>
 
@@ -91,17 +91,42 @@
         android:layout_height="wrap_content">
 
         <Button
+            android:id="@+id/reset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/button_background_color"
+            android:textColor="@color/button_text_color"
+            android:layout_margin="@dimen/app_spacing"
+            android:textSize="@dimen/body_text_size"
+            android:text="Reset Counter"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/edit_habit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/button_background_color"
+            android:textColor="@color/button_text_color"
+            android:layout_margin="@dimen/app_spacing"
+            android:textSize="@dimen/body_text_size"
+            android:layout_weight="1"
+            android:text="@string/edit"/>
+
+        <Button
             android:id="@+id/delete_habit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/red"
+            android:layout_weight="1"
             android:textColor="@color/button_text_color"
             android:layout_margin="@dimen/app_spacing"
             android:textSize="@dimen/body_text_size"
             android:text="@string/delete"/>
 
     </LinearLayout>
-
-
-
 </LinearLayout>
