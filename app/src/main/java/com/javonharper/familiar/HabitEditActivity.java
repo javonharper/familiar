@@ -75,9 +75,8 @@ public class HabitEditActivity extends Activity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), HabitShowActivity.class);
-                intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
-                startActivity(intent);
+                HabitEditActivity.this.finish();
+
             }
         });
     }
