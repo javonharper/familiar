@@ -5,9 +5,9 @@
     <color name="black">#ff5b5b5b</color>
     <color name="gray">#ffb2b2b2</color>
     <color name="red">#C84941</color>
+    <color name="green">#4CD499</color>
 
     <color name="primary_color">#4CD499</color>
-
 
     <color name="app_background_color">@color/white</color>
     <color name="app_text_color">@color/black</color>

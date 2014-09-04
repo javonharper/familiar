@@ -38,6 +38,12 @@ public class HabitsAdapter extends ArrayAdapter<Habit> {
         name.setTypeface(font);
         name.setText(habit.getName());
 
+        if(habit.getCurrentProgress() >= habit.getTimesPerDuration()) {
+            progress.setTextColor(convertView.getResources().getColor(R.color.green));
+            timesPerDuration.setTextColor(convertView.getResources().getColor(R.color.green));
+            ((TextView) convertView.findViewById(R.id.seperator)).setTextColor(convertView.getResources().getColor(R.color.green));
+        }
+
         return convertView;
     }
 }

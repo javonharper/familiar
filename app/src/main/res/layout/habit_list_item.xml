@@ -16,12 +16,15 @@
         android:textColor="@color/gray"
         android:textSize="@dimen/title_text_size"
         android:text="2"/>
+
     <TextView
+        android:id="@+id/seperator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/gray"
         android:textSize="@dimen/title_text_size"
         android:text="@string/current_progress_divider"/>
+
     <TextView
         android:id="@+id/times_per_duration"
         android:layout_width="wrap_content"
