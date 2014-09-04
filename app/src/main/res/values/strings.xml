@@ -21,6 +21,6 @@
     <string name="times_per_duration_placeholder_text">How often?</string>
     <string name="name_placeholder_text">e.g. Exercise</string>
     <string name="current_progress_divider">/</string>
-    <string name="reset">Reset</string>
-    <string name="increment">Increment</string>
+    <string name="reset">Reset Progress</string>
+    <string name="increment">Increment Progress</string>
 </resources>
