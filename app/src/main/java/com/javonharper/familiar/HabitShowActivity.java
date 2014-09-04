@@ -42,6 +42,10 @@ public class HabitShowActivity extends Activity {
         timesPerWeekView.setTypeface(font);
         timesPerWeekView.setText(habit.getTimesPerDuration().toString());
 
+        final TextView currentProgress = (TextView) findViewById(R.id.habit_current_progress);
+        currentProgress.setTypeface(font);
+        currentProgress.setText(habit.getCurrentProgress().toString());
+
         Button deleteButton = (Button) findViewById(R.id.delete_habit);
         deleteButton.setTypeface(font);
         deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +70,30 @@ public class HabitShowActivity extends Activity {
                 Intent intent = new Intent(view.getContext(), HabitEditActivity.class);
                 intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
                 startActivity(intent);
+            }
+        });
+
+        Button increment = (Button) findViewById(R.id.increment);
+        increment.setTypeface(font);
+        increment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Integer newCurrentProgress = habit.getCurrentProgress() + 1;
+                currentProgress.setText(newCurrentProgress.toString());
+                habit.setCurrentProgress(newCurrentProgress);
+                controller.updateHabit(habit);
+            }
+        });
+
+        Button reset = (Button) findViewById(R.id.reset);
+        reset.setTypeface(font);
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Integer newCurrentProgress = 0;
+                currentProgress.setText(newCurrentProgress.toString());
+                habit.setCurrentProgress(newCurrentProgress);
+                controller.updateHabit(habit);
             }
         });
 

@@ -72,7 +72,7 @@ public class HabitController {
         ContentValues values = new ContentValues();
         values.put(Habit.COLUMN_NAME_NAME, habit.getName());
         values.put(Habit.COLUMN_NAME_TIMES_PER_DURATION, habit.getTimesPerDuration());
-        values.put(Habit.COLUMN_NAME_CURRENT_PROGRESS, habit.getTimesPerDuration());
+        values.put(Habit.COLUMN_NAME_CURRENT_PROGRESS, habit.getCurrentProgress());
 
         String selection = Habit._ID + " LIKE ?";
         String[] selectionArgs = {String.valueOf(habit.getId())};
