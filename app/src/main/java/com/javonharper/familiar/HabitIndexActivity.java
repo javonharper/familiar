@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -26,6 +27,7 @@ public class HabitIndexActivity extends Activity {
         HabitController controller = new HabitController(this);
         List<Habit> habits = controller.getAllHabits();
         HabitsAdapter adapter = new HabitsAdapter(this, habits);
+        adapter.sort(new HabitComparator());
         final ListView habitListView = (ListView) findViewById(R.id.habit_list);
         habitListView.setAdapter(adapter);
 
