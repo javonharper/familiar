@@ -18,6 +18,6 @@
     <string name="placeholder">!!!PLACEHOLDER!!!</string>
     <string name="times_per_duration_validation_message">Please enter times per week</string>
     <string name="body_font">fonts/MuseoSansRounded-700.otf</string>
-    <string name="times_per_duration_placeholder_text">How Often?</string>
+    <string name="times_per_duration_placeholder_text">How often?</string>
     <string name="name_placeholder_text">e.g. Exercise</string>
 </resources>
