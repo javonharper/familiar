@@ -122,7 +122,7 @@ public class HabitShowActivity extends Activity {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 controller.deleteHabit(habit.getId());
 
-                                String message = "Habit \"" + habit.getName() + "\" deleted.";
+                                String message = "\"" + habit.getName() + "\" deleted.";
                                 Toast.makeText(HabitShowActivity.this, message, Toast.LENGTH_SHORT).show();
 
                                 Intent intent = new Intent(HabitShowActivity.this, HabitIndexActivity.class);
