@@ -1,6 +1,8 @@
 package com.javonharper.familiar;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -66,10 +68,20 @@ public class HabitShowActivity extends Activity {
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Integer newCurrentProgress = 0;
-                currentProgress.setText(newCurrentProgress.toString());
-                habit.setCurrentProgress(newCurrentProgress);
-                controller.updateHabit(habit);
+                new AlertDialog.Builder(view.getContext())
+                        .setMessage("Are you sure you want to reset your progress?")
+                        .setCancelable(true)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Integer newCurrentProgress = 0;
+                                currentProgress.setText(newCurrentProgress.toString());
+                                habit.setCurrentProgress(newCurrentProgress);
+                                controller.updateHabit(habit);
+                            }
+                        })
+                .setNegativeButton("No", null)
+                .show();
             }
         });
 
