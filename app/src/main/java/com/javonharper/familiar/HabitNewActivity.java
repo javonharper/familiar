@@ -51,6 +51,7 @@ public class HabitNewActivity extends Activity {
                     Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(view.getContext(), HabitIndexActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 } catch (NumberFormatException e) {
                     timesPerDurationEdit.setError(getString(R.string.times_per_duration_validation_message));
