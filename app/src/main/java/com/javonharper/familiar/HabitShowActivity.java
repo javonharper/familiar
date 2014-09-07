@@ -69,9 +69,9 @@ public class HabitShowActivity extends Activity {
             @Override
             public void onClick(View view) {
                 new AlertDialog.Builder(view.getContext())
-                        .setMessage("Are you sure you want to reset your progress?")
+                        .setMessage("Reset your progress?")
                         .setCancelable(true)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Reset progress", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 Integer newCurrentProgress = 0;
@@ -80,7 +80,7 @@ public class HabitShowActivity extends Activity {
                                 controller.updateHabit(habit);
                             }
                         })
-                .setNegativeButton("No", null)
+                .setNegativeButton("Cancel", null)
                 .show();
             }
         });
@@ -115,9 +115,9 @@ public class HabitShowActivity extends Activity {
 
             case R.id.action_delete:
                 new AlertDialog.Builder(this)
-                        .setMessage("Are you sure you want to delete \"" + habit.getName() + "\"?")
+                        .setMessage("Delete \"" + habit.getName() + "\"?")
                         .setCancelable(true)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 controller.deleteHabit(habit.getId());
@@ -130,12 +130,12 @@ public class HabitShowActivity extends Activity {
                                 startActivity(intent);
                             }
                         })
-                        .setNegativeButton("No", null)
+                        .setNegativeButton("Cancel", null)
                         .show();
                 return true;
 
-            case R.id.action_settings:
-                return true;
+//            case R.id.action_settings:
+//                return true;
         }
         return super.onOptionsItemSelected(item);
     }
