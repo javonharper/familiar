@@ -40,8 +40,6 @@ public class HabitNewActivity extends Activity {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 try {
                     String name = nameEdit.getText().toString().trim();
                     Integer timesPerDuration = Integer.valueOf(timesPerDurationEdit.getText().toString().trim());

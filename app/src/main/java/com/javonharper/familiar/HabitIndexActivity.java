@@ -53,8 +53,6 @@ public class HabitIndexActivity extends Activity {
                 startActivity(intent);
             }
         });
-
-
     }
 
     @Override

@@ -20,13 +20,17 @@ public class HabitController {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         Cursor cursor = db.query(Habit.TABLE_NAME, null, null, null, null, null, null);
-        cursor.moveToFirst();
+        boolean hasHabits = cursor.moveToFirst();
 
         List<Habit> habits = new ArrayList<Habit>();
 
-        while (cursor.moveToNext()) {
-            Habit habit = populateHabit(cursor);
-            habits.add(habit);
+        if(hasHabits) {
+            habits.add(populateHabit(cursor));
+
+            while (cursor.moveToNext()) {
+                Habit habit = populateHabit(cursor);
+                habits.add(habit);
+            }
         }
 
         cursor.close();
