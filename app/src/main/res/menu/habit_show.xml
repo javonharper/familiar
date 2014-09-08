@@ -2,6 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.javonharper.familiar.HabitShowActivity" >
 
+    <item android:id="@+id/action_reset"
+        android:icon="@drawable/ic_action_replay"
+        android:title="@string/reset"
+        android:showAsAction="ifRoom" />
+
     <item android:id="@+id/action_edit"
         android:icon="@drawable/ic_action_edit"
         android:title="@string/edit"

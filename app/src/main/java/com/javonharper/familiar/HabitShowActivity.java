@@ -18,6 +18,7 @@ public class HabitShowActivity extends Activity {
 
     private Habit habit;
     private HabitController controller;
+    private TextView currentProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class HabitShowActivity extends Activity {
         timesPerWeekView.setTypeface(font);
         timesPerWeekView.setText(habit.getTimesPerDuration().toString());
 
-        final TextView currentProgress = (TextView) findViewById(R.id.habit_current_progress);
+        currentProgress = (TextView) findViewById(R.id.habit_current_progress);
         currentProgress.setTypeface(font);
         currentProgress.setText(habit.getCurrentProgress().toString());
 
@@ -65,31 +66,6 @@ public class HabitShowActivity extends Activity {
                 currentProgress.setText(newCurrentProgress.toString());
                 habit.setCurrentProgress(newCurrentProgress);
                 controller.updateHabit(habit);
-            }
-        });
-
-        Button reset = (Button) findViewById(R.id.reset);
-        reset.setTypeface(font);
-        reset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new AlertDialog.Builder(view.getContext())
-                        .setMessage("Reset your progress?")
-                        .setCancelable(true)
-                        .setPositiveButton("Reset progress", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                String message = "Progress reset for \"" + habit.getName() + "\".";
-                                Toast.makeText(HabitShowActivity.this, message, Toast.LENGTH_SHORT).show();
-
-                                Integer newCurrentProgress = 0;
-                                currentProgress.setText(newCurrentProgress.toString());
-                                habit.setCurrentProgress(newCurrentProgress);
-                                controller.updateHabit(habit);
-                            }
-                        })
-                .setNegativeButton("Cancel", null)
-                .show();
             }
         });
     }
@@ -136,6 +112,27 @@ public class HabitShowActivity extends Activity {
                                 Intent intent = new Intent(HabitShowActivity.this, HabitIndexActivity.class);
                                 intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
                                 startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .show();
+                return true;
+
+            case R.id.action_reset:
+                new AlertDialog.Builder(this)
+                        .setMessage("Reset your progress for your for all habits?")
+                        .setCancelable(true)
+                        .setPositiveButton("Reset all progress", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                String message = "Progress reset for \"" + habit.getName() + "\".";
+                                Toast.makeText(HabitShowActivity.this, message, Toast.LENGTH_SHORT).show();
+
+                                Integer newCurrentProgress = 0;
+                                currentProgress.setText(newCurrentProgress.toString());
+                                habit.setCurrentProgress(newCurrentProgress);
+                                controller.updateHabit(habit);
                             }
                         })
                         .setNegativeButton("Cancel", null)
