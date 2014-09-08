@@ -79,6 +79,9 @@ public class HabitShowActivity extends Activity {
                         .setPositiveButton("Reset progress", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+                                String message = "Progress reset for \"" + habit.getName() + "\".";
+                                Toast.makeText(HabitShowActivity.this, message, Toast.LENGTH_SHORT).show();
+
                                 Integer newCurrentProgress = 0;
                                 currentProgress.setText(newCurrentProgress.toString());
                                 habit.setCurrentProgress(newCurrentProgress);
@@ -91,12 +94,12 @@ public class HabitShowActivity extends Activity {
         });
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.habit_show, menu);
-//        return true;
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.habit_show, menu);
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

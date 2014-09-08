@@ -87,7 +87,7 @@ public class HabitIndexActivity extends Activity {
                                     controller.updateHabit(habit);
                                 }
 
-                                String message = "Progress reset.";
+                                String message = "Progress reset for all habits.";
                                 Toast.makeText(HabitIndexActivity.this, message, Toast.LENGTH_SHORT).show();
 
                                 Intent intent = getIntent();
