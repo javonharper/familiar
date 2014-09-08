@@ -157,6 +157,7 @@ public class HabitIndexActivity extends Activity {
             Integer newCurrentProgress = habit.getCurrentProgress() + 1;
             habit.setCurrentProgress(newCurrentProgress);
             controller.updateHabit(habit);
+
             Intent intent = getIntent();
             finish();
             startActivity(intent);
@@ -176,8 +177,8 @@ public class HabitIndexActivity extends Activity {
                             String message = "\"" + habit.getName() + "\" deleted.";
                             Toast.makeText(HabitIndexActivity.this, message, Toast.LENGTH_SHORT).show();
 
-                            Intent intent = new Intent(HabitIndexActivity.this, HabitIndexActivity.class);
-                            intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
+                            Intent intent = getIntent();
+                            finish();
                             startActivity(intent);
                         }
                     })
