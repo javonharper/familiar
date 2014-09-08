@@ -120,9 +120,9 @@ public class HabitShowActivity extends Activity {
 
             case R.id.action_reset:
                 new AlertDialog.Builder(this)
-                        .setMessage("Reset your progress for your for all habits?")
+                        .setMessage(getString(R.string.reset_progress_prompt))
                         .setCancelable(true)
-                        .setPositiveButton("Reset all progress", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Reset", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
 
