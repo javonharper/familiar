@@ -21,8 +21,14 @@
         android:layout_margin="@dimen/app_spacing"
         android:text="@string/add_habit"/>
 
+    <LinearLayout
+        android:id="@+id/empty_state"
+        android:orientation="vertical" />
+
     <ListView
         android:id="@+id/habit_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+
 </GridLayout>

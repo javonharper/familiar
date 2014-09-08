@@ -113,8 +113,6 @@
             android:layout_margin="@dimen/app_spacing"
             android:textSize="@dimen/body_text_size"
             android:layout_weight="1"
-            android:text="@string/increment"/>
-
-
+            android:text="@string/mark_task_done"/>
     </LinearLayout>
 </LinearLayout>

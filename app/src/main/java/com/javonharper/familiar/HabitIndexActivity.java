@@ -2,16 +2,21 @@ package com.javonharper.familiar;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Comparator;
@@ -31,6 +36,11 @@ public class HabitIndexActivity extends Activity {
 
         controller = new HabitController(this);
         habits = controller.getAllHabits();
+
+        if (habits.size() == 0) {
+            showEmptyStateView();
+        }
+
         HabitsAdapter adapter = new HabitsAdapter(this, habits);
         adapter.sort(new HabitComparator());
         final ListView habitListView = (ListView) findViewById(R.id.habit_list);
@@ -58,6 +68,22 @@ public class HabitIndexActivity extends Activity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void showEmptyStateView() {
+        LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.empty_state, null);
+
+        ViewGroup insertPoint = (ViewGroup) findViewById(R.id.empty_state);
+        insertPoint.addView(view, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+        Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
+
+        TextView header = (TextView) findViewById(R.id.empty_state_header);
+        header.setTypeface(font);
+
+        TextView subtext = (TextView) findViewById(R.id.empty_state_subtext);
+        subtext.setTypeface(font);
     }
 
     @Override

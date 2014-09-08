@@ -21,5 +21,7 @@
     <string name="name_placeholder_text">e.g. Exercise</string>
     <string name="current_progress_divider">/</string>
     <string name="reset">Reset</string>
-    <string name="increment">I did this</string>
+    <string name="mark_task_done">I just did this</string>
+    <string name="empty_state_title">No Habits added yet</string>
+    <string name="empty_state_subtext">Use the button above to get started.</string>
 </resources>
