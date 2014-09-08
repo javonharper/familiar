@@ -6,9 +6,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,6 +58,8 @@ public class HabitIndexActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        registerForContextMenu(habitListView);
 
         Button newHabitButton = (Button) findViewById(R.id.new_habit_button);
 
@@ -129,5 +134,57 @@ public class HabitIndexActivity extends Activity {
 //                return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.context_menu, menu);
+    }
+
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int index = info.position;
+        final Habit habit = habits.get(index);
+
+        String optionTitle = (String) item.getTitle();
+        if (optionTitle.equals(getString(R.string.mark_task_done))) {
+            MediaPlayer successSound = MediaPlayer.create(HabitIndexActivity.this, R.raw.success);
+            successSound.setVolume(0.1f, 0.1f);
+            successSound.start();
+
+            Integer newCurrentProgress = habit.getCurrentProgress() + 1;
+            habit.setCurrentProgress(newCurrentProgress);
+            controller.updateHabit(habit);
+            Intent intent = getIntent();
+            finish();
+            startActivity(intent);
+        } else if (optionTitle.equals(getString(R.string.edit))) {
+            Intent intent = new Intent(this, HabitEditActivity.class);
+            intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
+            startActivity(intent);
+        } else if (optionTitle.equals(getString(R.string.delete))) {
+            new AlertDialog.Builder(this)
+                    .setMessage("Delete \"" + habit.getName() + "\"?")
+                    .setCancelable(true)
+                    .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            controller.deleteHabit(habit.getId());
+
+                            String message = "\"" + habit.getName() + "\" deleted.";
+                            Toast.makeText(HabitIndexActivity.this, message, Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(HabitIndexActivity.this, HabitIndexActivity.class);
+                            intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
+                            startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
+        }
+
+        return true;
     }
 }
