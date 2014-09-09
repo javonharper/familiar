@@ -26,5 +26,6 @@
     <string name="empty_state_subtext">Use the button above to get started.</string>
     <string name="reset_all_progress_prompt">Reset progress for all habits?</string>
     <string name="reset_progress_prompt">Reset progress for this habit?</string>
+    <string name="view">View</string>
 
 </resources>
