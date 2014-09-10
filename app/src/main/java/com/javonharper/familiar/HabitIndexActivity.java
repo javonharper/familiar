@@ -150,9 +150,6 @@ public class HabitIndexActivity extends Activity {
 
         String optionTitle = (String) item.getTitle();
         if (optionTitle.equals(getString(R.string.mark_task_done))) {
-            MediaPlayer successSound = MediaPlayer.create(HabitIndexActivity.this, R.raw.success);
-            successSound.setVolume(0.1f, 0.1f);
-            successSound.start();
 
             Integer newCurrentProgress = habit.getCurrentProgress() + 1;
             habit.setCurrentProgress(newCurrentProgress);

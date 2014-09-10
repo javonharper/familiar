@@ -58,10 +58,6 @@ public class HabitShowActivity extends Activity {
         increment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MediaPlayer successSound = MediaPlayer.create(view.getContext(), R.raw.success);
-                successSound.setVolume(0.1f, 0.1f);
-                successSound.start();
-
                 Integer newCurrentProgress = habit.getCurrentProgress() + 1;
                 currentProgress.setText(newCurrentProgress.toString());
                 habit.setCurrentProgress(newCurrentProgress);
