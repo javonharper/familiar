@@ -49,7 +49,7 @@ public class HabitIndexActivity extends Activity {
             showEmptyStateView();
         }
 
-        Collections.sort(habits, new HabitComparator());
+        //Collections.sort(habits, new HabitComparator());
         HabitsAdapter adapter = new HabitsAdapter(this, habits);
         final ListView habitListView = (ListView) findViewById(R.id.habit_list);
         habitListView.setAdapter(adapter);
