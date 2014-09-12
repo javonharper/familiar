@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -48,8 +49,8 @@ public class HabitIndexActivity extends Activity {
             showEmptyStateView();
         }
 
+        Collections.sort(habits, new HabitComparator());
         HabitsAdapter adapter = new HabitsAdapter(this, habits);
-        adapter.sort(new HabitComparator());
         final ListView habitListView = (ListView) findViewById(R.id.habit_list);
         habitListView.setAdapter(adapter);
 

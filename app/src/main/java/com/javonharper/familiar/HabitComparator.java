@@ -2,9 +2,6 @@ package com.javonharper.familiar;
 
 import java.util.Comparator;
 
-/**
- * Created by javon on 9/3/14.
- */
 class HabitComparator implements Comparator<Habit> {
     @Override
     public int compare(Habit habit1, Habit habit2) {
