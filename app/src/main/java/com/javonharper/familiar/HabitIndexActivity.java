@@ -36,8 +36,12 @@ public class HabitIndexActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_index);
-
         controller = new HabitController(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         habits = controller.getAllHabits();
 
         if (habits.size() == 0) {
