@@ -34,10 +34,16 @@ public class HabitEditActivity extends Activity {
         nameLabel.setTypeface(font);
         TextView timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
         timesPerDurationLabel.setTypeface(font);
+        TextView durationLabel = (TextView) findViewById(R.id.duration_label);
+        durationLabel.setTypeface(font);
 
         final TextView nameEdit = (TextView) findViewById(R.id.name_edit);
         nameEdit.setTypeface(font);
         nameEdit.setText(habit.getName());
+
+        final TextView durationEdit = (TextView) findViewById(R.id.duration_edit);
+        durationEdit.setTypeface(font);
+        durationEdit.setText(habit.getDuration().toString());
 
         final TextView timesPerDurationEdit = (TextView) findViewById(R.id.times_per_duration_edit);
         timesPerDurationEdit.setTypeface(font);
@@ -51,9 +57,11 @@ public class HabitEditActivity extends Activity {
                 try {
                     String newName = nameEdit.getText().toString().trim();
                     Integer newTimesPerDuration = Integer.valueOf(timesPerDurationEdit.getText().toString().trim());
+                    Integer newDuration = Integer.valueOf(durationEdit.getText().toString().trim());
 
                     habit.setName(newName);
                     habit.setTimesPerDuration(newTimesPerDuration);
+                    habit.setDuration(newDuration);
 
                     controller.updateHabit(habit);
 

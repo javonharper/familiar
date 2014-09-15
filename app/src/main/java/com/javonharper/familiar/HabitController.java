@@ -44,6 +44,7 @@ public class HabitController {
 
         ContentValues values = new ContentValues();
         values.put(Habit.COLUMN_NAME_NAME, habit.getName());
+        values.put(Habit.COLUMN_NAME_DURATION, habit.getDuration());
         values.put(Habit.COLUMN_NAME_TIMES_PER_DURATION, habit.getTimesPerDuration());
         values.put(Habit.COLUMN_NAME_CURRENT_PROGRESS, habit.getCurrentProgress());
 
@@ -75,6 +76,7 @@ public class HabitController {
 
         ContentValues values = new ContentValues();
         values.put(Habit.COLUMN_NAME_NAME, habit.getName());
+        values.put(Habit.COLUMN_NAME_DURATION, habit.getDuration());
         values.put(Habit.COLUMN_NAME_TIMES_PER_DURATION, habit.getTimesPerDuration());
         values.put(Habit.COLUMN_NAME_CURRENT_PROGRESS, habit.getCurrentProgress());
 
@@ -98,13 +100,15 @@ public class HabitController {
     private Habit populateHabit(Cursor cursor) {
         int idIndex = cursor.getColumnIndex(Habit._ID);
         int nameIndex = cursor.getColumnIndex(Habit.COLUMN_NAME_NAME);
+        int durationIndex = cursor.getColumnIndex(Habit.COLUMN_NAME_DURATION);
         int timesPerDurationIndex = cursor.getColumnIndex(Habit.COLUMN_NAME_TIMES_PER_DURATION);
         int currentProgressIndex = cursor.getColumnIndex(Habit.COLUMN_NAME_CURRENT_PROGRESS);
 
         Integer id = (int) cursor.getLong(idIndex);
         String name = cursor.getString(nameIndex);
+        Integer duration = Integer.valueOf(cursor.getInt(durationIndex));
         Integer timesPerDuration = Integer.valueOf(cursor.getInt(timesPerDurationIndex));
         Integer currentProgress = Integer.valueOf(cursor.getInt(currentProgressIndex));
-        return new Habit(id, name, timesPerDuration, currentProgress);
+        return new Habit(id, name, duration,timesPerDuration    , currentProgress);
     }
 }

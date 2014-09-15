@@ -27,5 +27,7 @@
     <string name="reset_all_progress_prompt">Reset progress for all habits?</string>
     <string name="reset_progress_prompt">Reset progress for this habit?</string>
     <string name="view">View</string>
+    <string name="duration_label_text">Duration</string>
+    <string name="duration_placeholder_text">How many minutes?</string>
 
 </resources>

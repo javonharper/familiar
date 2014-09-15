@@ -26,12 +26,15 @@ public class HabitNewActivity extends Activity {
         TextView nameLabel = (TextView) findViewById(R.id.name_label);
         nameLabel.setTypeface(font);
         TextView timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
-        timesPerDurationLabel.setTypeface(font);
+        TextView durationLabel = (TextView) findViewById(R.id.duration_label);
+        durationLabel.setTypeface(font);
 
         final EditText nameEdit = (EditText) findViewById(R.id.name_edit);
         nameEdit.setTypeface(font);
         final EditText timesPerDurationEdit = (EditText) findViewById(R.id.times_per_duration_edit);
         timesPerDurationEdit.setTypeface(font);
+        final TextView durationEdit = (TextView) findViewById(R.id.duration_edit);
+        durationEdit.setTypeface(font);
 
         final HabitController controller = new HabitController(this);
 
@@ -43,8 +46,10 @@ public class HabitNewActivity extends Activity {
                 try {
                     String name = nameEdit.getText().toString().trim();
                     Integer timesPerDuration = Integer.valueOf(timesPerDurationEdit.getText().toString().trim());
+                    Integer duration = Integer.valueOf(durationEdit.getText().toString().trim());
 
-                    Habit habit = new Habit(null, name, timesPerDuration, 0);
+
+                    Habit habit = new Habit(null, name, duration, timesPerDuration, 0);
                     controller.createHabit(habit);
 
                     String message = "Habit \"" + habit.getName() + "\" created.";

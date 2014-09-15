@@ -85,6 +85,7 @@ public class HabitIndexActivity extends Activity {
         View view = inflater.inflate(R.layout.empty_state, null);
 
         ViewGroup insertPoint = (ViewGroup) findViewById(R.id.empty_state);
+        insertPoint.removeAllViews();
         insertPoint.addView(view, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
         Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));

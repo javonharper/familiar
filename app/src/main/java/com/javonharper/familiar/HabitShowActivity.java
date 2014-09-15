@@ -38,12 +38,19 @@ public class HabitShowActivity extends Activity {
         TextView nameLabel = (TextView) findViewById(R.id.name_label);
         nameLabel.setTypeface(font);
 
+        TextView durationLabel = (TextView) findViewById(R.id.duration_label);
+        durationLabel.setTypeface(font);
+
         TextView timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
         timesPerDurationLabel.setTypeface(font);
 
         TextView nameView = (TextView) findViewById(R.id.name);
         nameView.setTypeface(font);
         nameView.setText(habit.getName());
+
+        TextView duration = (TextView) findViewById(R.id.habit_duration);
+        duration.setTypeface(font);
+        duration.setText(habit.getDuration().toString() + " minutes");
 
         TextView timesPerWeekView = (TextView) findViewById(R.id.habit_times_per_week);
         timesPerWeekView.setTypeface(font);
