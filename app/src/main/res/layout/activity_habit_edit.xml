@@ -81,7 +81,6 @@
             android:textColor="@color/app_text_color"
             android:textSize="@dimen/body_text_size"
             android:layout_weight="1"
-
             android:textStyle="bold"
             android:text="minutes"/>
 

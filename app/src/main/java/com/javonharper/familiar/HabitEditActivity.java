@@ -8,49 +8,43 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class HabitEditActivity extends Activity {
+
+    private TextView nameLabel;
+    private TextView timesPerDurationLabel;
+    private TextView durationLabel;
+    private TextView minutesLabel;
+
+    private EditText nameEdit;
+    private EditText timesPerDurationEdit;
+    private TextView durationEdit;
+    private Button doneButton;
+    private Button cancelButton;
+    private HabitController controller;
+    private Habit habit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_edit);
 
-        Intent intent = getIntent();
+        final Integer habitId = Integer.valueOf(getIntent().getIntExtra(HabitIndexActivity.HABIT_ID, 0));
 
-        Integer habitId = Integer.valueOf(intent.getIntExtra(HabitIndexActivity.HABIT_ID, 0));
-
-        final HabitController controller = new HabitController(this);
-
-        final Habit habit = controller.getHabit(habitId);
+        controller = new HabitController(this);
+        habit = new HabitController(this).getHabit(habitId);
 
         setTitle("Edit " + habit.getName());
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
+        initializeView();
 
-        TextView nameLabel = (TextView) findViewById(R.id.name_label);
-        nameLabel.setTypeface(font);
-        TextView timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
-        timesPerDurationLabel.setTypeface(font);
-        TextView durationLabel = (TextView) findViewById(R.id.duration_label);
-        durationLabel.setTypeface(font);
-
-        final TextView nameEdit = (TextView) findViewById(R.id.name_edit);
-        nameEdit.setTypeface(font);
         nameEdit.setText(habit.getName());
-
-        final TextView durationEdit = (TextView) findViewById(R.id.duration_edit);
-        durationEdit.setTypeface(font);
         durationEdit.setText(habit.getDuration().toString());
-
-        final TextView timesPerDurationEdit = (TextView) findViewById(R.id.times_per_duration_edit);
-        timesPerDurationEdit.setTypeface(font);
         timesPerDurationEdit.setText(habit.getTimesPerDuration().toString());
 
-        Button doneButton = (Button) findViewById(R.id.done_editing);
-        doneButton.setTypeface(font);
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,14 +72,37 @@ public class HabitEditActivity extends Activity {
             }
         });
 
-        Button cancelButton = (Button) findViewById(R.id.cancel);
-        cancelButton.setTypeface(font);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 HabitEditActivity.this.finish();
             }
         });
+    }
+    private void initializeView() {
+        nameLabel = (TextView) findViewById(R.id.name_label);
+        nameEdit = (EditText) findViewById(R.id.name_edit);
+        durationLabel = (TextView) findViewById(R.id.duration_label);
+        minutesLabel = (TextView) findViewById(R.id.minutes_label);
+        durationEdit = (TextView) findViewById(R.id.duration_edit);
+        timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
+        timesPerDurationEdit = (EditText) findViewById(R.id.times_per_duration_edit);
+        doneButton = (Button) findViewById(R.id.done_editing);
+        cancelButton = (Button) findViewById(R.id.cancel);
+        initializeTypefaces();
+    }
+
+    private void initializeTypefaces() {
+        Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
+        nameLabel.setTypeface(font);
+        nameEdit.setTypeface(font);
+        durationLabel.setTypeface(font);
+        minutesLabel.setTypeface(font);
+        durationEdit.setTypeface(font);
+        timesPerDurationLabel.setTypeface(font);
+        timesPerDurationEdit.setTypeface(font);
+        doneButton.setTypeface(font);
+        cancelButton.setTypeface(font);
     }
 
     @Override
