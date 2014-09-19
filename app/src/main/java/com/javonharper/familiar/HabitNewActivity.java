@@ -14,6 +14,16 @@ import android.widget.Toast;
 
 public class HabitNewActivity extends Activity {
 
+    private TextView nameLabel;
+    private TextView timesPerDurationLabel;
+    private TextView durationLabel;
+    private EditText nameEdit;
+    private EditText timesPerDurationEdit;
+    private TextView durationEdit;
+    private Button createButton;
+    private Button cancelButton;
+    private HabitController controller;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,25 +31,10 @@ public class HabitNewActivity extends Activity {
 
         setTitle(R.string.add_habit);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
+        initializeView();
 
-        TextView nameLabel = (TextView) findViewById(R.id.name_label);
-        nameLabel.setTypeface(font);
-        TextView timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
-        TextView durationLabel = (TextView) findViewById(R.id.duration_label);
-        durationLabel.setTypeface(font);
+        controller = new HabitController(this);
 
-        final EditText nameEdit = (EditText) findViewById(R.id.name_edit);
-        nameEdit.setTypeface(font);
-        final EditText timesPerDurationEdit = (EditText) findViewById(R.id.times_per_duration_edit);
-        timesPerDurationEdit.setTypeface(font);
-        final TextView durationEdit = (TextView) findViewById(R.id.duration_edit);
-        durationEdit.setTypeface(font);
-
-        final HabitController controller = new HabitController(this);
-
-        Button createButton = (Button) findViewById(R.id.create_habit);
-        createButton.setTypeface(font);
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,14 +61,36 @@ public class HabitNewActivity extends Activity {
             }
         });
 
-        Button cancelButton = (Button) findViewById(R.id.cancel);
-        cancelButton.setTypeface(font);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 HabitNewActivity.this.finish();
             }
         });
+    }
+
+    private void initializeView() {
+        nameLabel = (TextView) findViewById(R.id.name_label);
+        nameEdit = (EditText) findViewById(R.id.name_edit);
+        durationLabel = (TextView) findViewById(R.id.duration_label);
+        durationEdit = (TextView) findViewById(R.id.duration_edit);
+        timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
+        timesPerDurationEdit = (EditText) findViewById(R.id.times_per_duration_edit);
+        createButton = (Button) findViewById(R.id.create_habit);
+        cancelButton = (Button) findViewById(R.id.cancel);
+        initializeTypefaces();
+    }
+
+    private void initializeTypefaces() {
+        Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
+        nameLabel.setTypeface(font);
+        nameEdit.setTypeface(font);
+        durationLabel.setTypeface(font);
+        durationEdit.setTypeface(font);
+        timesPerDurationLabel.setTypeface(font);
+        timesPerDurationEdit.setTypeface(font);
+        createButton.setTypeface(font);
+        cancelButton.setTypeface(font);
     }
 
 
