@@ -14,9 +14,9 @@
             android:id="@+id/current_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2"
+                android:text="2"
             android:textColor="@color/gray"
-            android:textSize="@dimen/title_text_size" />
+            android:textSize="@dimen/body_text_size" />
 
         <TextView
             android:id="@+id/seperator"
@@ -24,16 +24,16 @@
             android:layout_height="wrap_content"
             android:text="@string/current_progress_divider"
             android:textColor="@color/gray"
-            android:textSize="@dimen/title_text_size" />
+            android:textSize="@dimen/body_text_size" />
 
         <TextView
             android:id="@+id/times_per_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/app_padding"
+            android:layout_marginRight="@dimen/app_spacing"
             android:text="4"
             android:textColor="@color/gray"
-            android:textSize="@dimen/title_text_size" />
+            android:textSize="@dimen/body_text_size" />
 
         <TextView
             android:id="@+id/name"
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:text="Excercise"
             android:textColor="@color/app_text_color"
-            android:textSize="@dimen/title_text_size" />
+            android:textSize="@dimen/body_text_size" />
 
         <TextView
             android:id="@+id/duration"
@@ -50,5 +50,5 @@
             android:layout_height="wrap_content"
             android:text="30m"
             android:textColor="@color/dark_gray"
-            android:textSize="@dimen/title_text_size" />
+            android:textSize="@dimen/caption_text_size" />
 </LinearLayout>
