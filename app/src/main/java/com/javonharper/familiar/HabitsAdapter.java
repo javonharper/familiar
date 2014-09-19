@@ -61,9 +61,16 @@ public class HabitsAdapter extends BaseAdapter {
         name.setTypeface(font);
         name.setText(habit.getName());
 
-        TextView duration = (TextView) convertView.findViewById(R.id.duration);
-        duration.setTypeface(font);
-        duration.setText(habit.getDuration().toString() + "m");
+        TextView durationView = (TextView) convertView.findViewById(R.id.duration);
+        durationView.setTypeface(font);
+
+        Integer duration = habit.getDuration();
+
+        if (duration == null || duration == 0) {
+            durationView.setText("");
+        } else {
+            durationView.setText(habit.getDuration().toString() + "m");
+        }
 
         if (habit.getCurrentProgress() >= habit.getTimesPerDuration()) {
             progress.setTextColor(convertView.getResources().getColor(R.color.green));
