@@ -155,10 +155,31 @@ public class HabitIndexActivity extends Activity {
             Intent intent = getIntent();
             finish();
             startActivity(intent);
-        } else if (optionTitle.equals(getString(R.string.view))) {
-            Intent intent = new Intent(this, HabitShowActivity.class);
+        } else if (optionTitle.equals(getString(R.string.edit))) {
+            Intent intent = new Intent(this, HabitEditActivity.class);
             intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
             startActivity(intent);
+        } else if (optionTitle.equals(getString(R.string.delete))) {
+            new AlertDialog.Builder(this)
+                    .setMessage("Delete \"" + habit.getName() + "\"?")
+                    .setCancelable(true)
+                    .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            controller.deleteHabit(habit.getId());
+
+                            String message = "\"" + habit.getName() + "\" deleted.";
+                            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(getApplicationContext(), HabitIndexActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
+                            startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
+            return true;
         }
 
         return true;
