@@ -11,7 +11,7 @@
     tools:context=".HabitIndexActivity">
 
 
-    <Button
+<!--    <Button
         android:id="@+id/new_habit_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
         android:textColor="@color/button_text_color"
         android:textSize="@dimen/body_text_size"
         android:layout_margin="@dimen/app_spacing"
-        android:text="@string/add_habit"/>
+        android:text="@string/add_habit"/>-->
 
     <LinearLayout
         android:id="@+id/empty_state"

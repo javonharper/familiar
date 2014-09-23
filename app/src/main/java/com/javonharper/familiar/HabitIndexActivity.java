@@ -65,19 +65,6 @@ public class HabitIndexActivity extends Activity {
         });
 
         registerForContextMenu(habitListView);
-
-        Button newHabitButton = (Button) findViewById(R.id.new_habit_button);
-
-        Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
-        newHabitButton.setTypeface(font);
-
-        newHabitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), HabitNewActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private void showEmptyStateView() {
@@ -111,6 +98,10 @@ public class HabitIndexActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         switch (id) {
+            case R.id.action_add:
+                Intent intent = new Intent(getApplicationContext(), HabitNewActivity.class);
+                startActivity(intent);
+                return true;
             case R.id.action_reset:
                 new AlertDialog.Builder(this)
                         .setMessage(getString(R.string.reset_all_progress_prompt))

@@ -44,25 +44,26 @@ public class HabitsAdapter extends BaseAdapter {
         Habit habit = (Habit) getItem(position);
 
         if (convertView == null) {
-           convertView = LayoutInflater.from(context).inflate(R.layout.habit_list_item, parent, false);
+           convertView = inflator.inflate(R.layout.habit_list_item, parent, false);
         }
+
+        TextView progress = (TextView) convertView.findViewById(R.id.current_progress);
+        TextView sep = (TextView) convertView.findViewById(R.id.seperator);
+        TextView timesPerDuration = (TextView) convertView.findViewById(R.id.times_per_duration);
+        TextView name = (TextView) convertView.findViewById(R.id.name);
+        TextView durationView = (TextView) convertView.findViewById(R.id.duration);
 
         Typeface font = Typeface.createFromAsset(context.getAssets(), context.getString(R.string.body_font));
 
-        TextView progress = (TextView) convertView.findViewById(R.id.current_progress);
         progress.setTypeface(font);
-        progress.setText(habit.getCurrentProgress().toString());
-
-        TextView timesPerDuration = (TextView) convertView.findViewById(R.id.times_per_duration);
+        sep.setTypeface(font);
         timesPerDuration.setTypeface(font);
-        timesPerDuration.setText(habit.getTimesPerDuration().toString());
-
-        TextView name = (TextView) convertView.findViewById(R.id.name);
         name.setTypeface(font);
-        name.setText(habit.getName());
-
-        TextView durationView = (TextView) convertView.findViewById(R.id.duration);
         durationView.setTypeface(font);
+
+        progress.setText(habit.getCurrentProgress().toString());
+        timesPerDuration.setText(habit.getTimesPerDuration().toString());
+        name.setText(habit.getName());
 
         Integer duration = habit.getDuration();
 
@@ -75,16 +76,15 @@ public class HabitsAdapter extends BaseAdapter {
         if (habit.getCurrentProgress() >= habit.getTimesPerDuration()) {
             progress.setTextColor(convertView.getResources().getColor(R.color.green));
             timesPerDuration.setTextColor(convertView.getResources().getColor(R.color.green));
-            ((TextView) convertView.findViewById(R.id.seperator)).setTextColor(convertView.getResources().getColor(R.color.green));
+            sep.setTextColor(convertView.getResources().getColor(R.color.green));
         } else if (habit.getCurrentProgress() > 0) {
             progress.setTextColor(convertView.getResources().getColor(R.color.dark_gray));
             timesPerDuration.setTextColor(convertView.getResources().getColor(R.color.dark_gray));
-            ((TextView) convertView.findViewById(R.id.seperator)).setTextColor(convertView.getResources().getColor(R.color.dark_gray));
+            sep.setTextColor(convertView.getResources().getColor(R.color.dark_gray));
         }
 
         return convertView;
     }
-
 }
 
 
