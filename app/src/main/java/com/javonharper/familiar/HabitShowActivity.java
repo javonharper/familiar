@@ -19,56 +19,39 @@ public class HabitShowActivity extends Activity {
     private Habit habit;
     private HabitController controller;
     private TextView currentProgress;
+    private TextView durationLabel;
+    private TextView timesPerDurationLabel;
+    private TextView nameView;
+    private TextView durationView;
+    private TextView timesPerWeekView;
+    private Button increment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_show);
 
-        Intent intent = getIntent();
-        Integer habitId = Integer.valueOf(intent.getIntExtra(HabitIndexActivity.HABIT_ID, 0));
+        Integer habitId = Integer.valueOf(getIntent().getIntExtra(HabitIndexActivity.HABIT_ID, 0));
 
         controller = new HabitController(this);
         habit = controller.getHabit(habitId);
 
         setTitle(habit.getName());
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
+        initializeView();
 
-        TextView nameLabel = (TextView) findViewById(R.id.name_label);
-        nameLabel.setTypeface(font);
-
-        TextView durationLabel = (TextView) findViewById(R.id.duration_label);
-        durationLabel.setTypeface(font);
-
-        TextView timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
-        timesPerDurationLabel.setTypeface(font);
-
-        TextView nameView = (TextView) findViewById(R.id.name);
-        nameView.setTypeface(font);
         nameView.setText(habit.getName());
 
-        TextView durationView = (TextView) findViewById(R.id.habit_duration);
-        durationView.setTypeface(font);
-
         Integer duration = habit.getDuration();
-
         if (duration == null || duration == 0) {
             durationView.setText("Not set");
         } else {
             durationView.setText(duration.toString() + " minutes");
         }
 
-        TextView timesPerWeekView = (TextView) findViewById(R.id.habit_times_per_week);
-        timesPerWeekView.setTypeface(font);
         timesPerWeekView.setText(habit.getTimesPerDuration().toString());
-
-        currentProgress = (TextView) findViewById(R.id.habit_current_progress);
-        currentProgress.setTypeface(font);
         currentProgress.setText(habit.getCurrentProgress().toString());
 
-        Button increment = (Button) findViewById(R.id.increment);
-        increment.setTypeface(font);
         increment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,6 +61,30 @@ public class HabitShowActivity extends Activity {
                 controller.updateHabit(habit);
             }
         });
+    }
+
+    private void initializeView() {
+        timesPerWeekView = (TextView) findViewById(R.id.habit_times_per_week);
+        durationView = (TextView) findViewById(R.id.habit_duration);
+        currentProgress = (TextView) findViewById(R.id.habit_current_progress);
+        nameView = (TextView) findViewById(R.id.name);
+        durationLabel = (TextView) findViewById(R.id.duration_label);
+        timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
+        increment = (Button) findViewById(R.id.increment);
+        initializeTypefaces();
+
+    }
+
+    private void initializeTypefaces() {
+        Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
+        durationLabel.setTypeface(font);
+        timesPerDurationLabel.setTypeface(font);
+        increment.setTypeface(font);
+        currentProgress.setTypeface(font);
+        durationView.setTypeface(font);
+        nameView.setTypeface(font);
+        timesPerWeekView.setTypeface(font);
+
     }
 
     @Override
