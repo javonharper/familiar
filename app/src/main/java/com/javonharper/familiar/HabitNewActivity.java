@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Map;
+
 public class HabitNewActivity extends Activity {
 
     private TextView nameLabel;
@@ -39,13 +41,19 @@ public class HabitNewActivity extends Activity {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    String name = nameEdit.getText().toString().trim();
-                    Integer timesPerDuration = Integer.valueOf(timesPerDurationEdit.getText().toString().trim());
-                    Integer duration = Integer.valueOf(durationEdit.getText().toString().trim());
+                String newName = nameEdit.getText().toString().trim();
+                String newTimesPerDuration = timesPerDurationEdit.getText().toString().trim();
+                String newDuration = durationEdit.getText().toString().trim();
 
+                HabitFormValidator validator = new HabitFormValidator(newName, newTimesPerDuration, newDuration);
+                validator.validate();
 
-                    Habit habit = new Habit(null, name, duration, timesPerDuration, 0);
+                if (validator.isValid()) {
+                    Habit habit = new Habit();
+                    habit.setName(newName);
+                    habit.setTimesPerDuration(Integer.valueOf(newTimesPerDuration));
+                    habit.setDuration(Integer.valueOf(newDuration));
+
                     controller.createHabit(habit);
 
                     String message = "Habit \"" + habit.getName() + "\" created.";
@@ -54,10 +62,19 @@ public class HabitNewActivity extends Activity {
                     Intent intent = new Intent(view.getContext(), HabitIndexActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
-                } catch (NumberFormatException e) {
-                    timesPerDurationEdit.setError(getString(R.string.times_per_duration_validation_message));
-                    Toast.makeText(view.getContext(), getString(R.string.times_per_duration_validation_message), Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
+                } else {
+                    Map<String, String> errors = validator.getErrors();
+                    if (errors.get(HabitFormValidator.NAME) != null) {
+                        nameEdit.setError(errors.get(HabitFormValidator.NAME));
+                    }
+
+                    if (errors.get(HabitFormValidator.TIMES_PER_DURATION) != null) {
+                        timesPerDurationEdit.setError(errors.get(HabitFormValidator.TIMES_PER_DURATION));
+                    }
+
+                    if (errors.get(HabitFormValidator.DURATION) != null) {
+                        durationEdit.setError(errors.get(HabitFormValidator.DURATION));
+                    }
                 }
             }
         });

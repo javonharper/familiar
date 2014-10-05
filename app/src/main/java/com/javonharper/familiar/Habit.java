@@ -1,11 +1,15 @@
 package com.javonharper.familiar;
 
 public class Habit extends FamiliarContract.HabitContract {
-    private Integer id = null;
-    private String name = null;
-    private Integer timesPerDuration = null;
-    private Integer currentProgress = null;
-    private Integer duration = null;
+    private Integer id;
+    private String name;
+    private Integer timesPerDuration;
+    private Integer currentProgress;
+    private Integer duration;
+
+    public Habit() {
+
+    }
 
     public Habit(Integer id, String name, Integer duration, Integer timesPerDuration, Integer currentProgress) {
         this.setId(id);

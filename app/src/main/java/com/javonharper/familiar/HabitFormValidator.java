@@ -46,7 +46,6 @@ public class HabitFormValidator {
         errors.put(TIMES_PER_DURATION, timesPerDurationError);
         errors.put(DURATION, durationError);
         return errors;
-
     }
 
     private String validateName(String name) {
