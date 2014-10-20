@@ -19,8 +19,6 @@ public class HabitShowActivity extends Activity {
     private Habit habit;
     private HabitController controller;
     private TextView currentProgress;
-    private TextView durationLabel;
-    private TextView timesPerDurationLabel;
     private TextView nameView;
     private TextView durationView;
     private TextView timesPerWeekView;
@@ -49,7 +47,7 @@ public class HabitShowActivity extends Activity {
             durationView.setText(duration.toString() + " minutes");
         }
 
-        timesPerWeekView.setText(habit.getTimesPerDuration().toString());
+        timesPerWeekView.setText(habit.getTimesPerDuration().toString() + " days per week");
         currentProgress.setText(habit.getCurrentProgress().toString());
 
         increment.setOnClickListener(new View.OnClickListener() {
@@ -68,8 +66,6 @@ public class HabitShowActivity extends Activity {
         durationView = (TextView) findViewById(R.id.habit_duration);
         currentProgress = (TextView) findViewById(R.id.habit_current_progress);
         nameView = (TextView) findViewById(R.id.name);
-        durationLabel = (TextView) findViewById(R.id.duration_label);
-        timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
         increment = (Button) findViewById(R.id.increment);
         initializeTypefaces();
 
@@ -77,8 +73,6 @@ public class HabitShowActivity extends Activity {
 
     private void initializeTypefaces() {
         Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
-        durationLabel.setTypeface(font);
-        timesPerDurationLabel.setTypeface(font);
         increment.setTypeface(font);
         currentProgress.setTypeface(font);
         durationView.setTypeface(font);
