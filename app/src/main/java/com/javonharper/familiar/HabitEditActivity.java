@@ -19,7 +19,6 @@ public class HabitEditActivity extends Activity {
     private TextView nameLabel;
     private TextView timesPerDurationLabel;
     private TextView durationLabel;
-    private TextView minutesLabel;
 
     private EditText nameEdit;
     private EditText timesPerDurationEdit;
@@ -99,12 +98,12 @@ public class HabitEditActivity extends Activity {
         nameLabel = (TextView) findViewById(R.id.name_label);
         nameEdit = (EditText) findViewById(R.id.name_edit);
         durationLabel = (TextView) findViewById(R.id.duration_label);
-        minutesLabel = (TextView) findViewById(R.id.minutes_label);
         durationEdit = (TextView) findViewById(R.id.duration_edit);
         timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
         timesPerDurationEdit = (EditText) findViewById(R.id.times_per_duration_edit);
         doneButton = (Button) findViewById(R.id.done_editing);
         cancelButton = (Button) findViewById(R.id.cancel);
+
         initializeTypefaces();
     }
 
@@ -113,7 +112,6 @@ public class HabitEditActivity extends Activity {
         nameLabel.setTypeface(font);
         nameEdit.setTypeface(font);
         durationLabel.setTypeface(font);
-        minutesLabel.setTypeface(font);
         durationEdit.setTypeface(font);
         timesPerDurationLabel.setTypeface(font);
         timesPerDurationEdit.setTypeface(font);

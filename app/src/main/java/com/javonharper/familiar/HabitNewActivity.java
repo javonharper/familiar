@@ -18,8 +18,6 @@ public class HabitNewActivity extends Activity {
 
     private TextView nameLabel;
     private TextView timesPerDurationLabel;
-    private TextView durationLabel;
-    private TextView minutesLabel;
     private EditText nameEdit;
     private EditText timesPerDurationEdit;
     private TextView durationEdit;
@@ -90,8 +88,6 @@ public class HabitNewActivity extends Activity {
     private void initializeView() {
         nameLabel = (TextView) findViewById(R.id.name_label);
         nameEdit = (EditText) findViewById(R.id.name_edit);
-        durationLabel = (TextView) findViewById(R.id.duration_label);
-        minutesLabel = (TextView) findViewById(R.id.minutes_label);
         durationEdit = (TextView) findViewById(R.id.duration_edit);
         timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
         timesPerDurationEdit = (EditText) findViewById(R.id.times_per_duration_edit);
@@ -103,9 +99,7 @@ public class HabitNewActivity extends Activity {
     private void initializeTypefaces() {
         Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
         nameLabel.setTypeface(font);
-        minutesLabel.setTypeface(font);
         nameEdit.setTypeface(font);
-        durationLabel.setTypeface(font);
         durationEdit.setTypeface(font);
         timesPerDurationLabel.setTypeface(font);
         timesPerDurationEdit.setTypeface(font);

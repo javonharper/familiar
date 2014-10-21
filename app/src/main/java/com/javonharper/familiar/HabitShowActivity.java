@@ -48,7 +48,8 @@ public class HabitShowActivity extends Activity {
         }
 
         timesPerWeekView.setText(habit.getTimesPerDuration().toString() + " days per week");
-        currentProgress.setText(habit.getCurrentProgress().toString());
+
+        updateCurrentProgress();
 
         increment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,9 +57,21 @@ public class HabitShowActivity extends Activity {
                 Integer newCurrentProgress = habit.getCurrentProgress() + 1;
                 currentProgress.setText(newCurrentProgress.toString());
                 habit.setCurrentProgress(newCurrentProgress);
+                updateCurrentProgress();
                 controller.updateHabit(habit);
             }
         });
+    }
+
+    private void updateCurrentProgress() {
+        if (habit.getCurrentProgress().equals(0)) {
+            currentProgress.setText("Not started yet");
+        } else if (habit.getCurrentProgress() >= habit.getTimesPerDuration()) {
+            currentProgress.setText("Done!");
+            currentProgress.setTextColor(getResources().getColor(R.color.green));
+        } else {
+            currentProgress.setText(habit.getCurrentProgress().toString());
+        }
     }
 
     private void initializeView() {
@@ -68,7 +81,6 @@ public class HabitShowActivity extends Activity {
         nameView = (TextView) findViewById(R.id.name);
         increment = (Button) findViewById(R.id.increment);
         initializeTypefaces();
-
     }
 
     private void initializeTypefaces() {
@@ -78,7 +90,6 @@ public class HabitShowActivity extends Activity {
         durationView.setTypeface(font);
         nameView.setTypeface(font);
         timesPerWeekView.setTypeface(font);
-
     }
 
     @Override
@@ -143,6 +154,7 @@ public class HabitShowActivity extends Activity {
                                 Integer newCurrentProgress = 0;
                                 currentProgress.setText(newCurrentProgress.toString());
                                 habit.setCurrentProgress(newCurrentProgress);
+                                updateCurrentProgress();
                                 controller.updateHabit(habit);
                             }
                         })

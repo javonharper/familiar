@@ -74,16 +74,6 @@
             android:layout_marginBottom="@dimen/fieldset_spacing"
             android:inputType="number" />
 
-        <TextView
-            android:id="@+id/minutes_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/app_text_color"
-            android:textSize="@dimen/body_text_size"
-            android:layout_weight="1"
-            android:textStyle="bold"
-            android:text="minutes"/>
-
     </LinearLayout>
 
     <LinearLayout
@@ -98,21 +88,23 @@
             android:textSize="@dimen/body_text_size"
             android:layout_marginBottom="@dimen/app_spacing"
             android:textStyle="bold"
-            android:text="@string/days_per_week" />
+            android:text="Frequency" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/times_per_duration_edit"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/app_text_color"
             android:textSize="@dimen/body_text_size"
             android:hint="@string/times_per_duration_placeholder_text"
+            android:layout_weight="1"
             android:layout_marginBottom="@dimen/fieldset_spacing"
             android:inputType="number" />
 
