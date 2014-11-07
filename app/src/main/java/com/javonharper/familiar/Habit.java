@@ -59,6 +59,10 @@ public class Habit extends FamiliarContract.HabitContract {
         this.duration = duration;
     }
 
+    public boolean isCompleted() {
+        return this.getCurrentProgress().equals(this.getTimesPerDuration());
+    }
+
     public String toString() {
         String id;
 
