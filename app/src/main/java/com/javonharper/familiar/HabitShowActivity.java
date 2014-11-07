@@ -66,8 +66,12 @@ public class HabitShowActivity extends Activity {
     private void updateCurrentProgress() {
         if (habit.getCurrentProgress().equals(0)) {
             currentProgress.setText("Not started yet");
-        } else if (habit.getCurrentProgress() >= habit.getTimesPerDuration()) {
+            currentProgress.setTextColor(getResources().getColor(R.color.black));
+        } else if (habit.getCurrentProgress() == habit.getTimesPerDuration()) {
             currentProgress.setText("Done!");
+            currentProgress.setTextColor(getResources().getColor(R.color.green));
+        } else if (habit.getCurrentProgress() > habit.getTimesPerDuration()) {
+            currentProgress.setText("Done! (" + habit.getCurrentProgress() + "/" + habit.getTimesPerDuration() + ")");
             currentProgress.setTextColor(getResources().getColor(R.color.green));
         } else {
             currentProgress.setText(habit.getCurrentProgress().toString());
