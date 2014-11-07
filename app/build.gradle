@@ -8,8 +8,8 @@ android {
         applicationId "com.javonharper.familiar"
         minSdkVersion 14
         targetSdkVersion 20
-        versionCode 7
-        versionName "1.1.5"
+        versionCode 9
+        versionName "1.2.0"
     }
     buildTypes {
         release {
