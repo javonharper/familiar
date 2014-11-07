@@ -43,9 +43,7 @@ public class HabitsAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         Habit habit = (Habit) getItem(position);
 
-        if (convertView == null) {
-           convertView = inflator.inflate(R.layout.habit_list_item, parent, false);
-        }
+        convertView = inflator.inflate(R.layout.habit_list_item, parent, false);
 
         TextView progress = (TextView) convertView.findViewById(R.id.current_progress);
         TextView sep = (TextView) convertView.findViewById(R.id.seperator);
