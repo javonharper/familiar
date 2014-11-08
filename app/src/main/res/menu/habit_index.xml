@@ -2,11 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".HabitIndexActivity" >
 
-    <item android:id="@+id/action_add"
-        android:icon="@drawable/ic_action_new"
-        android:title="@string/add"
-        android:showAsAction="always" />
-
     <item android:id="@+id/action_reset"
         android:icon="@drawable/ic_action_replay"
         android:title="@string/reset"

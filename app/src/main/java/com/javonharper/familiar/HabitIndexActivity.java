@@ -5,16 +5,19 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -32,12 +35,32 @@ public class HabitIndexActivity extends Activity {
     public static String HABIT_ID = "habitId";
     private List<Habit> habits;
     private HabitController controller;
+    private int mLastFirstVisibleItem;
+    private boolean mIsScrollingUp = false;
+    FloatingActionButton fabButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_index);
         controller = new HabitController(this);
+        initializeFABButton();
+    }
+
+    private void initializeFABButton() {
+        fabButton = new FloatingActionButton.Builder(this)
+                .withDrawable(getResources().getDrawable(R.drawable.ic_action_new_white ))
+                .withButtonColor(getResources().getColor(R.color.green))
+                .withGravity(Gravity.BOTTOM | Gravity.RIGHT)
+                .withMargins(0, 0, 16, 16)
+                .create();
+        fabButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HabitNewActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -54,6 +77,31 @@ public class HabitIndexActivity extends Activity {
 
         final ListView habitListView = (ListView) findViewById(R.id.habit_list);
         habitListView.setAdapter(adapter);
+
+
+        habitListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                final ListView lw = habitListView;
+
+                if (view.getId() == lw.getId()) {
+                    final int currentFirstVisibleItem = lw.getFirstVisiblePosition();
+
+                    if (currentFirstVisibleItem > mLastFirstVisibleItem) {
+                        fabButton.hideFloatingActionButton();
+                    } else if (currentFirstVisibleItem < mLastFirstVisibleItem) {
+                        fabButton.showFloatingActionButton();
+
+                    }
+
+                    mLastFirstVisibleItem = currentFirstVisibleItem;
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i2, int i3) {
+
+            }
+        });
 
         habitListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -99,10 +147,6 @@ public class HabitIndexActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         switch (id) {
-            case R.id.action_add:
-                Intent intent = new Intent(getApplicationContext(), HabitNewActivity.class);
-                startActivity(intent);
-                return true;
             case R.id.action_reset:
                 new AlertDialog.Builder(this)
                         .setMessage(getString(R.string.reset_all_progress_prompt))
