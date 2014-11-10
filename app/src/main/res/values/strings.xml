@@ -23,7 +23,7 @@
     <string name="reset">Reset</string>
     <string name="mark_task_done">I just did this!</string>
     <string name="empty_state_title">No Habits</string>
-    <string name="empty_state_subtext">Use the plus button above to get started.</string>
+    <string name="empty_state_subtext">Use the plus button below to get started.</string>
     <string name="reset_all_progress_prompt">Reset progress for all habits?</string>
     <string name="reset_progress_prompt">Reset progress for this habit?</string>
     <string name="view">View</string>
