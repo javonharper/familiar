@@ -20,8 +20,11 @@ public class HabitShowActivity extends Activity {
     private HabitController controller;
     private TextView currentProgress;
     private TextView nameView;
-    private TextView durationView;
-    private TextView timesPerWeekView;
+
+    private TextView durationValue;
+    private TextView durationLabel;
+    private TextView frequencyValue;
+    private TextView frequencyLabel;
     private Button increment;
 
     @Override
@@ -41,13 +44,15 @@ public class HabitShowActivity extends Activity {
         nameView.setText(habit.getName());
 
         Integer duration = habit.getDuration();
+
         if (duration == null || duration == 0) {
-            durationView.setText("Not set");
+            durationValue.setText("Not set");
+            durationLabel.setText("");
         } else {
-            durationView.setText(duration.toString() + " minutes");
+            durationValue.setText(duration.toString());
         }
 
-        timesPerWeekView.setText(habit.getTimesPerDuration().toString() + " days per week");
+        frequencyValue.setText(habit.getTimesPerDuration().toString());
 
         updateCurrentProgress();
 
@@ -79,8 +84,10 @@ public class HabitShowActivity extends Activity {
     }
 
     private void initializeView() {
-        timesPerWeekView = (TextView) findViewById(R.id.habit_times_per_week);
-        durationView = (TextView) findViewById(R.id.habit_duration);
+        durationLabel = (TextView) findViewById(R.id.duration_label);
+        durationValue = (TextView) findViewById(R.id.duration_value);
+        frequencyLabel = (TextView) findViewById(R.id.frequency_label);
+        frequencyValue = (TextView) findViewById(R.id.frequency_value);
         currentProgress = (TextView) findViewById(R.id.habit_current_progress);
         nameView = (TextView) findViewById(R.id.name);
         increment = (Button) findViewById(R.id.increment);
@@ -91,9 +98,11 @@ public class HabitShowActivity extends Activity {
         Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
         increment.setTypeface(font);
         currentProgress.setTypeface(font);
-        durationView.setTypeface(font);
         nameView.setTypeface(font);
-        timesPerWeekView.setTypeface(font);
+        durationLabel.setTypeface(font);
+        durationValue.setTypeface(font);
+        frequencyLabel.setTypeface(font);
+        frequencyValue.setTypeface(font);
     }
 
     @Override

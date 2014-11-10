@@ -49,7 +49,7 @@ public class HabitIndexActivity extends Activity {
 
     private void initializeFABButton() {
         fabButton = new FloatingActionButton.Builder(this)
-                .withDrawable(getResources().getDrawable(R.drawable.ic_action_new_white ))
+                .withDrawable(getResources().getDrawable(R.drawable.ic_plus ))
                 .withButtonColor(getResources().getColor(R.color.green))
                 .withGravity(Gravity.BOTTOM | Gravity.RIGHT)
                 .withMargins(0, 0, 16, 16)

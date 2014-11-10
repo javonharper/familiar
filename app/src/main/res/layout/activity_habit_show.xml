@@ -26,56 +26,130 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/border_top"
         android:orientation="horizontal"
         android:paddingTop="@dimen/app_spacing">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/app_spacing">
 
-            <TextView
-                android:id="@+id/habit_duration"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginBottom="@dimen/fieldset_spacing"
+            <!--<TextView-->
+                <!--android:id="@+id/habit_duration"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="fill_parent"-->
+                <!--android:layout_marginBottom="@dimen/fieldset_spacing"-->
+                <!--android:gravity="center"-->
+                <!--android:text="@string/placeholder"-->
+                <!--android:textColor="@color/app_text_color"-->
+                <!--android:textSize="@dimen/body_text_size" />-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/placeholder"
-                android:textColor="@color/app_text_color"
-                android:textSize="@dimen/body_text_size" />
+                >
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/ic_action_timer"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+>
+                <TextView
+                    android:id="@+id/duration_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="XX"
+                    android:textStyle="bold"
+                    android:textColor="@color/app_text_color"
+                    android:textSize="@dimen/title_text_size"/>
+                </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                >
+                <TextView
+                    android:id="@+id/duration_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/minutes"
+                    android:textColor="@color/app_text_color"
+                    android:textSize="@dimen/body_text_size"/>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/app_spacing">
 
-            <TextView
-                android:id="@+id/habit_times_per_week"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginBottom="@dimen/fieldset_spacing"
+            <!--<TextView-->
+            <!--android:id="@+id/habit_duration"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:layout_marginBottom="@dimen/fieldset_spacing"-->
+            <!--android:gravity="center"-->
+            <!--android:text="@string/placeholder"-->
+            <!--android:textColor="@color/app_text_color"-->
+            <!--android:textSize="@dimen/body_text_size" />-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/placeholder"
-                android:textColor="@color/app_text_color"
-                android:textSize="@dimen/body_text_size" />
-
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_action_repeat"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/frequency_value"
+                    android:text="X"
+                    android:textStyle="bold"
+                    android:textColor="@color/app_text_color"
+                    android:textSize="@dimen/title_text_size"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/frequency_label"
+                    android:text="@string/times_per_week"
+                    android:textColor="@color/app_text_color"
+                    android:textSize="@dimen/body_text_size"/>
+            </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/border_top"
         android:paddingTop="@dimen/app_spacing">
 
         <TextView
             android:id="@+id/habit_current_progress_label"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:paddingTop="@dimen/app_spacing"
             android:layout_marginBottom="@dimen/app_spacing"
             android:gravity="center"
             android:text="Current Progress"
@@ -104,7 +178,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/border_top"
         android:paddingTop="@dimen/app_spacing">
 
         <Button

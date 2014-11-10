@@ -60,7 +60,7 @@ public class Habit extends FamiliarContract.HabitContract {
     }
 
     public boolean isCompleted() {
-        return this.getCurrentProgress().equals(this.getTimesPerDuration());
+        return this.getCurrentProgress() >= this.getTimesPerDuration();
     }
 
     public String toString() {
