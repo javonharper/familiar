@@ -83,7 +83,7 @@ public class HabitIndexActivity extends Activity {
         habitListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView absListView, int i) {
-                
+
             }
 
             @Override

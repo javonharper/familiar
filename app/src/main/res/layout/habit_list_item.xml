@@ -43,12 +43,23 @@
             android:textColor="@color/app_text_color"
             android:textSize="@dimen/body_text_size" />
 
-        <TextView
-            android:id="@+id/duration"
-            android:gravity="right"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="30m"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/caption_text_size" />
+            android:gravity="right">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:src="@drawable/ic_action_timer"/>
+
+            <TextView
+                android:id="@+id/duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="30m"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/caption_text_size" />
+            </LinearLayout>
+
 </LinearLayout>
