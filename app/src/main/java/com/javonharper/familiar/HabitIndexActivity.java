@@ -37,6 +37,7 @@ public class HabitIndexActivity extends Activity {
     private HabitController controller;
     private int mLastFirstVisibleItem;
     private boolean mIsScrollingUp = false;
+    int prevVisibleItem;
     FloatingActionButton fabButton;
 
     @Override
@@ -80,26 +81,22 @@ public class HabitIndexActivity extends Activity {
 
 
         habitListView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-                final ListView lw = habitListView;
-
-                if (view.getId() == lw.getId()) {
-                    final int currentFirstVisibleItem = lw.getFirstVisiblePosition();
-
-                    if (currentFirstVisibleItem > mLastFirstVisibleItem) {
-                        fabButton.hideFloatingActionButton();
-                    } else if (currentFirstVisibleItem < mLastFirstVisibleItem) {
-                        fabButton.showFloatingActionButton();
-
-                    }
-
-                    mLastFirstVisibleItem = currentFirstVisibleItem;
-                }
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+                
             }
 
             @Override
-            public void onScroll(AbsListView absListView, int i, int i2, int i3) {
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if (prevVisibleItem != firstVisibleItem) {
+                    if (prevVisibleItem < firstVisibleItem) {
+                        fabButton.hideFloatingActionButton();
+                    } else {
+                        fabButton.showFloatingActionButton();
+                    }
 
+                    prevVisibleItem = firstVisibleItem;
+                }
             }
         });
 
