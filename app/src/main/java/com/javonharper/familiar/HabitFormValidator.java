@@ -57,7 +57,7 @@ public class HabitFormValidator {
     }
 
     private String validateTimesPerDuration(String timesPerDuration) {
-        if (name.equals("")) {
+        if (timesPerDuration.equals("")) {
             return "Fill in times per week";
         } else {
             return null;
@@ -65,7 +65,7 @@ public class HabitFormValidator {
     }
 
     private String validateDuration(String duration) {
-        if (name.equals("")) {
+        if (duration.equals("")) {
             return "Fill in duration";
         } else {
             return null;
