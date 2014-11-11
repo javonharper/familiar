@@ -11,6 +11,10 @@
         android:title="@string/delete" />
 
     <item
+        android:id="@+id/menu_start_timer"
+        android:title="@string/start_timer" />
+
+    <item
         android:id="@+id/menu_save"
         android:title="@string/mark_task_done" />
 

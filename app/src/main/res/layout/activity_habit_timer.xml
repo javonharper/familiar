@@ -17,13 +17,15 @@
             android:text="XX:XX"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:id="@+id/textView" />
+            android:id="@+id/time_left" />
+
         <TextView
+            android:id="@+id/habit_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="XXXXXX"
-            android:textSize="50dp"
-            android:layout_below="@+id/textView"
+            android:textSize="40dp"
+            android:layout_below="@+id/time_left"
             android:layout_centerHorizontal="true" />
         </RelativeLayout>
 
@@ -34,6 +36,7 @@
         android:background="@color/light_gray">
 
         <Button
+            android:id="@+id/stop_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/white"

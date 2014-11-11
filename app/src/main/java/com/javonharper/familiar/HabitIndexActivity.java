@@ -201,6 +201,10 @@ public class HabitIndexActivity extends Activity {
             Intent intent = new Intent(this, HabitEditActivity.class);
             intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
             startActivity(intent);
+        } else if (optionTitle.equals(getString(R.string.start_timer))) {
+            Intent intent = new Intent(this, HabitTimerActivity.class);
+            intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
+            startActivity(intent);
         } else if (optionTitle.equals(getString(R.string.delete))) {
             new AlertDialog.Builder(this)
                     .setMessage("Delete \"" + habit.getName() + "\"?")

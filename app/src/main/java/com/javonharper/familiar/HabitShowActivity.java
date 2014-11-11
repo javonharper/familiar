@@ -174,6 +174,11 @@ public class HabitShowActivity extends Activity {
                         .setNegativeButton("Cancel", null)
                         .show();
                 return true;
+//            case R.id.action_start_timer:
+//                intent = new Intent(this, HabitTimerActivity.class);
+//                intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
+//                startActivity(intent);
+//                return true;
 
 //            case R.id.action_settings:
 //                return true;
