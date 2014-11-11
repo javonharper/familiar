@@ -18,7 +18,7 @@
         </activity>
         <activity
             android:name=".HabitShowActivity"
-            android:label="@string/title_activity_habit_show"/>
+            android:label="@string/title_activity_habit_show" />
         <activity
             android:name=".HabitNewActivity"
             android:label="@string/title_activity_habit_new" >
@@ -26,6 +26,10 @@
         <activity
             android:name=".HabitEditActivity"
             android:label="@string/title_activity_habit_edit" >
+        </activity>
+        <activity
+            android:name=".HabitTimerActivity"
+            android:label="@string/title_activity_habit_timer" >
         </activity>
     </application>
 
