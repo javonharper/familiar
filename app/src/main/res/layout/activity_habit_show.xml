@@ -171,7 +171,7 @@
             android:gravity="center"
             android:text="@string/placeholder"
             android:textColor="@color/app_text_color"
-            android:textSize="@dimen/body_text_size" />
+            android:textSize="@dimen/subhead_text_size" />
     </LinearLayout>
 
 
