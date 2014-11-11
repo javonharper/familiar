@@ -4,26 +4,23 @@ import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import java.math.BigDecimal;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.LogRecord;
 
 
 public class HabitTimerActivity extends Activity {
 
+    Handler handler = new Handler();
     private HabitController controller;
     private Habit habit;
     private TextView habitName;
     private TextView stopButton;
     private TextView timeLeft;
-    Handler handler = new Handler();
     private Timer timer = new Timer();
     private Integer secondsRemaining;
 
@@ -33,7 +30,7 @@ public class HabitTimerActivity extends Activity {
         setContentView(R.layout.activity_habit_timer);
 
         Integer habitId = Integer.valueOf(getIntent().getIntExtra(HabitIndexActivity.HABIT_ID, 0));
-        
+
         controller = new HabitController(this);
         habit = controller.getHabit(habitId);
 

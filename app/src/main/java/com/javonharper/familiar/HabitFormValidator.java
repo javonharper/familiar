@@ -1,9 +1,7 @@
 package com.javonharper.familiar;
 
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class HabitFormValidator {
@@ -34,9 +32,9 @@ public class HabitFormValidator {
 
     public boolean isValid() {
         if (nameError == null && timesPerDurationError == null && durationError == null) {
-           return true;
+            return true;
         } else {
-           return false;
+            return false;
         }
     }
 

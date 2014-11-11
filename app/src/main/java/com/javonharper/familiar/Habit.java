@@ -71,6 +71,6 @@ public class Habit extends FamiliarContract.HabitContract {
         } else {
             id = this.getId().toString();
         }
-        return "Habit[" + id + ": " + this.getName() + " (" + this.getCurrentProgress().toString() +"/" + this.getTimesPerDuration().toString() + ")]";
+        return "Habit[" + id + ": " + this.getName() + " (" + this.getCurrentProgress().toString() + "/" + this.getTimesPerDuration().toString() + ")]";
     }
 }

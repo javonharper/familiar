@@ -5,9 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Gravity;
@@ -19,26 +17,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 
 public class HabitIndexActivity extends Activity {
 
     public static String HABIT_ID = "habitId";
+    int prevVisibleItem;
+    FloatingActionButton fabButton;
     private List<Habit> habits;
     private HabitController controller;
     private int mLastFirstVisibleItem;
     private boolean mIsScrollingUp = false;
-    int prevVisibleItem;
-    FloatingActionButton fabButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +45,7 @@ public class HabitIndexActivity extends Activity {
 
     private void initializeFABButton() {
         fabButton = new FloatingActionButton.Builder(this)
-                .withDrawable(getResources().getDrawable(R.drawable.ic_plus ))
+                .withDrawable(getResources().getDrawable(R.drawable.ic_plus))
                 .withButtonColor(getResources().getColor(R.color.green))
                 .withGravity(Gravity.BOTTOM | Gravity.RIGHT)
                 .withMargins(0, 0, 16, 16)

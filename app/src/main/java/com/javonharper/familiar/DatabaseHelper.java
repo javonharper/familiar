@@ -7,9 +7,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 4;
     private static final String DATABASE_NAME = "Familiar.db";
-
-    private static DatabaseHelper instance = null;
-
     private static final java.lang.String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + Habit.TABLE_NAME + " (" +
                     Habit._ID + " INTEGER PRIMARY KEY," +
@@ -17,10 +14,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     Habit.COLUMN_NAME_TIMES_PER_DURATION + " INTEGER, " +
                     Habit.COLUMN_NAME_DURATION + " INTEGER, " +
                     Habit.COLUMN_NAME_CURRENT_PROGRESS + " INTEGER" +
-            ")";
-
+                    ")";
     private static final java.lang.String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + Habit.TABLE_NAME;
+    private static DatabaseHelper instance = null;
+
+    private DatabaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
 
     public static DatabaseHelper getInstance(Context context) {
         if (instance == null) {
@@ -28,10 +29,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         return instance;
-    }
-
-    private DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override

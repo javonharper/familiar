@@ -1,4 +1,4 @@
-package  com.javonharper.familiar;
+package com.javonharper.familiar;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
@@ -106,13 +106,13 @@ public class FloatingActionButton extends View {
     }
 
     static public class Builder {
-        private FrameLayout.LayoutParams params;
         private final Activity activity;
         int gravity = Gravity.BOTTOM | Gravity.RIGHT; // default bottom right
         Drawable drawable;
         int color = Color.WHITE;
         int size = 0;
         float scale = 0;
+        private FrameLayout.LayoutParams params;
 
         public Builder(Activity context) {
             scale = context.getResources().getDisplayMetrics().density;
@@ -181,8 +181,8 @@ public class FloatingActionButton extends View {
         // The calculation (value * scale + 0.5f) is a widely used to convert to dps to pixel units
         // based on density scale
         // see developer.android.com (Supporting Multiple Screen Sizes)
-        private int convertToPixels(int dp, float scale){
-            return (int) (dp * scale + 0.5f) ;
+        private int convertToPixels(int dp, float scale) {
+            return (int) (dp * scale + 0.5f);
         }
     }
 }

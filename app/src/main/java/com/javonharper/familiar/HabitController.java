@@ -24,7 +24,7 @@ public class HabitController {
 
         List<Habit> habits = new ArrayList<Habit>();
 
-        if(hasHabits) {
+        if (hasHabits) {
             habits.add(populateHabit(cursor));
 
             while (cursor.moveToNext()) {
@@ -60,7 +60,7 @@ public class HabitController {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         String selection = Habit._ID + "=?";
-        String[] selectionArgs = { id.toString() };
+        String[] selectionArgs = {id.toString()};
 
         Cursor cursor = db.query(Habit.TABLE_NAME, null, selection, selectionArgs, null, null, null);
         cursor.moveToFirst();
@@ -91,7 +91,7 @@ public class HabitController {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         String selection = Habit._ID + " LIKE ?";
-        String[] selectionArgs = { String.valueOf(id) };
+        String[] selectionArgs = {String.valueOf(id)};
 
         db.delete(Habit.TABLE_NAME, selection, selectionArgs);
         db.close();
@@ -109,6 +109,6 @@ public class HabitController {
         Integer duration = Integer.valueOf(cursor.getInt(durationIndex));
         Integer timesPerDuration = Integer.valueOf(cursor.getInt(timesPerDurationIndex));
         Integer currentProgress = Integer.valueOf(cursor.getInt(currentProgressIndex));
-        return new Habit(id, name, duration,timesPerDuration    , currentProgress);
+        return new Habit(id, name, duration, timesPerDuration, currentProgress);
     }
 }

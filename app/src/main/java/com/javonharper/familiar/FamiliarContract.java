@@ -4,7 +4,7 @@ package com.javonharper.familiar;
 import android.provider.BaseColumns;
 
 public class FamiliarContract {
-    
+
     public FamiliarContract() {
     }
 
