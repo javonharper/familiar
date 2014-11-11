@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,13 +17,15 @@ public class HabitShowActivity extends Activity {
 
     private Habit habit;
     private HabitController controller;
-    private TextView currentProgress;
-    private TextView nameView;
 
+    private TextView nameLabel;
     private TextView durationValue;
     private TextView durationLabel;
     private TextView frequencyValue;
     private TextView frequencyLabel;
+    private TextView currentProgressLabel;
+    private TextView currentProgressValue;
+
     private Button increment;
 
     @Override
@@ -41,7 +42,7 @@ public class HabitShowActivity extends Activity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         initializeView();
 
-        nameView.setText(habit.getName());
+        nameLabel.setText(habit.getName());
 
         Integer duration = habit.getDuration();
 
@@ -60,7 +61,7 @@ public class HabitShowActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Integer newCurrentProgress = habit.getCurrentProgress() + 1;
-                currentProgress.setText(newCurrentProgress.toString());
+                currentProgressValue.setText(newCurrentProgress.toString());
                 habit.setCurrentProgress(newCurrentProgress);
                 updateCurrentProgress();
                 controller.updateHabit(habit);
@@ -70,16 +71,16 @@ public class HabitShowActivity extends Activity {
 
     private void updateCurrentProgress() {
         if (habit.getCurrentProgress().equals(0)) {
-            currentProgress.setText("Not started yet");
-            currentProgress.setTextColor(getResources().getColor(R.color.black));
+            currentProgressValue.setText("Not started yet");
+            currentProgressValue.setTextColor(getResources().getColor(R.color.black));
         } else if (habit.getCurrentProgress() == habit.getTimesPerDuration()) {
-            currentProgress.setText("Done!");
-            currentProgress.setTextColor(getResources().getColor(R.color.green));
+            currentProgressValue.setText("Done!");
+            currentProgressValue.setTextColor(getResources().getColor(R.color.green));
         } else if (habit.getCurrentProgress() > habit.getTimesPerDuration()) {
-            currentProgress.setText("Done! (" + habit.getCurrentProgress() + "/" + habit.getTimesPerDuration() + ")");
-            currentProgress.setTextColor(getResources().getColor(R.color.green));
+            currentProgressValue.setText("Done! (" + habit.getCurrentProgress() + "/" + habit.getTimesPerDuration() + ")");
+            currentProgressValue.setTextColor(getResources().getColor(R.color.green));
         } else {
-            currentProgress.setText(habit.getCurrentProgress().toString());
+            currentProgressValue.setText(habit.getCurrentProgress().toString());
         }
     }
 
@@ -88,8 +89,9 @@ public class HabitShowActivity extends Activity {
         durationValue = (TextView) findViewById(R.id.duration_value);
         frequencyLabel = (TextView) findViewById(R.id.frequency_label);
         frequencyValue = (TextView) findViewById(R.id.frequency_value);
-        currentProgress = (TextView) findViewById(R.id.habit_current_progress);
-        nameView = (TextView) findViewById(R.id.name);
+        currentProgressLabel = (TextView) findViewById(R.id.habit_current_progress_label);
+        currentProgressValue = (TextView) findViewById(R.id.habit_current_progress);
+        nameLabel = (TextView) findViewById(R.id.name);
         increment = (Button) findViewById(R.id.increment);
         initializeTypefaces();
     }
@@ -97,8 +99,9 @@ public class HabitShowActivity extends Activity {
     private void initializeTypefaces() {
         Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
         increment.setTypeface(font);
-        currentProgress.setTypeface(font);
-        nameView.setTypeface(font);
+        currentProgressLabel.setTypeface(font);
+        currentProgressValue.setTypeface(font);
+        nameLabel.setTypeface(font);
         durationLabel.setTypeface(font);
         durationValue.setTypeface(font);
         frequencyLabel.setTypeface(font);
@@ -165,7 +168,7 @@ public class HabitShowActivity extends Activity {
                                 Toast.makeText(HabitShowActivity.this, message, Toast.LENGTH_SHORT).show();
 
                                 Integer newCurrentProgress = 0;
-                                currentProgress.setText(newCurrentProgress.toString());
+                                currentProgressValue.setText(newCurrentProgress.toString());
                                 habit.setCurrentProgress(newCurrentProgress);
                                 updateCurrentProgress();
                                 controller.updateHabit(habit);

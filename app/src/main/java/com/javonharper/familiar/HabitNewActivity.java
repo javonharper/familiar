@@ -17,9 +17,10 @@ import java.util.Map;
 public class HabitNewActivity extends Activity {
 
     private TextView nameLabel;
-    private TextView timesPerDurationLabel;
     private EditText nameEdit;
+    private TextView timesPerDurationLabel;
     private EditText timesPerDurationEdit;
+    private TextView durationLabel;
     private TextView durationEdit;
     private Button createButton;
     private Button cancelButton;
@@ -88,6 +89,7 @@ public class HabitNewActivity extends Activity {
     private void initializeView() {
         nameLabel = (TextView) findViewById(R.id.name_label);
         nameEdit = (EditText) findViewById(R.id.name_edit);
+        durationLabel = (TextView) findViewById(R.id.duration_label);
         durationEdit = (TextView) findViewById(R.id.duration_edit);
         timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
         timesPerDurationEdit = (EditText) findViewById(R.id.times_per_duration_edit);
@@ -100,6 +102,7 @@ public class HabitNewActivity extends Activity {
         Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
         nameLabel.setTypeface(font);
         nameEdit.setTypeface(font);
+        durationLabel.setTypeface(font);
         durationEdit.setTypeface(font);
         timesPerDurationLabel.setTypeface(font);
         timesPerDurationEdit.setTypeface(font);
