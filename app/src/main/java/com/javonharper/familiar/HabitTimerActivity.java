@@ -54,8 +54,10 @@ public class HabitTimerActivity extends Activity {
 
                         Integer minutes = (secondsRemaining % 3600) / 60;
                         Integer seconds = secondsRemaining % 60;
+                        String secondsPadded = String.format("%02d", seconds);
 
-                        timeLeft.setText(minutes.toString() + ":" + seconds.toString());
+
+                        timeLeft.setText(minutes.toString() + ":" + secondsPadded);
                         System.out.println("Seconds Remaining: " + secondsRemaining);
                     }
                 });
