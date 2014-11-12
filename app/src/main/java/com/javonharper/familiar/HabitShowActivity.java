@@ -26,7 +26,8 @@ public class HabitShowActivity extends Activity {
     private TextView currentProgressLabel;
     private TextView currentProgressValue;
 
-    private Button increment;
+    private Button incrementProgresButton;
+    private Button startTimerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,16 @@ public class HabitShowActivity extends Activity {
 
         updateCurrentProgress();
 
-        increment.setOnClickListener(new View.OnClickListener() {
+        startTimerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HabitTimerActivity.class);
+                intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
+                startActivity(intent);
+            }
+        });
+
+        incrementProgresButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Integer newCurrentProgress = habit.getCurrentProgress() + 1;
@@ -92,13 +102,13 @@ public class HabitShowActivity extends Activity {
         currentProgressLabel = (TextView) findViewById(R.id.habit_current_progress_label);
         currentProgressValue = (TextView) findViewById(R.id.habit_current_progress);
         nameLabel = (TextView) findViewById(R.id.name);
-        increment = (Button) findViewById(R.id.increment);
+        startTimerButton = (Button) findViewById(R.id.start_timer_button);
+        incrementProgresButton = (Button) findViewById(R.id.increment_progress_button);
         initializeTypefaces();
     }
 
     private void initializeTypefaces() {
         Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
-        increment.setTypeface(font);
         currentProgressLabel.setTypeface(font);
         currentProgressValue.setTypeface(font);
         nameLabel.setTypeface(font);
@@ -106,6 +116,9 @@ public class HabitShowActivity extends Activity {
         durationValue.setTypeface(font);
         frequencyLabel.setTypeface(font);
         frequencyValue.setTypeface(font);
+        startTimerButton.setTypeface(font);
+        incrementProgresButton.setTypeface(font);
+
     }
 
     @Override
