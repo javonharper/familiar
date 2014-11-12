@@ -26,7 +26,7 @@ public class HabitShowActivity extends Activity {
     private TextView currentProgressLabel;
     private TextView currentProgressValue;
 
-    private Button incrementProgresButton;
+    private Button incrementProgressButton;
     private Button startTimerButton;
 
     @Override
@@ -67,7 +67,7 @@ public class HabitShowActivity extends Activity {
             }
         });
 
-        incrementProgresButton.setOnClickListener(new View.OnClickListener() {
+        incrementProgressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Integer newCurrentProgress = habit.getCurrentProgress() + 1;
@@ -103,7 +103,7 @@ public class HabitShowActivity extends Activity {
         currentProgressValue = (TextView) findViewById(R.id.habit_current_progress);
         nameLabel = (TextView) findViewById(R.id.name);
         startTimerButton = (Button) findViewById(R.id.start_timer_button);
-        incrementProgresButton = (Button) findViewById(R.id.increment_progress_button);
+        incrementProgressButton = (Button) findViewById(R.id.increment_progress_button);
         initializeTypefaces();
     }
 
@@ -117,7 +117,7 @@ public class HabitShowActivity extends Activity {
         frequencyLabel.setTypeface(font);
         frequencyValue.setTypeface(font);
         startTimerButton.setTypeface(font);
-        incrementProgresButton.setTypeface(font);
+        incrementProgressButton.setTypeface(font);
 
     }
 
@@ -190,14 +190,6 @@ public class HabitShowActivity extends Activity {
                         .setNegativeButton("Cancel", null)
                         .show();
                 return true;
-//            case R.id.action_start_timer:
-//                intent = new Intent(this, HabitTimerActivity.class);
-//                intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
-//                startActivity(intent);
-//                return true;
-
-//            case R.id.action_settings:
-//                return true;
         }
         return super.onOptionsItemSelected(item);
     }

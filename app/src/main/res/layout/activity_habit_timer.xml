@@ -73,4 +73,26 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/done_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingLeft="@dimen/app_spacing"
+        android:paddingRight="@dimen/app_spacing">
+
+        <Button
+            android:id="@+id/done_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity=""
+            android:textColor="@color/white"
+            android:background="@color/green"
+            android:text="Done!"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textSize="@dimen/body_text_size"/>
+
+    </LinearLayout>
+
 </LinearLayout>

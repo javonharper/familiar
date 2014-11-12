@@ -1,7 +1,9 @@
 package com.javonharper.familiar;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -11,6 +13,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -24,8 +27,10 @@ public class HabitTimerActivity extends Activity {
     private TextView habitName;
     private LinearLayout pauseButtonContainer;
     private LinearLayout resumeButtonContainer;
+    private LinearLayout doneContainer;
     private TextView stopButton;
     private TextView resumeButton;
+    private TextView doneButton;
     private TextView timeLeft;
     private Timer timer;
     private Integer secondsRemaining;
@@ -62,6 +67,23 @@ public class HabitTimerActivity extends Activity {
                 resumeTimer();
             }
         });
+
+        doneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Integer newCurrentProgress = habit.getCurrentProgress() + 1;
+                habit.setCurrentProgress(newCurrentProgress);
+                controller.updateHabit(habit);
+
+                String message = "Nice! Your progress has been updated.";
+                Toast.makeText(HabitTimerActivity.this, message, Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getApplicationContext(), HabitIndexActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+
+            }
+        });
     }
 
     private void pauseTimer() {
@@ -78,6 +100,22 @@ public class HabitTimerActivity extends Activity {
 
         timer.cancel();
         timer = null;
+    }
+
+    private void timerDone() {
+
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.success);
+        mediaPlayer.start();
+
+        timer.cancel();
+        timeLeft.setText("Done");
+        timeLeft.setTextColor(getResources().getColor(R.color.green));
+
+        resumeButtonContainer.setVisibility(View.GONE);
+        pauseButtonContainer.setVisibility(View.GONE);
+        doneContainer.setVisibility(View.VISIBLE);
+
+
     }
 
     private void resumeTimer() {
@@ -105,20 +143,32 @@ public class HabitTimerActivity extends Activity {
                         String secondsPadded = String.format("%02d", seconds);
 
                         timeLeft.setText(minutesPadded + ":" + secondsPadded);
+
+                        if (secondsRemaining == 0) {
+                            timerDone();
+                        }
                     }
                 });
             }
+
         }, 0, 1000);
+
+
     }
 
     private void initializeView() {
+
         timeLeft = (TextView) findViewById(R.id.time_left);
         habitName = (TextView) findViewById(R.id.habit_name);
         stopButton = (TextView) findViewById(R.id.stop_button);
         resumeButton = (TextView) findViewById(R.id.resume_button);
+        doneButton = (TextView) findViewById(R.id.done_button);
 
         pauseButtonContainer = (LinearLayout) findViewById(R.id.pause_container);
         resumeButtonContainer = (LinearLayout) findViewById(R.id.resume_container);
+        doneContainer = (LinearLayout) findViewById(R.id.done_container);
+
+        doneContainer.setVisibility(View.GONE);
 
         initializeTypefaces();
     }
@@ -129,6 +179,7 @@ public class HabitTimerActivity extends Activity {
         habitName.setTypeface(font);
         stopButton.setTypeface(font);
         resumeButton.setTypeface(font);
+        doneButton.setTypeface(font);
 
     }
 
