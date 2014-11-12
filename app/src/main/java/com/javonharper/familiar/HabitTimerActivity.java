@@ -7,6 +7,9 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Timer;
@@ -19,9 +22,12 @@ public class HabitTimerActivity extends Activity {
     private HabitController controller;
     private Habit habit;
     private TextView habitName;
+    private LinearLayout pauseButtonContainer;
+    private LinearLayout resumeButtonContainer;
     private TextView stopButton;
+    private TextView resumeButton;
     private TextView timeLeft;
-    private Timer timer = new Timer();
+    private Timer timer;
     private Integer secondsRemaining;
 
     @Override
@@ -41,6 +47,50 @@ public class HabitTimerActivity extends Activity {
 
         habitName.setText(habit.getName());
 
+        resumeTimer();
+
+        stopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pauseTimer();
+            }
+        });
+
+        resumeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resumeTimer();
+            }
+        });
+    }
+
+    private void pauseTimer() {
+        pauseButtonContainer.setVisibility(View.GONE);
+        resumeButtonContainer.setVisibility(View.VISIBLE);
+
+        Animation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(200);
+        anim.setStartOffset(200);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
+        timeLeft.startAnimation(anim);
+        habitName.startAnimation(anim);
+
+        timer.cancel();
+        timer = null;
+    }
+
+    private void resumeTimer() {
+        resumeButtonContainer.setVisibility(View.GONE);
+        pauseButtonContainer.setVisibility(View.VISIBLE);
+
+        timeLeft.clearAnimation();
+        habitName.clearAnimation();
+
+        if (timer == null) {
+            timer = new Timer();
+        }
+
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -55,24 +105,21 @@ public class HabitTimerActivity extends Activity {
                         String secondsPadded = String.format("%02d", seconds);
 
                         timeLeft.setText(minutesPadded + ":" + secondsPadded);
-                        System.out.println("Seconds Remaining: " + secondsRemaining);
                     }
                 });
             }
         }, 0, 1000);
-
-        stopButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                timer.cancel();
-            }
-        });
     }
 
     private void initializeView() {
         timeLeft = (TextView) findViewById(R.id.time_left);
         habitName = (TextView) findViewById(R.id.habit_name);
         stopButton = (TextView) findViewById(R.id.stop_button);
+        resumeButton = (TextView) findViewById(R.id.resume_button);
+
+        pauseButtonContainer = (LinearLayout) findViewById(R.id.pause_container);
+        resumeButtonContainer = (LinearLayout) findViewById(R.id.resume_container);
+
         initializeTypefaces();
     }
 
@@ -81,6 +128,8 @@ public class HabitTimerActivity extends Activity {
         timeLeft.setTypeface(font);
         habitName.setTypeface(font);
         stopButton.setTypeface(font);
+        resumeButton.setTypeface(font);
+
     }
 
     @Override
