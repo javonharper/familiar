@@ -33,18 +33,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@color/light_gray">
+        android:paddingLeft="@dimen/app_spacing"
+        android:paddingRight="@dimen/app_spacing">
 
         <Button
             android:id="@+id/stop_button"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity=""
             android:textColor="@color/white"
-            android:layout_gravity="center_vertical|center_horizontal"
             android:background="@color/red"
-            android:text="STOP"
-            android:textSize="@dimen/body_text_size"
-            android:padding="@dimen/app_spacing"/>
+            android:text="Pause"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textSize="@dimen/body_text_size"/>
 
         </LinearLayout>
 
