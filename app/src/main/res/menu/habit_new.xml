@@ -2,6 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.javonharper.familiar.HabitNewActivity" >
 
+    <item android:id="@+id/action_cancel"
+        android:icon="@drawable/ic_close"
+        android:title="@string/reset"
+        android:showAsAction="ifRoom" />
+
     <!--<item android:id="@+id/action_settings"-->
         <!--android:title="@string/action_settings"-->
         <!--android:orderInCategory="100"-->

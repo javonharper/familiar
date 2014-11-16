@@ -24,7 +24,6 @@ public class HabitEditActivity extends Activity {
     private EditText timesPerDurationEdit;
     private TextView durationEdit;
     private Button doneButton;
-    private Button cancelButton;
     private HabitController controller;
     private Habit habit;
 
@@ -85,13 +84,6 @@ public class HabitEditActivity extends Activity {
                 }
             }
         });
-
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                HabitEditActivity.this.finish();
-            }
-        });
     }
 
     private void initializeView() {
@@ -102,7 +94,6 @@ public class HabitEditActivity extends Activity {
         timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
         timesPerDurationEdit = (EditText) findViewById(R.id.times_per_duration_edit);
         doneButton = (Button) findViewById(R.id.done_editing);
-        cancelButton = (Button) findViewById(R.id.cancel);
 
         initializeTypefaces();
     }
@@ -116,7 +107,6 @@ public class HabitEditActivity extends Activity {
         timesPerDurationLabel.setTypeface(font);
         timesPerDurationEdit.setTypeface(font);
         doneButton.setTypeface(font);
-        cancelButton.setTypeface(font);
     }
 
     @Override
@@ -138,6 +128,10 @@ public class HabitEditActivity extends Activity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 return true;
+            
+            case R.id.action_cancel:
+                HabitEditActivity.this.finish();
+
 //            case R.id.action_settings:
 //                return true;
         }

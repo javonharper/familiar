@@ -117,17 +117,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <Button
-            android:id="@+id/cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="@dimen/body_text_size"
-            android:background="@color/cancel_button_background_color"
-            android:textColor="@color/cancel_button_text_color"
-            android:textStyle="bold"
-            android:layout_margin="@dimen/app_spacing"
-            android:text="@string/cancel" />
 
         <Button
             android:id="@+id/create_habit"
