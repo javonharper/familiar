@@ -8,8 +8,8 @@ android {
         applicationId "com.javonharper.familiar"
         minSdkVersion 14
         targetSdkVersion 20
-        versionCode 15
-        versionName "1.4.0"
+        versionCode 16
+        versionName "1.4.1"
     }
     buildTypes {
         release {
@@ -22,3 +22,4 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
+    

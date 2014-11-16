@@ -90,6 +90,17 @@ public class HabitTimerActivity extends Activity {
         });
     }
 
+    @Override
+    protected void onStop() {
+        if (timer != null) {
+            timer.cancel();
+        }
+
+        this.finish();
+
+        super.onStop();
+    }
+
     private void pauseTimer() {
         pauseButtonContainer.setVisibility(View.GONE);
         resumeButtonContainer.setVisibility(View.VISIBLE);
@@ -110,7 +121,6 @@ public class HabitTimerActivity extends Activity {
         MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.success);
         mediaPlayer.start();
         vibes.vibrate(100);
-
 
         timer.cancel();
         timeLeft.setText("Done");
