@@ -1,11 +1,13 @@
 package com.javonharper.familiar;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,6 +36,7 @@ public class HabitTimerActivity extends Activity {
     private TextView timeLeft;
     private Timer timer;
     private Integer secondsRemaining;
+    private Vibrator vibes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class HabitTimerActivity extends Activity {
 
         getActionBar().hide();
         initializeView();
+        vibes = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         habitName.setText(habit.getName());
 
@@ -103,9 +107,10 @@ public class HabitTimerActivity extends Activity {
     }
 
     private void timerDone() {
-
         MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.success);
         mediaPlayer.start();
+        vibes.vibrate(100);
+
 
         timer.cancel();
         timeLeft.setText("Done");
@@ -135,7 +140,6 @@ public class HabitTimerActivity extends Activity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        secondsRemaining -= 1;
 
                         Integer minutes = (secondsRemaining % 3600) / 60;
                         Integer seconds = secondsRemaining % 60;
@@ -144,7 +148,10 @@ public class HabitTimerActivity extends Activity {
 
                         timeLeft.setText(minutesPadded + ":" + secondsPadded);
 
-                        if (secondsRemaining == 0) {
+                        secondsRemaining -= 1;
+
+
+                        if (secondsRemaining == -1) {
                             timerDone();
                         }
                     }
