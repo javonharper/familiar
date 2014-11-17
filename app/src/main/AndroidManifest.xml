@@ -21,18 +21,22 @@
         </activity>
         <activity
             android:name=".HabitShowActivity"
-            android:label="@string/title_activity_habit_show" />
+            android:label="@string/title_activity_habit_show"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".HabitNewActivity"
-            android:label="@string/title_activity_habit_new" >
+            android:label="@string/title_activity_habit_new"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".HabitEditActivity"
-            android:label="@string/title_activity_habit_edit" >
+            android:label="@string/title_activity_habit_edit"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".HabitTimerActivity"
-            android:label="@string/title_activity_habit_timer" >
+            android:label="@string/title_activity_habit_timer"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
