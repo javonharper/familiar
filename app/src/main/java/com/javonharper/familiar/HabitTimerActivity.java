@@ -1,6 +1,10 @@
 package com.javonharper.familiar;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -23,6 +27,7 @@ import java.util.TimerTask;
 
 public class HabitTimerActivity extends Activity {
 
+    private static final String SECONDS_REMAINING = "SECONDS_REMAINING";
     Handler handler = new Handler();
     private HabitController controller;
     private Habit habit;
@@ -37,6 +42,9 @@ public class HabitTimerActivity extends Activity {
     private Timer timer;
     private Integer secondsRemaining;
     private Vibrator vibes;
+    private Integer TIMER_ID = 9001;
+    private NotificationManager notificationManager;
+    private Notification.Builder notificationBuilder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +56,12 @@ public class HabitTimerActivity extends Activity {
         controller = new HabitController(this);
         habit = controller.getHabit(habitId);
 
-        secondsRemaining = habit.getDuration() * 60;
+        secondsRemaining = Integer.valueOf(getIntent().getIntExtra(HabitTimerActivity.SECONDS_REMAINING, habit.getDuration() * 60));
 
         getActionBar().hide();
         initializeView();
         vibes = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         habitName.setText(habit.getName());
 
@@ -94,6 +103,7 @@ public class HabitTimerActivity extends Activity {
     protected void onStop() {
         if (timer != null) {
             timer.cancel();
+            notificationManager.cancel(TIMER_ID);
         }
 
         this.finish();
@@ -114,6 +124,8 @@ public class HabitTimerActivity extends Activity {
         habitName.startAnimation(anim);
 
         timer.cancel();
+        notificationManager.cancel(TIMER_ID);
+
         timer = null;
     }
 
@@ -130,7 +142,7 @@ public class HabitTimerActivity extends Activity {
         pauseButtonContainer.setVisibility(View.GONE);
         doneContainer.setVisibility(View.VISIBLE);
 
-
+        notificationManager.cancel(TIMER_ID);
     }
 
     private void resumeTimer() {
@@ -155,11 +167,21 @@ public class HabitTimerActivity extends Activity {
                         Integer seconds = secondsRemaining % 60;
                         String minutesPadded = String.format("%02d", minutes);
                         String secondsPadded = String.format("%02d", seconds);
+                        String time = minutesPadded + ":" + secondsPadded;
 
-                        timeLeft.setText(minutesPadded + ":" + secondsPadded);
+                        timeLeft.setText(time);
+
+                        Intent intent = new Intent(getApplicationContext(), HabitTimerActivity.class);
+                        intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
+                        intent.putExtra(HabitTimerActivity.SECONDS_REMAINING, seconds);
+
+                        PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                        notificationBuilder.setContentIntent(contentIntent);
+                        notificationBuilder.setContentText("Time left: " + time);
+
+                        notificationManager.notify(TIMER_ID, notificationBuilder.build());
 
                         secondsRemaining -= 1;
-
 
                         if (secondsRemaining == -1) {
                             timerDone();
@@ -170,11 +192,21 @@ public class HabitTimerActivity extends Activity {
 
         }, 0, 1000);
 
+        notificationBuilder = new Notification.Builder(this)
+                .setSmallIcon(R.drawable.notification_icon)
+                .setContentTitle("Timer Running: " + habit.getName())
+                .setContentText("Timer starting..");
 
+        Intent intent = new Intent(this, HabitTimerActivity.class);
+        intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
+
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        notificationBuilder.setContentIntent(contentIntent);
+
+        notificationManager.notify(TIMER_ID, notificationBuilder.build());
     }
 
     private void initializeView() {
-
         timeLeft = (TextView) findViewById(R.id.time_left);
         habitName = (TextView) findViewById(R.id.habit_name);
         stopButton = (TextView) findViewById(R.id.stop_button);
@@ -197,7 +229,6 @@ public class HabitTimerActivity extends Activity {
         stopButton.setTypeface(font);
         resumeButton.setTypeface(font);
         doneButton.setTypeface(font);
-
     }
 
     @Override
