@@ -39,7 +39,7 @@ public class HabitTimerActivity extends Activity {
     private TextView resumeButton;
     private TextView doneButton;
     private TextView timeLeft;
-    private Timer timer;
+    private HabitTimer timer = HabitTimer.getInstance();
     private Integer secondsRemaining;
     private Vibrator vibes;
     private Integer TIMER_ID = 9001;
@@ -56,7 +56,7 @@ public class HabitTimerActivity extends Activity {
         controller = new HabitController(this);
         habit = controller.getHabit(habitId);
 
-        secondsRemaining = Integer.valueOf(getIntent().getIntExtra(HabitTimerActivity.SECONDS_REMAINING, habit.getDuration() * 60));
+        secondsRemaining = getIntent().getIntExtra(HabitTimerActivity.SECONDS_REMAINING, habit.getDuration() * 60);
 
         getActionBar().hide();
         initializeView();
@@ -99,13 +99,6 @@ public class HabitTimerActivity extends Activity {
         });
     }
 
-    @Override
-    protected void onDestroy() {
-        timer.cancel();
-        this.finish();
-        super.onDestroy();
-    }
-
     private void pauseTimer() {
         pauseButtonContainer.setVisibility(View.GONE);
         resumeButtonContainer.setVisibility(View.VISIBLE);
@@ -118,11 +111,8 @@ public class HabitTimerActivity extends Activity {
         timeLeft.startAnimation(anim);
         habitName.startAnimation(anim);
 
-        timer.cancel();
+        timer.stop();
         notificationManager.cancel(TIMER_ID);
-
-        timer = null;
-
     }
 
     private void timerDone() {
@@ -130,7 +120,7 @@ public class HabitTimerActivity extends Activity {
         mediaPlayer.start();
         vibes.vibrate(100);
 
-        timer.cancel();
+        timer.stop();
         timeLeft.setText("Done!");
         timeLeft.setTextColor(getResources().getColor(R.color.green));
 
@@ -149,60 +139,58 @@ public class HabitTimerActivity extends Activity {
         timeLeft.clearAnimation();
         habitName.clearAnimation();
 
-        if (timer == null) {
-            timer = new Timer();
-        }
+        timer.startTimer(new TimerTask() {
 
-            timer.scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
 
-                            Integer minutes = (secondsRemaining % 3600) / 60;
-                            Integer seconds = secondsRemaining % 60;
-                            String minutesPadded = String.format("%02d", minutes);
-                            String secondsPadded = String.format("%02d", seconds);
-                            String time = minutesPadded + ":" + secondsPadded;
+                    @Override
+                    public void run() {
 
-                            timeLeft.setText(time);
+                        Integer minutes = (secondsRemaining % 3600) / 60;
+                        Integer seconds = secondsRemaining % 60;
+                        String minutesPadded = String.format("%02d", minutes);
+                        String secondsPadded = String.format("%02d", seconds);
+                        String time = minutesPadded + ":" + secondsPadded;
 
-                            Intent intent = new Intent(getApplicationContext(), HabitTimerActivity.class);
-                            intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
-                            intent.putExtra(HabitTimerActivity.SECONDS_REMAINING, seconds);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        timeLeft.setText(time);
+
+                        Intent intent = new Intent(getApplicationContext(), HabitTimerActivity.class);
+                        intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
+                        intent.putExtra(HabitTimerActivity.SECONDS_REMAINING, seconds);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
 
-                            PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                            notificationBuilder.setContentIntent(contentIntent);
-                            notificationBuilder.setContentText("Time left: " + time);
+                        PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                        notificationBuilder.setContentIntent(contentIntent);
+                        notificationBuilder.setContentText("Time left: " + time);
 
-                            notificationManager.notify(TIMER_ID, notificationBuilder.build());
+                        notificationManager.notify(TIMER_ID, notificationBuilder.build());
 
-                            secondsRemaining -= 1;
+                        secondsRemaining -= 1;
 
-                            if (secondsRemaining == -1) {
-                                timerDone();
-                            }
+                        if (secondsRemaining == -1) {
+                            timerDone();
                         }
-                    });
-                }
+                    }
+                });
+            }
 
-            }, 0, 1000);
+        }, 0, 1000);
 
-            notificationBuilder = new Notification.Builder(this)
-                    .setSmallIcon(R.drawable.notification_icon)
-                    .setContentTitle("Timer Running: " + habit.getName())
-                    .setContentText("Timer starting..");
+        notificationBuilder = new Notification.Builder(this)
+                .setSmallIcon(R.drawable.notification_icon)
+                .setContentTitle(habit.getName())
+                .setContentText("Timer starting..");
 
-            Intent intent = new Intent(this, HabitTimerActivity.class);
-            intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
+        Intent intent = new Intent(this, HabitTimerActivity.class);
+        intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
 
-            PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            notificationBuilder.setContentIntent(contentIntent);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        notificationBuilder.setContentIntent(contentIntent);
 
-            notificationManager.notify(TIMER_ID, notificationBuilder.build());
+        notificationManager.notify(TIMER_ID, notificationBuilder.build());
 
 
     }
