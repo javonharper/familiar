@@ -16,6 +16,7 @@ public class HabitTimer {
         if (instance == null) {
             instance = new HabitTimer();
         }
+
         return instance;
     }
 
@@ -39,5 +40,9 @@ public class HabitTimer {
 
         timer.scheduleAtFixedRate(task, delay, interval);
         isRunning = true;
+    }
+
+    public boolean getIsRunning() {
+        return isRunning;
     }
 }

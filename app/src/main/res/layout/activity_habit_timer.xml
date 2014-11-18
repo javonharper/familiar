@@ -92,7 +92,7 @@
             android:layout_gravity=""
             android:textColor="@color/white"
             android:background="@color/green"
-            android:text="Done!"
+            android:text="Mark as done"
             android:textAllCaps="true"
             android:textStyle="bold"
             android:textSize="@dimen/body_text_size"/>

@@ -42,7 +42,8 @@ public class HabitTimerActivity extends Activity {
     private HabitTimer timer = HabitTimer.getInstance();
     private Integer secondsRemaining;
     private Vibrator vibes;
-    private Integer TIMER_ID = 9001;
+    private Integer TIMER_ID = 0;
+
     private NotificationManager notificationManager;
     private Notification.Builder notificationBuilder;
 
@@ -63,9 +64,13 @@ public class HabitTimerActivity extends Activity {
         vibes = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        habitName.setText(habit.getName());
+        updateUI();
 
-        resumeTimer();
+        if (!isTimerFinished()) {
+            resumeTimer();
+        } else {
+            notificationManager.cancel(TIMER_ID);
+        }
 
         stopButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +104,10 @@ public class HabitTimerActivity extends Activity {
         });
     }
 
+    private boolean isTimerFinished() {
+        return secondsRemaining <= 0;
+    }
+
     private void pauseTimer() {
         pauseButtonContainer.setVisibility(View.GONE);
         resumeButtonContainer.setVisibility(View.VISIBLE);
@@ -121,16 +130,13 @@ public class HabitTimerActivity extends Activity {
         vibes.vibrate(100);
 
         timer.stop();
-        timeLeft.setText("Done!");
+        timeLeft.setText("DONE!");
         timeLeft.setTextColor(getResources().getColor(R.color.green));
 
         resumeButtonContainer.setVisibility(View.GONE);
         pauseButtonContainer.setVisibility(View.GONE);
         doneContainer.setVisibility(View.VISIBLE);
-
-        notificationManager.cancel(TIMER_ID);
     }
-
 
     private void resumeTimer() {
         resumeButtonContainer.setVisibility(View.GONE);
@@ -147,6 +153,15 @@ public class HabitTimerActivity extends Activity {
 
                     @Override
                     public void run() {
+                        updateUI();
+
+                        Intent intent = new Intent(getApplicationContext(), HabitTimerActivity.class);
+                        intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
+                        intent.putExtra(HabitTimerActivity.SECONDS_REMAINING, secondsRemaining);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                        PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                        notificationBuilder.setContentIntent(contentIntent);
 
                         Integer minutes = (secondsRemaining % 3600) / 60;
                         Integer seconds = secondsRemaining % 60;
@@ -154,25 +169,27 @@ public class HabitTimerActivity extends Activity {
                         String secondsPadded = String.format("%02d", seconds);
                         String time = minutesPadded + ":" + secondsPadded;
 
-                        timeLeft.setText(time);
+                        String contentText;
+                        if (secondsRemaining <= 0) {
+                            contentText = "Done!";
+                        } else {
+                            contentText = "Time left: " + time;
+                        }
 
-                        Intent intent = new Intent(getApplicationContext(), HabitTimerActivity.class);
-                        intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
-                        intent.putExtra(HabitTimerActivity.SECONDS_REMAINING, seconds);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        notificationBuilder.setContentText(contentText);
 
-
-                        PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                        notificationBuilder.setContentIntent(contentIntent);
-                        notificationBuilder.setContentText("Time left: " + time);
-
-                        notificationManager.notify(TIMER_ID, notificationBuilder.build());
+                        Notification notification = notificationBuilder.build();
 
                         secondsRemaining -= 1;
 
                         if (secondsRemaining == -1) {
                             timerDone();
+                        } else {
+                            notification.flags |= Notification.FLAG_ONGOING_EVENT;
                         }
+
+                        notificationManager.notify(TIMER_ID, notification);
+
                     }
                 });
             }
@@ -190,9 +207,34 @@ public class HabitTimerActivity extends Activity {
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         notificationBuilder.setContentIntent(contentIntent);
 
-        notificationManager.notify(TIMER_ID, notificationBuilder.build());
+        Notification notification = notificationBuilder.build();
+        notification.flags |= Notification.FLAG_ONGOING_EVENT;
+        notificationManager.notify(TIMER_ID, notification);    }
 
+    private void updateUI() {
+        habitName.setText(habit.getName());
 
+        Integer minutes = (secondsRemaining % 3600) / 60;
+        Integer seconds = secondsRemaining % 60;
+        String minutesPadded = String.format("%02d", minutes);
+        String secondsPadded = String.format("%02d", seconds);
+        String time = minutesPadded + ":" + secondsPadded;
+
+        timeLeft.setText(time);
+
+        if (timer.getIsRunning()) {
+            pauseButtonContainer.setVisibility(View.VISIBLE);
+            resumeButtonContainer.setVisibility(View.GONE);
+            doneContainer.setVisibility(View.GONE);
+        } else {
+            pauseButtonContainer.setVisibility(View.GONE);
+            resumeButtonContainer.setVisibility(View.GONE);
+            doneContainer.setVisibility(View.VISIBLE);
+        }
+
+        if (isTimerFinished()) {
+            timeLeft.setText("DONE!");
+        }
     }
 
     private void initializeView() {

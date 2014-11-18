@@ -36,8 +36,7 @@
         <activity
             android:name=".HabitTimerActivity"
             android:label="@string/title_activity_habit_timer"
-            android:screenOrientation="portrait"
-            android:launchMode="singleInstance">
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
