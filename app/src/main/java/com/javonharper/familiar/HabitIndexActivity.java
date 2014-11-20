@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Gravity;
@@ -40,6 +41,7 @@ public class HabitIndexActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_index);
         controller = new HabitController(this);
+        getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
         initializeFABButton();
     }
 

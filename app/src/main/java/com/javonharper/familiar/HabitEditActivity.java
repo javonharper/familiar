@@ -3,6 +3,7 @@ package com.javonharper.familiar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,6 +40,7 @@ public class HabitEditActivity extends Activity {
 
         setTitle("Edit " + habit.getName());
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
         initializeView();
 
         nameEdit.setText(habit.getName());

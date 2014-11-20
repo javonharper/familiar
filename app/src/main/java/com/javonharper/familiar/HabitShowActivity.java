@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,6 +42,8 @@ public class HabitShowActivity extends Activity {
 
         setTitle(habit.getName());
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+
         initializeView();
 
         nameLabel.setText(habit.getName());

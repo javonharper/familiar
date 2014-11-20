@@ -8,6 +8,7 @@ import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -60,6 +61,8 @@ public class HabitTimerActivity extends Activity {
         secondsRemaining = getIntent().getIntExtra(HabitTimerActivity.SECONDS_REMAINING, habit.getDuration() * 60);
 
         getActionBar().hide();
+        getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+
         initializeView();
         vibes = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

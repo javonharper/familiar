@@ -3,6 +3,7 @@ package com.javonharper.familiar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,6 +33,8 @@ public class HabitNewActivity extends Activity {
 
         setTitle(R.string.add_habit);
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+
         initializeView();
 
         controller = new HabitController(this);
