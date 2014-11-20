@@ -10,6 +10,8 @@
         android:id="@+id/empty_state"
         android:orientation="vertical" />
 
+
+
     <ListView
         android:id="@+id/habit_list"
         android:layout_width="match_parent"

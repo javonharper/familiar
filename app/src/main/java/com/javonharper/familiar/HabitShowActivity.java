@@ -29,6 +29,7 @@ public class HabitShowActivity extends Activity {
 
     private Button incrementProgressButton;
     private Button startTimerButton;
+    private Button resetProgressButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,31 @@ public class HabitShowActivity extends Activity {
                 controller.updateHabit(habit);
             }
         });
+
+        resetProgressButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(HabitShowActivity.this)
+                        .setMessage(getString(R.string.reset_progress_prompt))
+                        .setCancelable(true)
+                        .setPositiveButton("Reset", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                String message = "Progress reset for \"" + habit.getName() + "\".";
+                                Toast.makeText(HabitShowActivity.this, message, Toast.LENGTH_SHORT).show();
+
+                                Integer newCurrentProgress = 0;
+                                currentProgressValue.setText(newCurrentProgress.toString());
+                                habit.setCurrentProgress(newCurrentProgress);
+                                updateCurrentProgress();
+                                controller.updateHabit(habit);
+                            }
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .show();
+            }
+        });
     }
 
     private void updateCurrentProgress() {
@@ -107,6 +133,8 @@ public class HabitShowActivity extends Activity {
         nameLabel = (TextView) findViewById(R.id.name);
         startTimerButton = (Button) findViewById(R.id.start_timer_button);
         incrementProgressButton = (Button) findViewById(R.id.increment_progress_button);
+        resetProgressButton = (Button) findViewById(R.id.reset_progress);
+
         initializeTypefaces();
     }
 
@@ -121,6 +149,7 @@ public class HabitShowActivity extends Activity {
         frequencyValue.setTypeface(font);
         startTimerButton.setTypeface(font);
         incrementProgressButton.setTypeface(font);
+        resetProgressButton.setTypeface(font);
 
     }
 
@@ -166,28 +195,6 @@ public class HabitShowActivity extends Activity {
                                 Intent intent = new Intent(HabitShowActivity.this, HabitIndexActivity.class);
                                 intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
                                 startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton("Cancel", null)
-                        .show();
-                return true;
-
-            case R.id.action_reset:
-                new AlertDialog.Builder(this)
-                        .setMessage(getString(R.string.reset_progress_prompt))
-                        .setCancelable(true)
-                        .setPositiveButton("Reset", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                                String message = "Progress reset for \"" + habit.getName() + "\".";
-                                Toast.makeText(HabitShowActivity.this, message, Toast.LENGTH_SHORT).show();
-
-                                Integer newCurrentProgress = 0;
-                                currentProgressValue.setText(newCurrentProgress.toString());
-                                habit.setCurrentProgress(newCurrentProgress);
-                                updateCurrentProgress();
-                                controller.updateHabit(habit);
                             }
                         })
                         .setNegativeButton("Cancel", null)

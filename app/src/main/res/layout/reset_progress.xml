@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/app_spacing">
+
+        <Button
+            android:id="@+id/reset_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/button_background_color"
+            android:textColor="@color/button_text_color"
+            android:textSize="@dimen/body_text_size"
+            android:layout_marginLeft="@dimen/app_spacing"
+            android:layout_marginRight="@dimen/app_spacing"
+            android:layout_marginBottom="@dimen/app_spacing"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:text="Start Fresh"/>
+    </LinearLayout>
+
+</LinearLayout>

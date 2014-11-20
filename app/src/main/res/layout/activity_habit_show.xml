@@ -198,9 +198,9 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/increment_progress_button"
+            android:id="@+id/reset_progress"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/button_background_color"
             android:textColor="@color/button_text_color"
             android:textSize="@dimen/body_text_size"
@@ -208,7 +208,20 @@
             android:layout_marginRight="@dimen/app_spacing"
             android:textStyle="bold"
             android:textAllCaps="true"
-            android:layout_weight="1"
-            android:text="@string/mark_task_done"/>
+            android:layout_weight="4"
+            android:text="start fresh"/>
+
+        <Button
+            android:id="@+id/increment_progress_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/button_background_color"
+            android:textColor="@color/button_text_color"
+            android:textSize="@dimen/body_text_size"
+            android:layout_marginRight="@dimen/app_spacing"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:layout_weight="3"
+            android:text="i just did this"/>
     </LinearLayout>
 </LinearLayout>

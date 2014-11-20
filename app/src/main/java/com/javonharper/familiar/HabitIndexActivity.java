@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ public class HabitIndexActivity extends Activity {
     private HabitController controller;
     private int mLastFirstVisibleItem;
     private boolean mIsScrollingUp = false;
+    private ListView habitListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,8 @@ public class HabitIndexActivity extends Activity {
         controller = new HabitController(this);
         getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
         initializeFABButton();
+        habitListView = (ListView) findViewById(R.id.habit_list);
+
     }
 
     private void initializeFABButton() {
@@ -68,12 +72,13 @@ public class HabitIndexActivity extends Activity {
 
         if (habits.size() == 0) {
             showEmptyStateView();
+        } else {
+            addFooterView();
         }
 
         Collections.sort(habits, new HabitComparator());
         HabitsAdapter adapter = new HabitsAdapter(this, habits);
 
-        final ListView habitListView = (ListView) findViewById(R.id.habit_list);
         habitListView.setAdapter(adapter);
 
 
@@ -110,6 +115,49 @@ public class HabitIndexActivity extends Activity {
         registerForContextMenu(habitListView);
     }
 
+    private void addFooterView() {
+
+        if (findViewById(R.id.reset_progress) != null) {
+            return;
+        }
+
+        View footerView = ((LayoutInflater) HabitIndexActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.reset_progress, null, false);
+        habitListView.addFooterView(footerView);
+
+        Button resetButton = (Button) findViewById(R.id.reset_progress);
+        Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
+
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(HabitIndexActivity.this)
+                        .setMessage(getString(R.string.reset_all_progress_prompt))
+                        .setCancelable(true)
+                        .setPositiveButton("Reset all progress", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                for (Habit habit : habits) {
+                                    habit.setCurrentProgress(0);
+                                    controller.updateHabit(habit);
+                                }
+
+                                String message = "Progress reset for all habits.";
+                                Toast.makeText(HabitIndexActivity.this, message, Toast.LENGTH_SHORT).show();
+
+                                Intent intent = getIntent();
+                                finish();
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .show();
+            }
+        });
+        resetButton.setTypeface(font);
+
+    }
+
     private void showEmptyStateView() {
         LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.empty_state, null);
@@ -139,36 +187,7 @@ public class HabitIndexActivity extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.action_reset:
-                new AlertDialog.Builder(this)
-                        .setMessage(getString(R.string.reset_all_progress_prompt))
-                        .setCancelable(true)
-                        .setPositiveButton("Reset all progress", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
 
-                                for (Habit habit : habits) {
-                                    habit.setCurrentProgress(0);
-                                    controller.updateHabit(habit);
-                                }
-
-                                String message = "Progress reset for all habits.";
-                                Toast.makeText(HabitIndexActivity.this, message, Toast.LENGTH_SHORT).show();
-
-                                Intent intent = getIntent();
-                                finish();
-                                startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton("Cancel", null)
-                        .show();
-                return true;
-
-//            case R.id.action_settings:
-//                return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 
