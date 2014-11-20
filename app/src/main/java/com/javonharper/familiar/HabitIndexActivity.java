@@ -53,7 +53,7 @@ public class HabitIndexActivity extends Activity {
         fabButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HabitNewActivity.class);
+                Intent intent = new Intent(HabitIndexActivity.this, HabitNewActivity.class);
                 startActivity(intent);
             }
         });
@@ -210,9 +210,9 @@ public class HabitIndexActivity extends Activity {
                             controller.deleteHabit(habit.getId());
 
                             String message = "\"" + habit.getName() + "\" deleted.";
-                            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(HabitIndexActivity.this, message, Toast.LENGTH_SHORT).show();
 
-                            Intent intent = new Intent(getApplicationContext(), HabitIndexActivity.class);
+                            Intent intent = new Intent(HabitIndexActivity.this, HabitIndexActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
                             startActivity(intent);

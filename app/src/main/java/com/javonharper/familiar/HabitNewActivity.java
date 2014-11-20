@@ -115,7 +115,7 @@ public class HabitNewActivity extends Activity {
         int id = item.getItemId();
         switch (id) {
             case android.R.id.home:
-                Intent intent = new Intent(getApplicationContext(), HabitIndexActivity.class);
+                Intent intent = new Intent(HabitNewActivity.this, HabitIndexActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 return true;

@@ -61,7 +61,7 @@ public class HabitShowActivity extends Activity {
         startTimerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HabitTimerActivity.class);
+                Intent intent = new Intent(HabitShowActivity.this, HabitTimerActivity.class);
                 intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
                 startActivity(intent);
             }
@@ -137,7 +137,7 @@ public class HabitShowActivity extends Activity {
         Intent intent;
         switch (id) {
             case android.R.id.home:
-                intent = new Intent(getApplicationContext(), HabitIndexActivity.class);
+                intent = new Intent(HabitShowActivity.this, HabitIndexActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 return true;

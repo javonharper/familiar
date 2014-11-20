@@ -96,7 +96,7 @@ public class HabitTimerActivity extends Activity {
                 String message = "Nice! Your progress has been updated.";
                 Toast.makeText(HabitTimerActivity.this, message, Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(getApplicationContext(), HabitIndexActivity.class);
+                Intent intent = new Intent(HabitTimerActivity.this, HabitIndexActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
 
@@ -155,12 +155,12 @@ public class HabitTimerActivity extends Activity {
                     public void run() {
                         updateUI();
 
-                        Intent intent = new Intent(getApplicationContext(), HabitTimerActivity.class);
+                        Intent intent = new Intent(HabitTimerActivity.this, HabitTimerActivity.class);
                         intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
                         intent.putExtra(HabitTimerActivity.SECONDS_REMAINING, secondsRemaining);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-                        PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                        PendingIntent contentIntent = PendingIntent.getActivity(HabitTimerActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                         notificationBuilder.setContentIntent(contentIntent);
 
                         Integer minutes = (secondsRemaining % 3600) / 60;
@@ -274,6 +274,7 @@ public class HabitTimerActivity extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
