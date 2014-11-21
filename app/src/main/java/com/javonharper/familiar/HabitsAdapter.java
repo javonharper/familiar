@@ -73,6 +73,7 @@ public class HabitsAdapter extends BaseAdapter {
             progress.setTextColor(convertView.getResources().getColor(R.color.green));
             timesPerDuration.setTextColor(convertView.getResources().getColor(R.color.green));
             sep.setTextColor(convertView.getResources().getColor(R.color.green));
+            name.setTextColor(convertView.getResources().getColor(R.color.gray));
         } else if (habit.getCurrentProgress() > 0) {
             progress.setTextColor(convertView.getResources().getColor(R.color.dark_gray));
             timesPerDuration.setTextColor(convertView.getResources().getColor(R.color.dark_gray));
