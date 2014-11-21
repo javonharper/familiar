@@ -98,6 +98,9 @@ public class HabitTimerActivity extends Activity {
                 habit.setCurrentProgress(newCurrentProgress);
                 controller.updateHabit(habit);
 
+                notificationManager.cancel(TIMER_ID);
+
+
                 String message = "Nice! Your progress has been updated.";
                 Toast.makeText(HabitTimerActivity.this, message, Toast.LENGTH_SHORT).show();
 
