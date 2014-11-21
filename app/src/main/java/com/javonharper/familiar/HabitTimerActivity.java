@@ -176,9 +176,25 @@ public class HabitTimerActivity extends Activity {
 
                         String contentText;
                         if (secondsRemaining <= 0) {
-                            contentText = "Done!";
+                            contentText = "You're Done!";
                         } else {
-                            contentText = "Time left: " + time;
+                            if (minutes == 0) {
+                                if (seconds == 1) {
+                                    contentText = seconds + " second left.";
+
+                                } else {
+                                    contentText = seconds + " seconds left.";
+
+                                }
+
+                            } else {
+                                if (minutes == 1) {
+                                    contentText = minutes + " minute left.";
+                                } else {
+                                    contentText = minutes + " minutes left.";
+
+                                }
+                            }
                         }
 
                         notificationBuilder.setContentText(contentText);

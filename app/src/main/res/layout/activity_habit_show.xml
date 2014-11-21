@@ -201,7 +201,7 @@
             android:id="@+id/reset_progress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/button_background_color"
+            android:background="#ff2dabc3"
             android:textColor="@color/button_text_color"
             android:textSize="@dimen/body_text_size"
             android:layout_marginLeft="@dimen/app_spacing"
