@@ -162,57 +162,7 @@ public class HabitTimerActivity extends Activity {
                     @Override
                     public void run() {
                         updateUI();
-
-                        Intent intent = new Intent(HabitTimerActivity.this, HabitTimerActivity.class);
-                        intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
-                        intent.putExtra(HabitTimerActivity.SECONDS_REMAINING, secondsRemaining);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                        PendingIntent contentIntent = PendingIntent.getActivity(HabitTimerActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                        notificationBuilder.setContentIntent(contentIntent);
-
-                        Integer minutes = (secondsRemaining % 3600) / 60;
-                        Integer seconds = secondsRemaining % 60;
-                        String minutesPadded = String.format("%02d", minutes);
-                        String secondsPadded = String.format("%02d", seconds);
-                        String time = minutesPadded + ":" + secondsPadded;
-
-                        String contentText;
-                        if (secondsRemaining <= 0) {
-                            contentText = "You're Done!";
-                        } else {
-                            if (minutes == 0) {
-                                if (seconds == 1) {
-                                    contentText = seconds + " second left.";
-
-                                } else {
-                                    contentText = seconds + " seconds left.";
-
-                                }
-
-                            } else {
-                                if (minutes == 1) {
-                                    contentText = minutes + " minute left.";
-                                } else {
-                                    contentText = minutes + " minutes left.";
-
-                                }
-                            }
-                        }
-
-                        notificationBuilder.setContentText(contentText);
-
-                        Notification notification = notificationBuilder.build();
-
-                        secondsRemaining -= 1;
-
-                        if (secondsRemaining == -1) {
-                            timerDone();
-                        } else {
-                            notification.flags |= Notification.FLAG_ONGOING_EVENT;
-                        }
-
-                        notificationManager.notify(TIMER_ID, notification);
+                        updateNotification();
 
                     }
                 });
@@ -220,6 +170,10 @@ public class HabitTimerActivity extends Activity {
 
         }, 0, 1000);
 
+        initNotification();
+    }
+
+    private void initNotification() {
         notificationBuilder = new Notification.Builder(this)
                 .setSmallIcon(R.drawable.notification_icon)
                 .setContentTitle(habit.getName())
@@ -233,7 +187,61 @@ public class HabitTimerActivity extends Activity {
 
         Notification notification = notificationBuilder.build();
         notification.flags |= Notification.FLAG_ONGOING_EVENT;
-        notificationManager.notify(TIMER_ID, notification);    }
+        notificationManager.notify(TIMER_ID, notification);
+    }
+
+    private void updateNotification() {
+        Intent intent = new Intent(this, HabitTimerActivity.class);
+        intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
+        intent.putExtra(HabitTimerActivity.SECONDS_REMAINING, secondsRemaining);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        notificationBuilder.setContentIntent(contentIntent);
+
+        Integer minutes = (secondsRemaining % 3600) / 60;
+        Integer seconds = secondsRemaining % 60;
+        String minutesPadded = String.format("%02d", minutes);
+        String secondsPadded = String.format("%02d", seconds);
+        String time = minutesPadded + ":" + secondsPadded;
+
+        String contentText;
+        if (secondsRemaining <= 0) {
+            contentText = "You're Done!";
+        } else {
+            if (minutes == 0) {
+                if (seconds == 1) {
+                    contentText = seconds + " second left.";
+
+                } else {
+                    contentText = seconds + " seconds left.";
+
+                }
+
+            } else {
+                if (minutes == 1) {
+                    contentText = minutes + " minute left.";
+                } else {
+                    contentText = minutes + " minutes left.";
+
+                }
+            }
+        }
+
+        notificationBuilder.setContentText(contentText);
+
+        Notification notification = notificationBuilder.build();
+
+        secondsRemaining -= 1;
+
+        if (secondsRemaining == -1) {
+            timerDone();
+        } else {
+            notification.flags |= Notification.FLAG_ONGOING_EVENT;
+        }
+
+        notificationManager.notify(TIMER_ID, notification);
+    }
 
     private void updateUI() {
         habitName.setText(habit.getName());
