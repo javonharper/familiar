@@ -10,10 +10,17 @@
     <color name="red">#C84941</color>
     <color name="red_dark">#ff963931</color>
 
+    <color name="orange">#fffc7d29</color>
+    <color name="orange_dark">#ffc4691c</color>
+
+    <color name="yellow">#fffce153</color>
+    <color name="yellow_dark">#ffd1bb46</color>
+
     <color name="blue">#ff489ac8</color>
     <color name="blue_dark">#ff4383af</color>
 
     <color name="green">#4CD499</color>
+    <color name="green_dark">#ff329e75</color>
 
     <color name="primary_color">#4CD499</color>
 
@@ -22,8 +29,6 @@
     <color name="border_color">@color/light_gray</color>
 
     <color name="button_background_color">#4CD499</color>
-    <color name="button_background_color_pressed">#ff329e75</color>
     <color name="button_text_color">@color/white</color>
     <color name="cancel_button_text_color">@color/white</color>
-    <color name="cancel_button_background_color">@color/gray</color>
 </resources>

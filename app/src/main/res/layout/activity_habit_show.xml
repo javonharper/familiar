@@ -78,7 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/minutes"
-                    android:textColor="@color/app_text_color"
+                    android:textColor="@color/dark_gray"
                     android:textSize="@dimen/body_text_size"/>
             </LinearLayout>
         </LinearLayout>
@@ -133,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/frequency_label"
                     android:text="@string/times_per_week"
-                    android:textColor="@color/app_text_color"
+                    android:textColor="@color/dark_gray"
                     android:textSize="@dimen/body_text_size"/>
             </LinearLayout>
         </LinearLayout>
@@ -158,18 +158,28 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/habit_current_progress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/fieldset_spacing"
 
             android:gravity="center"
             android:text="@string/placeholder"
             android:textColor="@color/app_text_color"
             android:textSize="@dimen/subhead_text_size" />
+        <TextView
+            android:id="@+id/times_this_week"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/fieldset_spacing"
+
+            android:gravity="center"
+            android:text="times this week"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/body_text_size" />
     </LinearLayout>
 
     <LinearLayout
@@ -202,7 +212,7 @@
             android:id="@+id/reset_progress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/blue_button"
+            android:background="@drawable/yellow_button"
             android:textColor="@color/button_text_color"
             android:textSize="@dimen/caption_text_size"
             android:layout_marginLeft="@dimen/app_spacing"
@@ -213,10 +223,10 @@
             android:text="start fresh"/>
 
         <Button
-            android:id="@+id/increment_progress_button"
+            android:id="@+id/increment_progres2s_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/green_button"
+            android:background="@drawable/blue_button"
             android:textColor="@color/button_text_color"
             android:textSize="@dimen/caption_text_size"
             android:layout_marginRight="@dimen/app_spacing"

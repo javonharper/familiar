@@ -26,6 +26,8 @@ public class HabitShowActivity extends Activity {
     private TextView frequencyLabel;
     private TextView currentProgressLabel;
     private TextView currentProgressValue;
+    private TextView thisWeek;
+
 
     private Button incrementProgressButton;
     private Button startTimerButton;
@@ -41,7 +43,7 @@ public class HabitShowActivity extends Activity {
         controller = new HabitController(this);
         habit = controller.getHabit(habitId);
 
-        setTitle(habit.getName());
+        setTitle("");
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
 
@@ -112,14 +114,22 @@ public class HabitShowActivity extends Activity {
         if (habit.getCurrentProgress().equals(0)) {
             currentProgressValue.setText("Not started yet");
             currentProgressValue.setTextColor(getResources().getColor(R.color.black));
+            thisWeek.setText("this week");
         } else if (habit.getCurrentProgress() == habit.getTimesPerDuration()) {
             currentProgressValue.setText("Done!");
             currentProgressValue.setTextColor(getResources().getColor(R.color.green));
+            thisWeek.setText("for this week");
         } else if (habit.getCurrentProgress() > habit.getTimesPerDuration()) {
             currentProgressValue.setText("Done! (" + habit.getCurrentProgress() + "/" + habit.getTimesPerDuration() + ")");
             currentProgressValue.setTextColor(getResources().getColor(R.color.green));
+            thisWeek.setText("times this week");
+        } else if (habit.getCurrentProgress() == 1) {
+            currentProgressValue.setText(habit.getCurrentProgress().toString());
+            thisWeek.setText("time this week");
         } else {
             currentProgressValue.setText(habit.getCurrentProgress().toString());
+            thisWeek.setText("times this week");
+
         }
     }
 
@@ -134,6 +144,7 @@ public class HabitShowActivity extends Activity {
         startTimerButton = (Button) findViewById(R.id.start_timer_button);
         incrementProgressButton = (Button) findViewById(R.id.increment_progress_button);
         resetProgressButton = (Button) findViewById(R.id.reset_progress);
+        thisWeek = (TextView) findViewById(R.id.times_this_week);
 
         initializeTypefaces();
     }
@@ -150,7 +161,7 @@ public class HabitShowActivity extends Activity {
         startTimerButton.setTypeface(font);
         incrementProgressButton.setTypeface(font);
         resetProgressButton.setTypeface(font);
-
+        thisWeek.setTypeface(font);
     }
 
     @Override

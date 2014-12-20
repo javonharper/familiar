@@ -13,7 +13,7 @@
             android:id="@+id/reset_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/blue_button"
+            android:background="@drawable/yellow_button"
             android:textColor="@color/button_text_color"
             android:textSize="@dimen/body_text_size"
             android:layout_marginLeft="@dimen/app_spacing"

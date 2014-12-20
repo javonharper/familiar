@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@drawable/green_button_pressed"/>
+    <item android:drawable="@drawable/yellow_button_pressed"/>
 
     <item android:bottom="@dimen/layer_padding">
         <shape android:shape="rectangle">
             <corners android:radius="@dimen/corner_radius"/>
-            <solid android:color="@color/green"/>
+            <solid android:color="@color/yellow"/>
         </shape>
     </item>
 </layer-list>
