@@ -12,4 +12,7 @@
     <dimen name="subhead_text_size">30dp</dimen>
     <dimen name="body_text_size">20dp</dimen>
     <dimen name="caption_text_size">14dp</dimen>
+
+    <dimen name="corner_radius">4dp</dimen>
+    <dimen name="layer_padding">3dp</dimen>
 </resources>
