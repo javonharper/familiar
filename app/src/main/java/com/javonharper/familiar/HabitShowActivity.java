@@ -43,7 +43,7 @@ public class HabitShowActivity extends Activity {
         controller = new HabitController(this);
         habit = controller.getHabit(habitId);
 
-        setTitle("");
+        setTitle("           ");
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
 

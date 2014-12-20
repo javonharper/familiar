@@ -223,7 +223,7 @@
             android:text="start fresh"/>
 
         <Button
-            android:id="@+id/increment_progres2s_button"
+            android:id="@+id/increment_progress_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/blue_button"
