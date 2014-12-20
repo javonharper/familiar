@@ -112,7 +112,6 @@ public class HabitTimerActivity extends Activity {
                 Intent intent = new Intent(HabitTimerActivity.this, HabitIndexActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-
             }
         });
 
@@ -126,7 +125,6 @@ public class HabitTimerActivity extends Activity {
 
                 notificationManager.cancel(TIMER_ID);
 
-
                 String message = "Nice! Your progress has been updated.";
                 Toast.makeText(HabitTimerActivity.this, message, Toast.LENGTH_SHORT).show();
 
@@ -139,9 +137,7 @@ public class HabitTimerActivity extends Activity {
         fastQuitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 pauseTimer();
-
                 new AlertDialog.Builder(HabitTimerActivity.this)
                         .setMessage("Do you really want to quit your session?")
                         .setCancelable(true)
@@ -160,8 +156,6 @@ public class HabitTimerActivity extends Activity {
                             }
                         })
                         .show();
-
-
             }
         });
     }
@@ -256,9 +250,6 @@ public class HabitTimerActivity extends Activity {
 
         Integer minutes = (secondsRemaining % 3600) / 60;
         Integer seconds = secondsRemaining % 60;
-        String minutesPadded = String.format("%02d", minutes);
-        String secondsPadded = String.format("%02d", seconds);
-        String time = minutesPadded + ":" + secondsPadded;
 
         String contentText;
         if (secondsRemaining <= 0) {
@@ -301,7 +292,7 @@ public class HabitTimerActivity extends Activity {
     private void updateUI() {
         habitName.setText(habit.getName());
 
-        Integer minutes = (secondsRemaining % 3600) / 60;
+        Integer minutes = secondsRemaining / 60;
         Integer seconds = secondsRemaining % 60;
         String minutesPadded = String.format("%02d", minutes);
         String secondsPadded = String.format("%02d", seconds);
