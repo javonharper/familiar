@@ -8,6 +8,11 @@
     <color name="dark_gray">#ff8d8d8d</color>
 
     <color name="red">#C84941</color>
+    <color name="red_dark">#ff963931</color>
+
+    <color name="blue">#ff489ac8</color>
+    <color name="blue_dark">#ff4383af</color>
+
     <color name="green">#4CD499</color>
 
     <color name="primary_color">#4CD499</color>
