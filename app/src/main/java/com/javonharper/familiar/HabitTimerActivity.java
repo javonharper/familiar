@@ -24,6 +24,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -38,9 +40,12 @@ public class HabitTimerActivity extends Activity {
     private LinearLayout pauseButtonContainer;
     private LinearLayout resumeButtonContainer;
     private LinearLayout doneContainer;
+    private LinearLayout timerActiveContainer;
     private TextView stopButton;
     private TextView resumeButton;
     private TextView doneButton;
+    private TextView fastDoneButton;
+    private TextView fastQuitButton;
     private TextView timeLeft;
     private HabitTimer timer = HabitTimer.getInstance();
     private Integer secondsRemaining;
@@ -110,6 +115,55 @@ public class HabitTimerActivity extends Activity {
 
             }
         });
+
+        fastDoneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Integer newCurrentProgress = habit.getCurrentProgress() + 1;
+                habit.setCurrentProgress(newCurrentProgress);
+                controller.updateHabit(habit);
+
+                notificationManager.cancel(TIMER_ID);
+
+
+                String message = "Nice! Your progress has been updated.";
+                Toast.makeText(HabitTimerActivity.this, message, Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(HabitTimerActivity.this, HabitIndexActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+
+        fastQuitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                pauseTimer();
+
+                new AlertDialog.Builder(HabitTimerActivity.this)
+                        .setMessage("Do you really want to quit your session?")
+                        .setCancelable(true)
+                        .setPositiveButton("Quit", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                notificationManager.cancel(TIMER_ID);
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                resumeTimer();
+                            }
+                        })
+                        .show();
+
+
+            }
+        });
     }
 
     private boolean isTimerFinished() {
@@ -143,6 +197,7 @@ public class HabitTimerActivity extends Activity {
 
         resumeButtonContainer.setVisibility(View.GONE);
         pauseButtonContainer.setVisibility(View.GONE);
+        timerActiveContainer.setVisibility(View.GONE);
         doneContainer.setVisibility(View.VISIBLE);
     }
 
@@ -250,7 +305,7 @@ public class HabitTimerActivity extends Activity {
         Integer seconds = secondsRemaining % 60;
         String minutesPadded = String.format("%02d", minutes);
         String secondsPadded = String.format("%02d", seconds);
-        String time = minutesPadded + ":" + secondsPadded;
+        String time = minutesPadded + " " + secondsPadded;
 
         timeLeft.setText(time);
 
@@ -301,10 +356,13 @@ public class HabitTimerActivity extends Activity {
         stopButton = (TextView) findViewById(R.id.stop_button);
         resumeButton = (TextView) findViewById(R.id.resume_button);
         doneButton = (TextView) findViewById(R.id.done_button);
+        fastDoneButton = (TextView) findViewById(R.id.fast_done_button);
+        fastQuitButton = (TextView) findViewById(R.id.fast_quit_button);
 
         pauseButtonContainer = (LinearLayout) findViewById(R.id.pause_container);
         resumeButtonContainer = (LinearLayout) findViewById(R.id.resume_container);
         doneContainer = (LinearLayout) findViewById(R.id.done_container);
+        timerActiveContainer = (LinearLayout) findViewById(R.id.timer_active_container);
 
         doneContainer.setVisibility(View.GONE);
 
@@ -318,6 +376,8 @@ public class HabitTimerActivity extends Activity {
         stopButton.setTypeface(font);
         resumeButton.setTypeface(font);
         doneButton.setTypeface(font);
+        fastQuitButton.setTypeface(font);
+        fastDoneButton.setTypeface(font);
     }
 
     @Override

@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="100dp"
-            android:text="XX:XX"
+            android:text="XX XX"
             android:textColor="@color/black"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
@@ -31,7 +31,7 @@
             android:textSize="40dp"
             android:layout_below="@+id/time_left"
             android:layout_centerHorizontal="true" />
-        </RelativeLayout>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/pause_container"
@@ -93,7 +93,40 @@
             android:textAllCaps="true"
             android:textStyle="bold"
             android:textSize="@dimen/body_text_size"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/timer_active_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/fast_quit_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff2dabc3"
+            android:textColor="@color/button_text_color"
+            android:textSize="@dimen/body_text_size"
+            android:layout_marginLeft="@dimen/app_spacing"
+            android:layout_marginRight="@dimen/app_spacing"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:layout_weight="1"
+            android:text="quit"/>
+
+        <Button
+            android:id="@+id/fast_done_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/button_background_color"
+            android:textColor="@color/button_text_color"
+            android:textSize="@dimen/body_text_size"
+            android:layout_marginRight="@dimen/app_spacing"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:layout_weight="1"
+            android:text="done"/>
     </LinearLayout>
 
 </LinearLayout>
