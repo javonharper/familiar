@@ -5,7 +5,12 @@
     <item android:id="@+id/action_cancel"
         android:icon="@drawable/ic_close"
         android:title="@string/reset"
-        android:showAsAction="ifRoom" />
+        android:showAsAction="always" />
+
+    <item android:id="@+id/action_create"
+        android:icon="@drawable/ic_check"
+        android:title="@string/create"
+        android:showAsAction="always"/>
 
     <!--<item android:id="@+id/action_settings"-->
         <!--android:title="@string/action_settings"-->

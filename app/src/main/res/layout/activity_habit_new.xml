@@ -111,23 +111,4 @@
             android:inputType="number" />
 
     </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/create_habit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="@dimen/body_text_size"
-            android:textStyle="bold"
-            android:background="@color/button_background_color"
-            android:textColor="@color/button_text_color"
-            android:layout_margin="@dimen/app_spacing"
-            android:text="@string/create" />
-    </LinearLayout>
 </LinearLayout>

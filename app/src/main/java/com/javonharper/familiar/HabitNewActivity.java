@@ -23,7 +23,6 @@ public class HabitNewActivity extends Activity {
     private EditText timesPerDurationEdit;
     private TextView durationLabel;
     private TextView durationEdit;
-    private Button createButton;
     private HabitController controller;
 
     @Override
@@ -38,10 +37,54 @@ public class HabitNewActivity extends Activity {
         initializeView();
 
         controller = new HabitController(this);
+    }
 
-        createButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    private void initializeView() {
+        nameLabel = (TextView) findViewById(R.id.name_label);
+        nameEdit = (EditText) findViewById(R.id.name_edit);
+        durationLabel = (TextView) findViewById(R.id.duration_label);
+        durationEdit = (TextView) findViewById(R.id.duration_edit);
+        timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
+        timesPerDurationEdit = (EditText) findViewById(R.id.times_per_duration_edit);
+        initializeTypefaces();
+    }
+
+    private void initializeTypefaces() {
+        Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
+        nameLabel.setTypeface(font);
+        nameEdit.setTypeface(font);
+        durationLabel.setTypeface(font);
+        durationEdit.setTypeface(font);
+        timesPerDurationLabel.setTypeface(font);
+        timesPerDurationEdit.setTypeface(font);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.habit_new, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        Intent intent;
+        switch (id) {
+            case android.R.id.home:
+                intent = new Intent(HabitNewActivity.this, HabitIndexActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                return true;
+
+            case R.id.action_cancel:
+                HabitNewActivity.this.finish();
+                return true;
+
+            case R.id.action_create:
                 String newName = nameEdit.getText().toString().trim();
                 String newTimesPerDuration = timesPerDurationEdit.getText().toString().trim();
                 String newDuration = durationEdit.getText().toString().trim();
@@ -58,9 +101,9 @@ public class HabitNewActivity extends Activity {
                     controller.createHabit(habit);
 
                     String message = "Habit \"" + habit.getName() + "\" created.";
-                    Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HabitNewActivity.this, message, Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(view.getContext(), HabitIndexActivity.class);
+                    intent = new Intent(HabitNewActivity.this, HabitIndexActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 } else {
@@ -77,55 +120,7 @@ public class HabitNewActivity extends Activity {
                         durationEdit.setError(errors.get(HabitFormValidator.DURATION));
                     }
                 }
-            }
-        });
-    }
 
-    private void initializeView() {
-        nameLabel = (TextView) findViewById(R.id.name_label);
-        nameEdit = (EditText) findViewById(R.id.name_edit);
-        durationLabel = (TextView) findViewById(R.id.duration_label);
-        durationEdit = (TextView) findViewById(R.id.duration_edit);
-        timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
-        timesPerDurationEdit = (EditText) findViewById(R.id.times_per_duration_edit);
-        createButton = (Button) findViewById(R.id.create_habit);
-        initializeTypefaces();
-    }
-
-    private void initializeTypefaces() {
-        Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
-        nameLabel.setTypeface(font);
-        nameEdit.setTypeface(font);
-        durationLabel.setTypeface(font);
-        durationEdit.setTypeface(font);
-        timesPerDurationLabel.setTypeface(font);
-        timesPerDurationEdit.setTypeface(font);
-        createButton.setTypeface(font);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.habit_new, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        switch (id) {
-            case android.R.id.home:
-                Intent intent = new Intent(HabitNewActivity.this, HabitIndexActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                return true;
-
-            case R.id.action_cancel:
-                HabitNewActivity.this.finish();
-                return true;
 
 //            case R.id.action_settings:
 //                return true;
