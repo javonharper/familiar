@@ -43,7 +43,6 @@ public class HabitIndexActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_index);
         controller = new HabitController(this);
-        getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
         initializeFABButton();
         habitListView = (ListView) findViewById(R.id.habit_list);
 

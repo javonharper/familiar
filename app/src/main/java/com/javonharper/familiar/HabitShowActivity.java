@@ -24,7 +24,6 @@ public class HabitShowActivity extends Activity {
     private TextView durationLabel;
     private TextView frequencyValue;
     private TextView frequencyLabel;
-    private TextView currentProgressLabel;
     private TextView currentProgressValue;
     private TextView thisWeek;
 
@@ -43,9 +42,8 @@ public class HabitShowActivity extends Activity {
         controller = new HabitController(this);
         habit = controller.getHabit(habitId);
 
-        setTitle("           ");
+        setTitle(habit.getName());
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
 
         initializeView();
 
@@ -122,13 +120,13 @@ public class HabitShowActivity extends Activity {
         } else if (habit.getCurrentProgress() > habit.getTimesPerDuration()) {
             currentProgressValue.setText("Done! (" + habit.getCurrentProgress() + "/" + habit.getTimesPerDuration() + ")");
             currentProgressValue.setTextColor(getResources().getColor(R.color.green));
-            thisWeek.setText("times this week");
+            thisWeek.setText("sessions completed this week");
         } else if (habit.getCurrentProgress() == 1) {
             currentProgressValue.setText(habit.getCurrentProgress().toString());
-            thisWeek.setText("time this week");
+            thisWeek.setText("session completed this week");
         } else {
             currentProgressValue.setText(habit.getCurrentProgress().toString());
-            thisWeek.setText("times this week");
+            thisWeek.setText("sessions completed this week");
 
         }
     }
@@ -138,7 +136,6 @@ public class HabitShowActivity extends Activity {
         durationValue = (TextView) findViewById(R.id.duration_value);
         frequencyLabel = (TextView) findViewById(R.id.frequency_label);
         frequencyValue = (TextView) findViewById(R.id.frequency_value);
-        currentProgressLabel = (TextView) findViewById(R.id.habit_current_progress_label);
         currentProgressValue = (TextView) findViewById(R.id.habit_current_progress);
         nameLabel = (TextView) findViewById(R.id.name);
         startTimerButton = (Button) findViewById(R.id.start_timer_button);
@@ -151,7 +148,6 @@ public class HabitShowActivity extends Activity {
 
     private void initializeTypefaces() {
         Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
-        currentProgressLabel.setTypeface(font);
         currentProgressValue.setTypeface(font);
         nameLabel.setTypeface(font);
         durationLabel.setTypeface(font);

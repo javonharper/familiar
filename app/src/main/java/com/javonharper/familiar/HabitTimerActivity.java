@@ -68,7 +68,6 @@ public class HabitTimerActivity extends Activity {
         secondsRemaining = getIntent().getIntExtra(HabitTimerActivity.SECONDS_REMAINING, habit.getDuration() * 60);
 
         getActionBar().hide();
-        getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
 
         initializeView();
         vibes = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -192,7 +191,7 @@ public class HabitTimerActivity extends Activity {
         resumeButtonContainer.setVisibility(View.GONE);
         pauseButtonContainer.setVisibility(View.GONE);
         timerActiveContainer.setVisibility(View.GONE);
-        doneContainer.setVisibility(View.VISIBLE);
+        doneContainer.setVisibility(View.GONE);
     }
 
     private void resumeTimer() {
@@ -296,7 +295,7 @@ public class HabitTimerActivity extends Activity {
         Integer seconds = secondsRemaining % 60;
         String minutesPadded = String.format("%02d", minutes);
         String secondsPadded = String.format("%02d", seconds);
-        String time = minutesPadded + " " + secondsPadded;
+        String time = minutesPadded + ":" + secondsPadded;
 
         timeLeft.setText(time);
 
@@ -312,33 +311,41 @@ public class HabitTimerActivity extends Activity {
 
         if (isTimerFinished()) {
             timeLeft.setText("DONE!");
+            timerActiveContainer.setVisibility(View.GONE);
         }
     }
 
     @Override
     public void onBackPressed() {
 
-        pauseTimer();
+        if (isTimerFinished()) {
+            finish();
+            HabitTimerActivity.super.onBackPressed();
+        } else {
 
-        new AlertDialog.Builder(HabitTimerActivity.this)
-                .setMessage("Going back will quit your session")
-                .setCancelable(true)
-                .setPositiveButton("Go back", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+            pauseTimer();
 
-                        notificationManager.cancel(TIMER_ID);
-                        finish();
-                        HabitTimerActivity.super.onBackPressed();
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        resumeTimer();
-                    }
-                })
-                .show();
+            new AlertDialog.Builder(HabitTimerActivity.this)
+                    .setMessage("Going back will quit your session")
+                    .setCancelable(true)
+                    .setPositiveButton("Go back", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            notificationManager.cancel(TIMER_ID);
+                            finish();
+                            HabitTimerActivity.super.onBackPressed();
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            resumeTimer();
+                        }
+                    })
+                    .show();
+        }
+
     }
 
     private void initializeView() {

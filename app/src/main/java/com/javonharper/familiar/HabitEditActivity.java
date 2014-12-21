@@ -39,7 +39,6 @@ public class HabitEditActivity extends Activity {
 
         setTitle("Edit " + habit.getName());
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
         initializeView();
 
         nameEdit.setText(habit.getName());
