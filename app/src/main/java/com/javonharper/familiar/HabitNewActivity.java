@@ -29,6 +29,8 @@ public class HabitNewActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_new);
+        getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+
 
         setTitle(R.string.add_habit);
         getActionBar().setDisplayHomeAsUpEnabled(true);

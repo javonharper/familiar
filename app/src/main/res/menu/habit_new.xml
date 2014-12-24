@@ -3,12 +3,12 @@
     tools:context="com.javonharper.familiar.HabitNewActivity" >
 
     <item android:id="@+id/action_cancel"
-        android:icon="@drawable/ic_close"
-        android:title="@string/reset"
+        android:icon="@drawable/close_icon"
+        android:title="@string/cancel"
         android:showAsAction="always" />
 
     <item android:id="@+id/action_create"
-        android:icon="@drawable/ic_check"
+        android:icon="@drawable/check_icon"
         android:title="@string/create"
         android:showAsAction="always"/>
 

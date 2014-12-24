@@ -3,12 +3,12 @@
     tools:context="com.javonharper.familiar.HabitShowActivity" >
 
     <item android:id="@+id/action_delete"
-        android:icon="@drawable/ic_action_discard"
+        android:icon="@drawable/delete_icon"
         android:title="@string/delete"
         android:showAsAction="ifRoom" />
 
     <item android:id="@+id/action_edit"
-        android:icon="@drawable/ic_action_edit"
+        android:icon="@drawable/edit_icon"
         android:title="@string/edit"
         android:showAsAction="always" />
 

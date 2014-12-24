@@ -59,6 +59,8 @@ public class HabitTimerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_timer);
+        getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+
 
         Integer habitId = getIntent().getIntExtra(HabitIndexActivity.HABIT_ID, 0);
 
@@ -123,6 +125,7 @@ public class HabitTimerActivity extends Activity {
                 controller.updateHabit(habit);
 
                 notificationManager.cancel(TIMER_ID);
+                timer.stop();
 
                 String message = "Nice! Your progress has been updated.";
                 Toast.makeText(HabitTimerActivity.this, message, Toast.LENGTH_SHORT).show();
