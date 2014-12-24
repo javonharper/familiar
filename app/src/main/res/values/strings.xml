@@ -25,7 +25,7 @@
     <string name="mark_task_done">I just did this!</string>
     <string name="empty_state_title">No Habits Yet</string>
     <string name="empty_state_subtext">Tap the button at the bottom of the screen to create a habit!</string>
-    <string name="reset_all_progress_prompt">Reset progress for all habits?</string>
+    <string name="reset_all_progress_prompt">Reset progress for all habits? \n\nYou typically only want to do this at the beginning of the week.</string>
     <string name="reset_progress_prompt">Reset progress for this habit?</string>
     <string name="view">View</string>
     <string name="duration_label_text">Duration</string>
