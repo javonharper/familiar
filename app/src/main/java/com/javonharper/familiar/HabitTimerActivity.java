@@ -194,7 +194,7 @@ public class HabitTimerActivity extends Activity {
         resumeButtonContainer.setVisibility(View.GONE);
         pauseButtonContainer.setVisibility(View.GONE);
         timerActiveContainer.setVisibility(View.GONE);
-        doneContainer.setVisibility(View.GONE);
+        doneContainer.setVisibility(View.VISIBLE);
     }
 
     private void resumeTimer() {
