@@ -12,6 +12,10 @@ class HabitComparator implements Comparator<Habit> {
 
             if (sort == 0) {
                 sort = compareByFrequency(habit1, habit2);
+
+                if (sort == 0) {
+                    sort = compareAlphabetically(habit1, habit2);
+                }
             }
         }
 
@@ -47,5 +51,9 @@ class HabitComparator implements Comparator<Habit> {
         } else {
             return 0;
         }
+    }
+
+    private int compareAlphabetically(Habit habit1, Habit habit2) {
+        return habit1.getName().compareTo(habit2.getName());
     }
 }
