@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +23,14 @@ public class HabitNewActivity extends Activity {
     private TextView timesPerDurationLabel;
     private EditText timesPerDurationEdit;
     private TextView durationLabel;
+    private TextView daysLabel;
+    private TextView mondayCheckboxLabel;
+    private TextView tuesdayCheckboxLabel;
+    private TextView wednesdayCheckbox;
+    private TextView thursdayCheckbox;
+    private TextView fridayCheckboxLabel;
+    private TextView saturdayCheckboxLabel;
+    private TextView sundayCheckboxLabel;
     private TextView durationEdit;
     private HabitController controller;
 
@@ -47,6 +56,16 @@ public class HabitNewActivity extends Activity {
         durationEdit = (TextView) findViewById(R.id.duration_edit);
         timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
         timesPerDurationEdit = (EditText) findViewById(R.id.times_per_duration_edit);
+
+        daysLabel = (TextView) findViewById(R.id.days_label);
+        mondayCheckboxLabel = (TextView) findViewById(R.id.monday_checkbox_label);
+        tuesdayCheckboxLabel = (TextView) findViewById(R.id.tuesday_checkbox_label);
+        wednesdayCheckbox = (TextView) findViewById(R.id.wednesday_checkbox_label);
+        thursdayCheckbox = (TextView) findViewById(R.id.thursday_checkbox_label);
+        fridayCheckboxLabel = (TextView) findViewById(R.id.friday_checkbox_label);
+        saturdayCheckboxLabel = (TextView) findViewById(R.id.saturday_checkbox_label);
+        sundayCheckboxLabel = (TextView) findViewById(R.id.sunday_checkbox_label);
+
         initializeTypefaces();
     }
 
@@ -58,6 +77,15 @@ public class HabitNewActivity extends Activity {
         durationEdit.setTypeface(font);
         timesPerDurationLabel.setTypeface(font);
         timesPerDurationEdit.setTypeface(font);
+
+        daysLabel.setTypeface(font);
+        mondayCheckboxLabel.setTypeface(font);
+        tuesdayCheckboxLabel.setTypeface(font);
+        wednesdayCheckbox.setTypeface(font);
+        thursdayCheckbox.setTypeface(font);
+        fridayCheckboxLabel.setTypeface(font);
+        saturdayCheckboxLabel.setTypeface(font);
+        sundayCheckboxLabel.setTypeface(font);
     }
 
     @Override
