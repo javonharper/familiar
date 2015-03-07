@@ -48,6 +48,14 @@ public class HabitController {
         values.put(Habit.COLUMN_NAME_TIMES_PER_DURATION, habit.getTimesPerDuration());
         values.put(Habit.COLUMN_NAME_CURRENT_PROGRESS, habit.getCurrentProgress());
 
+        values.put(Habit.COLUMN_NAME_DO_MONDAY, habit.getDoOnMonday());
+        values.put(Habit.COLUMN_NAME_DO_TUESDAY, habit.getDoOnTuesday());
+        values.put(Habit.COLUMN_NAME_DO_WEDNESDAY, habit.getDoOnWednesday());
+        values.put(Habit.COLUMN_NAME_DO_THURSDAY, habit.getDoOnThursday());
+        values.put(Habit.COLUMN_NAME_DO_FRIDAY, habit.getDoOnFriday());
+        values.put(Habit.COLUMN_NAME_DO_SATURDAY, habit.getDoOnSaturday());
+        values.put(Habit.COLUMN_NAME_DO_SUNDAY, habit.getDoOnSunday());
+
         long id = db.insert(Habit.TABLE_NAME, null, values);
 
         db.close();
@@ -103,12 +111,38 @@ public class HabitController {
         int durationIndex = cursor.getColumnIndex(Habit.COLUMN_NAME_DURATION);
         int timesPerDurationIndex = cursor.getColumnIndex(Habit.COLUMN_NAME_TIMES_PER_DURATION);
         int currentProgressIndex = cursor.getColumnIndex(Habit.COLUMN_NAME_CURRENT_PROGRESS);
+        int doOnMondayIndex = cursor.getColumnIndex(Habit.COLUMN_NAME_DO_MONDAY);
+        int doOnTuesdayIndex = cursor.getColumnIndex(Habit.COLUMN_NAME_DO_TUESDAY);
+        int doOnWednesdayIndex = cursor.getColumnIndex(Habit.COLUMN_NAME_DO_WEDNESDAY);
+        int doOnThursdayIndex = cursor.getColumnIndex(Habit.COLUMN_NAME_DO_THURSDAY);
+        int doOnFridayIndex = cursor.getColumnIndex(Habit.COLUMN_NAME_DO_FRIDAY);
+        int doOnSaturdayIndex = cursor.getColumnIndex(Habit.COLUMN_NAME_DO_SATURDAY);
+        int doOnSundayIndex = cursor.getColumnIndex(Habit.COLUMN_NAME_DO_SUNDAY);
 
         Integer id = (int) cursor.getLong(idIndex);
         String name = cursor.getString(nameIndex);
         Integer duration = Integer.valueOf(cursor.getInt(durationIndex));
         Integer timesPerDuration = Integer.valueOf(cursor.getInt(timesPerDurationIndex));
         Integer currentProgress = Integer.valueOf(cursor.getInt(currentProgressIndex));
-        return new Habit(id, name, duration, timesPerDuration, currentProgress);
+
+        Boolean doOnMonday = Integer.valueOf(cursor.getInt(doOnMondayIndex)) > 0;
+        Boolean doOnTuesday = Integer.valueOf(cursor.getInt(doOnTuesdayIndex)) > 0;
+        Boolean doOnWednesday = Integer.valueOf(cursor.getInt(doOnWednesdayIndex)) > 0;
+        Boolean doOnThursday = Integer.valueOf(cursor.getInt(doOnThursdayIndex)) > 0;
+        Boolean doOnFriday = Integer.valueOf(cursor.getInt(doOnFridayIndex)) > 0;
+        Boolean doOSaturday = Integer.valueOf(cursor.getInt(doOnSaturdayIndex)) > 0;
+        Boolean doOnSunday = Integer.valueOf(cursor.getInt(doOnSundayIndex)) > 0;
+
+        Habit habit = new Habit(id, name, duration, timesPerDuration, currentProgress);
+
+        habit.setDoOnMonday(doOnMonday);
+        habit.setDoOnTuesday(doOnTuesday);
+        habit.setDoOnWednesday(doOnWednesday);
+        habit.setDoOnThursday(doOnThursday);
+        habit.setDoOnFriday(doOnFriday);
+        habit.setDoOnSaturday(doOSaturday);
+        habit.setDoOnSunday(doOnSunday);
+
+        return habit;
     }
 }
