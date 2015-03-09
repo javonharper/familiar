@@ -87,6 +87,13 @@ public class HabitController {
         values.put(Habit.COLUMN_NAME_DURATION, habit.getDuration());
         values.put(Habit.COLUMN_NAME_TIMES_PER_DURATION, habit.getTimesPerDuration());
         values.put(Habit.COLUMN_NAME_CURRENT_PROGRESS, habit.getCurrentProgress());
+        values.put(Habit.COLUMN_NAME_DO_MONDAY, habit.getDoOnMonday());
+        values.put(Habit.COLUMN_NAME_DO_TUESDAY, habit.getDoOnTuesday());
+        values.put(Habit.COLUMN_NAME_DO_WEDNESDAY, habit.getDoOnWednesday());
+        values.put(Habit.COLUMN_NAME_DO_THURSDAY, habit.getDoOnThursday());
+        values.put(Habit.COLUMN_NAME_DO_FRIDAY, habit.getDoOnFriday());
+        values.put(Habit.COLUMN_NAME_DO_SATURDAY, habit.getDoOnSaturday());
+        values.put(Habit.COLUMN_NAME_DO_SUNDAY, habit.getDoOnSunday());
 
         String selection = Habit._ID + " LIKE ?";
         String[] selectionArgs = {String.valueOf(habit.getId())};

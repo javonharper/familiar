@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,22 @@ public class HabitEditActivity extends Activity {
     private TextView nameLabel;
     private TextView timesPerDurationLabel;
     private TextView durationLabel;
+    private TextView daysLabel;
+    private TextView mondayCheckboxLabel;
+    private TextView tuesdayCheckboxLabel;
+    private TextView wednesdayCheckboxLabel;
+    private TextView thursdayCheckboxLabel;
+    private TextView fridayCheckboxLabel;
+    private TextView saturdayCheckboxLabel;
+    private TextView sundayCheckboxLabel;
+
+    private CheckBox mondayCheckbox;
+    private CheckBox tuesdayCheckbox;
+    private CheckBox wednesdayCheckbox;
+    private CheckBox thursdayCheckbox;
+    private CheckBox fridayCheckbox;
+    private CheckBox saturdayCheckbox;
+    private CheckBox sundayCheckbox;
 
     private EditText nameEdit;
     private EditText timesPerDurationEdit;
@@ -46,6 +63,14 @@ public class HabitEditActivity extends Activity {
         nameEdit.setText(habit.getName());
         durationEdit.setText(habit.getDuration().toString());
         timesPerDurationEdit.setText(habit.getTimesPerDuration().toString());
+
+        mondayCheckbox.setChecked(habit.getDoOnMonday());
+        tuesdayCheckbox.setChecked(habit.getDoOnTuesday());
+        wednesdayCheckbox.setChecked(habit.getDoOnWednesday());
+        thursdayCheckbox.setChecked(habit.getDoOnThursday());
+        fridayCheckbox.setChecked(habit.getDoOnFriday());
+        saturdayCheckbox.setChecked(habit.getDoOnSaturday());
+        sundayCheckbox.setChecked(habit.getDoOnSunday());
     }
 
     private void initializeView() {
@@ -55,6 +80,22 @@ public class HabitEditActivity extends Activity {
         durationEdit = (TextView) findViewById(R.id.duration_edit);
         timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
         timesPerDurationEdit = (EditText) findViewById(R.id.times_per_duration_edit);
+        daysLabel = (TextView) findViewById(R.id.days_label);
+        mondayCheckboxLabel = (TextView) findViewById(R.id.monday_checkbox_label);
+        tuesdayCheckboxLabel = (TextView) findViewById(R.id.tuesday_checkbox_label);
+        wednesdayCheckboxLabel = (TextView) findViewById(R.id.wednesday_checkbox_label);
+        thursdayCheckboxLabel = (TextView) findViewById(R.id.thursday_checkbox_label);
+        fridayCheckboxLabel = (TextView) findViewById(R.id.friday_checkbox_label);
+        saturdayCheckboxLabel = (TextView) findViewById(R.id.saturday_checkbox_label);
+        sundayCheckboxLabel = (TextView) findViewById(R.id.sunday_checkbox_label);
+
+        mondayCheckbox = (CheckBox) findViewById(R.id.monday_checkbox);
+        tuesdayCheckbox = (CheckBox) findViewById(R.id.tuesday_checkbox);
+        wednesdayCheckbox = (CheckBox) findViewById(R.id.wednesday_checkbox);
+        thursdayCheckbox = (CheckBox) findViewById(R.id.thursday_checkbox);
+        fridayCheckbox = (CheckBox) findViewById(R.id.friday_checkbox);
+        saturdayCheckbox = (CheckBox) findViewById(R.id.saturday_checkbox);
+        sundayCheckbox = (CheckBox) findViewById(R.id.sunday_checkbox);
 
         initializeTypefaces();
     }
@@ -67,6 +108,14 @@ public class HabitEditActivity extends Activity {
         durationEdit.setTypeface(font);
         timesPerDurationLabel.setTypeface(font);
         timesPerDurationEdit.setTypeface(font);
+        daysLabel.setTypeface(font);
+        mondayCheckboxLabel.setTypeface(font);
+        tuesdayCheckboxLabel.setTypeface(font);
+        wednesdayCheckboxLabel.setTypeface(font);
+        thursdayCheckboxLabel.setTypeface(font);
+        fridayCheckboxLabel.setTypeface(font);
+        saturdayCheckboxLabel.setTypeface(font);
+        sundayCheckboxLabel.setTypeface(font);
     }
 
     @Override
@@ -99,6 +148,13 @@ public class HabitEditActivity extends Activity {
                 String newName = nameEdit.getText().toString().trim();
                 String newTimesPerDuration = timesPerDurationEdit.getText().toString().trim();
                 String newDuration = durationEdit.getText().toString().trim();
+                Boolean doOnMonday = mondayCheckbox.isChecked();
+                Boolean doOnTuesday = tuesdayCheckbox.isChecked();
+                Boolean doOnWednesday = wednesdayCheckbox.isChecked();
+                Boolean doOnThursday = thursdayCheckbox.isChecked();
+                Boolean doOnFriday = fridayCheckbox.isChecked();
+                Boolean doOnSaturday = saturdayCheckbox.isChecked();
+                Boolean doOnSunday = sundayCheckbox.isChecked();
 
                 HabitFormValidator validator = new HabitFormValidator(newName, newTimesPerDuration, newDuration);
                 validator.validate();
@@ -107,6 +163,13 @@ public class HabitEditActivity extends Activity {
                     habit.setName(newName);
                     habit.setTimesPerDuration(Integer.valueOf(newTimesPerDuration));
                     habit.setDuration(Integer.valueOf(newDuration));
+                    habit.setDoOnMonday(doOnMonday);
+                    habit.setDoOnTuesday(doOnTuesday);
+                    habit.setDoOnWednesday(doOnWednesday);
+                    habit.setDoOnThursday(doOnThursday);
+                    habit.setDoOnFriday(doOnFriday);
+                    habit.setDoOnSaturday(doOnSaturday);
+                    habit.setDoOnSunday(doOnSunday);
 
                     controller.updateHabit(habit);
 

@@ -23,6 +23,8 @@ public class HabitNewActivity extends Activity {
     private TextView timesPerDurationLabel;
     private EditText timesPerDurationEdit;
     private TextView durationLabel;
+    private TextView durationEdit;
+
     private TextView daysLabel;
     private TextView mondayCheckboxLabel;
     private TextView tuesdayCheckboxLabel;
@@ -31,7 +33,6 @@ public class HabitNewActivity extends Activity {
     private TextView fridayCheckboxLabel;
     private TextView saturdayCheckboxLabel;
     private TextView sundayCheckboxLabel;
-    private TextView durationEdit;
 
     private CheckBox mondayCheckbox;
     private CheckBox tuesdayCheckbox;
