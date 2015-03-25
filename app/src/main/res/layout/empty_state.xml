@@ -11,7 +11,7 @@
         android:id="@+id/empty_state_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/app_spacing"
+        android:paddingTop="80dp"
         android:text="@string/empty_state_title"
         android:textSize="@dimen/title_text_size"
         android:layout_gravity="center_horizontal"
@@ -20,7 +20,7 @@
 
     <TextView
         android:id="@+id/empty_state_subtext"
-        android:paddingTop="@dimen/app_spacing"
+        android:paddingTop="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="normal"
