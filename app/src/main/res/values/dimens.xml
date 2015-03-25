@@ -1,8 +1,9 @@
 <resources>
     <dimen name="app_spacing">24dp</dimen>
 
-    <dimen name="activity_horizontal_margin">@dimen/app_spacing</dimen>
-    <dimen name="activity_vertical_margin">@dimen/app_spacing</dimen>
+
+    <dimen name="activity_horizontal_margin">24dp</dimen>
+    <dimen name="activity_vertical_margin">24dp</dimen>
 
     <dimen name="fieldset_spacing">35dp</dimen>
 

@@ -27,5 +27,6 @@
         android:textSize="@dimen/body_text_size"
         android:textColor="@color/gray"
         android:text="@string/empty_state_subtext"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"/>
 </LinearLayout>
