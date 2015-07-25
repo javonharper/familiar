@@ -14,31 +14,38 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.javonharper.familiar.models.Habit;
-import com.javonharper.familiar.daos.HabitController;
 import com.javonharper.familiar.R;
+import com.javonharper.familiar.daos.HabitController;
+import com.javonharper.familiar.models.Habit;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class HabitShowActivity extends Activity {
 
     private Habit habit;
     private HabitController controller;
 
-    private TextView nameLabel;
-    private TextView durationValue;
-    private TextView durationLabel;
-    private TextView frequencyValue;
-    private TextView frequencyLabel;
-    private TextView currentProgressValue;
-    private TextView thisWeek;
+    @Bind(R.id.name_label) TextView nameLabel;
+    @Bind(R.id.duration_label) TextView durationLabel;
+    @Bind(R.id.duration_value) TextView durationValue;
+    @Bind(R.id.frequency_label) TextView frequencyLabel;
+    @Bind(R.id.frequency_value) TextView frequencyValue;
+    @Bind(R.id.habit_current_progress) TextView currentProgressValue;
+    @Bind(R.id.times_this_week) TextView thisWeek;
 
-    private Button incrementProgressButton;
-    private Button startTimerButton;
-    private Button resetProgressButton;
+    @Bind(R.id.increment_progress_button) Button incrementProgressButton;
+    @Bind(R.id.start_timer_button) Button startTimerButton;
+    @Bind(R.id.reset_progress) Button resetProgressButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_show);
+
+        ButterKnife.bind(this);
+        initializeTypefaces();
+
         getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
 
 
@@ -49,8 +56,6 @@ public class HabitShowActivity extends Activity {
 
         setTitle(habit.getName());
         getActionBar().setDisplayHomeAsUpEnabled(true);
-
-        initializeView();
 
         nameLabel.setText(habit.getName());
 
@@ -134,21 +139,6 @@ public class HabitShowActivity extends Activity {
             thisWeek.setText("sessions completed this week");
 
         }
-    }
-
-    private void initializeView() {
-        durationLabel = (TextView) findViewById(R.id.duration_label);
-        durationValue = (TextView) findViewById(R.id.duration_value);
-        frequencyLabel = (TextView) findViewById(R.id.frequency_label);
-        frequencyValue = (TextView) findViewById(R.id.frequency_value);
-        currentProgressValue = (TextView) findViewById(R.id.habit_current_progress);
-        nameLabel = (TextView) findViewById(R.id.name);
-        startTimerButton = (Button) findViewById(R.id.start_timer_button);
-        incrementProgressButton = (Button) findViewById(R.id.increment_progress_button);
-        resetProgressButton = (Button) findViewById(R.id.reset_progress);
-        thisWeek = (TextView) findViewById(R.id.times_this_week);
-
-        initializeTypefaces();
     }
 
     private void initializeTypefaces() {

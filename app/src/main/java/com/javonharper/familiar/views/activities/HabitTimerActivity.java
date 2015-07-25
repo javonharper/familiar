@@ -250,6 +250,7 @@ public class HabitTimerActivity extends Activity {
 
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         notificationBuilder.setContentIntent(contentIntent);
+        notificationBuilder.setWhen(0);
 
         Integer minutes = (secondsRemaining % 3600) / 60;
         Integer seconds = secondsRemaining % 60;
@@ -259,19 +260,12 @@ public class HabitTimerActivity extends Activity {
             contentText = "You're Done!";
         } else {
             if (minutes == 0) {
-                if (seconds == 1) {
-                    contentText = seconds + " second left.";
-
-                } else {
-                    contentText = seconds + " seconds left.";
-
-                }
-
+                contentText = "Less than a minute remaining";
             } else {
                 if (minutes == 1) {
-                    contentText = minutes + " minute left.";
+                    contentText = minutes + " minute left";
                 } else {
-                    contentText = minutes + " minutes left.";
+                    contentText = minutes + " minutes left";
 
                 }
             }
@@ -323,8 +317,10 @@ public class HabitTimerActivity extends Activity {
     public void onBackPressed() {
 
         if (isTimerFinished()) {
-            finish();
-            HabitTimerActivity.super.onBackPressed();
+            Intent intent = new Intent(this, HabitShowActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId());
+            startActivity(intent);
         } else {
 
             pauseTimer();

@@ -49,7 +49,7 @@ public class HabitsAdapter extends BaseAdapter {
         TextView progress = (TextView) convertView.findViewById(R.id.current_progress);
         TextView sep = (TextView) convertView.findViewById(R.id.seperator);
         TextView timesPerDuration = (TextView) convertView.findViewById(R.id.times_per_duration);
-        TextView name = (TextView) convertView.findViewById(R.id.name);
+        TextView name = (TextView) convertView.findViewById(R.id.name_label);
         TextView durationView = (TextView) convertView.findViewById(R.id.duration);
 
         Typeface font = Typeface.createFromAsset(context.getAssets(), context.getString(R.string.body_font));
