@@ -1,7 +1,5 @@
 package com.javonharper.familiar.models;
 
-import com.javonharper.familiar.models.Habit;
-
 import java.util.Comparator;
 
 public class HabitComparator implements Comparator<Habit> {

@@ -1,4 +1,4 @@
-package com.javonharper.familiar.daos;
+package com.javonharper.familiar.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,7 +7,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.javonharper.familiar.models.Habit;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 5;
+
+    private static final int DATABASE_VERSION = 6;
+
     private static final String DATABASE_NAME = "Familiar.db";
     private static final java.lang.String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + Habit.TABLE_NAME + " (" +
@@ -16,6 +18,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     Habit.COLUMN_NAME_TIMES_PER_DURATION + " INTEGER, " +
                     Habit.COLUMN_NAME_DURATION + " INTEGER, " +
                     Habit.COLUMN_NAME_CURRENT_PROGRESS + " INTEGER" +
+                    Habit.COLUMN_NAME_DO_MONDAY + " INTEGER" +
+                    Habit.COLUMN_NAME_DO_TUESDAY + " INTEGER" +
+                    Habit.COLUMN_NAME_DO_WEDNESDAY + " INTEGER" +
+                    Habit.COLUMN_NAME_DO_THURSDAY + " INTEGER" +
+                    Habit.COLUMN_NAME_DO_FRIDAY + " INTEGER" +
+                    Habit.COLUMN_NAME_DO_SATURDAY + " INTEGER" +
+                    Habit.COLUMN_NAME_DO_SUNDAY + " INTEGER" +
                     ")";
     private static final java.lang.String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + Habit.TABLE_NAME;
@@ -44,7 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             addDuration(db);
         }
 
-        if (oldVersion < 19) {
+        if (oldVersion < 6) {
             addDays(db);
         }
     }

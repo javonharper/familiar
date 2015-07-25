@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.javonharper.familiar.data.DatabaseHelper;
 import com.javonharper.familiar.models.Habit;
 
 import java.util.ArrayList;

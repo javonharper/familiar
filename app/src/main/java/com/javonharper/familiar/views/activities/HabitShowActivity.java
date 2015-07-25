@@ -30,18 +30,6 @@ public class HabitShowActivity extends Activity {
     private TextView frequencyLabel;
     private TextView currentProgressValue;
     private TextView thisWeek;
-    private TextView daysOfTheWeekLabel;
-    private TextView daysOfTheWeekMonday;
-    private TextView daysOfTheWeekTuesday;
-    private TextView daysOfTheWeekWednesday;
-    private TextView daysOfTheWeekThursday;
-    private TextView daysOfTheWeekFriday;
-    private TextView daysOfTheWeekSaturday;
-    private TextView daysOfTheWeekSunday;
-
-
-
-
 
     private Button incrementProgressButton;
     private Button startTimerButton;
@@ -78,8 +66,6 @@ public class HabitShowActivity extends Activity {
         frequencyValue.setText(habit.getTimesPerDuration().toString());
 
         updateCurrentProgress();
-
-        updateDaysOfWeek();
 
         startTimerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,14 +147,6 @@ public class HabitShowActivity extends Activity {
         incrementProgressButton = (Button) findViewById(R.id.increment_progress_button);
         resetProgressButton = (Button) findViewById(R.id.reset_progress);
         thisWeek = (TextView) findViewById(R.id.times_this_week);
-        daysOfTheWeekLabel = (TextView) findViewById(R.id.days_of_the_week_label);
-        daysOfTheWeekMonday = (TextView) findViewById(R.id.days_of_the_week_monday);
-        daysOfTheWeekTuesday = (TextView) findViewById(R.id.days_of_the_week_tuesday);
-        daysOfTheWeekWednesday = (TextView) findViewById(R.id.days_of_the_week_wednesday);
-        daysOfTheWeekThursday = (TextView) findViewById(R.id.days_of_the_week_thursday);
-        daysOfTheWeekFriday = (TextView) findViewById(R.id.days_of_the_week_friday);
-        daysOfTheWeekSaturday = (TextView) findViewById(R.id.days_of_the_week_saturday);
-        daysOfTheWeekSunday = (TextView) findViewById(R.id.days_of_the_week_sunday);
 
         initializeTypefaces();
     }
@@ -185,14 +163,6 @@ public class HabitShowActivity extends Activity {
         incrementProgressButton.setTypeface(font);
         resetProgressButton.setTypeface(font);
         thisWeek.setTypeface(font);
-        daysOfTheWeekLabel.setTypeface(font);
-        daysOfTheWeekMonday.setTypeface(font);
-        daysOfTheWeekTuesday.setTypeface(font);
-        daysOfTheWeekWednesday.setTypeface(font);
-        daysOfTheWeekThursday.setTypeface(font);
-        daysOfTheWeekFriday.setTypeface(font);
-        daysOfTheWeekSaturday.setTypeface(font);
-        daysOfTheWeekSunday.setTypeface(font);
     }
 
     @Override
@@ -244,37 +214,5 @@ public class HabitShowActivity extends Activity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void updateDaysOfWeek() {
-
-        if (habit.getDoOnMonday()) {
-            daysOfTheWeekMonday.setTextColor(getResources().getColor(R.color.black));
-        }
-
-        if (habit.getDoOnTuesday()) {
-            daysOfTheWeekTuesday.setTextColor(getResources().getColor(R.color.black));
-        }
-
-        if (habit.getDoOnWednesday()) {
-            daysOfTheWeekWednesday.setTextColor(getResources().getColor(R.color.black));
-        }
-
-        if (habit.getDoOnThursday()) {
-            daysOfTheWeekThursday.setTextColor(getResources().getColor(R.color.black));
-        }
-
-        if (habit.getDoOnFriday()) {
-            daysOfTheWeekFriday.setTextColor(getResources().getColor(R.color.black));
-        }
-
-        if (habit.getDoOnSaturday()) {
-            daysOfTheWeekSaturday.setTextColor(getResources().getColor(R.color.black));
-        }
-
-        if (habit.getDoOnSunday()) {
-            daysOfTheWeekSunday.setTextColor(getResources().getColor(R.color.black));
-        }
-
     }
 }

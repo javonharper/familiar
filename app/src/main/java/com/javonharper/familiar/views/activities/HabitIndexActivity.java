@@ -23,7 +23,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.javonharper.familiar.widgets.FloatingActionButton;
+import com.javonharper.familiar.views.widgets.FloatingActionButton;
 import com.javonharper.familiar.models.Habit;
 import com.javonharper.familiar.models.HabitComparator;
 import com.javonharper.familiar.daos.HabitController;
