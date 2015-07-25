@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:background="@color/app_background_color"
     android:keepScreenOn="true"
-    tools:context="com.javonharper.familiar.HabitTimerActivity">
+    tools:context="com.javonharper.familiar.views.activities.HabitTimerActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

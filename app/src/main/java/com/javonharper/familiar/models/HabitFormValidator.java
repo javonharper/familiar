@@ -1,4 +1,4 @@
-package com.javonharper.familiar;
+package com.javonharper.familiar.models;
 
 
 import java.util.HashMap;

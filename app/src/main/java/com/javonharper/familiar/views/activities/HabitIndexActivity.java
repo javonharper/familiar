@@ -1,4 +1,4 @@
-package com.javonharper.familiar;
+package com.javonharper.familiar.views.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -23,6 +23,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.javonharper.familiar.widgets.FloatingActionButton;
+import com.javonharper.familiar.models.Habit;
+import com.javonharper.familiar.models.HabitComparator;
+import com.javonharper.familiar.daos.HabitController;
+import com.javonharper.familiar.views.adapters.HabitsAdapter;
+import com.javonharper.familiar.R;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -34,8 +41,6 @@ public class HabitIndexActivity extends Activity {
     FloatingActionButton fabButton;
     private List<Habit> habits;
     private HabitController controller;
-    private int mLastFirstVisibleItem;
-    private boolean mIsScrollingUp = false;
     private ListView habitListView;
 
     @Override

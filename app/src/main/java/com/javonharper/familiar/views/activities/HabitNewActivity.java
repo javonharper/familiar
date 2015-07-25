@@ -1,4 +1,4 @@
-package com.javonharper.familiar;
+package com.javonharper.familiar.views.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,20 +7,27 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.javonharper.familiar.models.Habit;
+import com.javonharper.familiar.daos.HabitController;
+import com.javonharper.familiar.models.HabitFormValidator;
+import com.javonharper.familiar.R;
+
 import java.util.Map;
 
-public class HabitEditActivity extends Activity {
+public class HabitNewActivity extends Activity {
 
     private TextView nameLabel;
+    private EditText nameEdit;
     private TextView timesPerDurationLabel;
+    private EditText timesPerDurationEdit;
     private TextView durationLabel;
+    private TextView durationEdit;
+
     private TextView daysLabel;
     private TextView mondayCheckboxLabel;
     private TextView tuesdayCheckboxLabel;
@@ -38,39 +45,22 @@ public class HabitEditActivity extends Activity {
     private CheckBox saturdayCheckbox;
     private CheckBox sundayCheckbox;
 
-    private EditText nameEdit;
-    private EditText timesPerDurationEdit;
-    private TextView durationEdit;
+
     private HabitController controller;
-    private Habit habit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_habit_edit);
+        setContentView(R.layout.activity_habit_new);
         getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
 
 
-        final Integer habitId = Integer.valueOf(getIntent().getIntExtra(HabitIndexActivity.HABIT_ID, 0));
-
-        controller = new HabitController(this);
-        habit = new HabitController(this).getHabit(habitId);
-
-        setTitle("Edit " + habit.getName());
+        setTitle(R.string.add_habit);
         getActionBar().setDisplayHomeAsUpEnabled(true);
+
         initializeView();
 
-        nameEdit.setText(habit.getName());
-        durationEdit.setText(habit.getDuration().toString());
-        timesPerDurationEdit.setText(habit.getTimesPerDuration().toString());
-
-        mondayCheckbox.setChecked(habit.getDoOnMonday());
-        tuesdayCheckbox.setChecked(habit.getDoOnTuesday());
-        wednesdayCheckbox.setChecked(habit.getDoOnWednesday());
-        thursdayCheckbox.setChecked(habit.getDoOnThursday());
-        fridayCheckbox.setChecked(habit.getDoOnFriday());
-        saturdayCheckbox.setChecked(habit.getDoOnSaturday());
-        sundayCheckbox.setChecked(habit.getDoOnSunday());
+        controller = new HabitController(this);
     }
 
     private void initializeView() {
@@ -80,6 +70,7 @@ public class HabitEditActivity extends Activity {
         durationEdit = (TextView) findViewById(R.id.duration_edit);
         timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
         timesPerDurationEdit = (EditText) findViewById(R.id.times_per_duration_edit);
+
         daysLabel = (TextView) findViewById(R.id.days_label);
         mondayCheckboxLabel = (TextView) findViewById(R.id.monday_checkbox_label);
         tuesdayCheckboxLabel = (TextView) findViewById(R.id.tuesday_checkbox_label);
@@ -108,6 +99,7 @@ public class HabitEditActivity extends Activity {
         durationEdit.setTypeface(font);
         timesPerDurationLabel.setTypeface(font);
         timesPerDurationEdit.setTypeface(font);
+
         daysLabel.setTypeface(font);
         mondayCheckboxLabel.setTypeface(font);
         tuesdayCheckboxLabel.setTypeface(font);
@@ -121,7 +113,7 @@ public class HabitEditActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.habit_edit, menu);
+        getMenuInflater().inflate(R.menu.habit_new, menu);
         return true;
     }
 
@@ -132,16 +124,15 @@ public class HabitEditActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         Intent intent;
-
         switch (id) {
             case android.R.id.home:
-                intent = new Intent(HabitEditActivity.this, HabitIndexActivity.class);
+                intent = new Intent(HabitNewActivity.this, HabitIndexActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 return true;
 
             case R.id.action_cancel:
-                HabitEditActivity.this.finish();
+                HabitNewActivity.this.finish();
                 return true;
 
             case R.id.action_create:
@@ -160,6 +151,7 @@ public class HabitEditActivity extends Activity {
                 validator.validate();
 
                 if (validator.isValid()) {
+                    Habit habit = new Habit();
                     habit.setName(newName);
                     habit.setTimesPerDuration(Integer.valueOf(newTimesPerDuration));
                     habit.setDuration(Integer.valueOf(newDuration));
@@ -171,12 +163,12 @@ public class HabitEditActivity extends Activity {
                     habit.setDoOnSaturday(doOnSaturday);
                     habit.setDoOnSunday(doOnSunday);
 
-                    controller.updateHabit(habit);
+                    controller.createHabit(habit);
 
-                    String message = "Habit \"" + habit.getName() + "\" updated.";
-                    Toast.makeText(HabitEditActivity.this, message, Toast.LENGTH_SHORT).show();
+                    String message = "Habit \"" + habit.getName() + "\" created.";
+                    Toast.makeText(HabitNewActivity.this, message, Toast.LENGTH_SHORT).show();
 
-                    intent = new Intent(HabitEditActivity.this, HabitIndexActivity.class);
+                    intent = new Intent(HabitNewActivity.this, HabitIndexActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 } else {
@@ -193,7 +185,7 @@ public class HabitEditActivity extends Activity {
                         durationEdit.setError(errors.get(HabitFormValidator.DURATION));
                     }
                 }
-                return true;
+
 
 //            case R.id.action_settings:
 //                return true;

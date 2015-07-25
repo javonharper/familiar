@@ -1,11 +1,10 @@
-package com.javonharper.familiar;
+package com.javonharper.familiar.views.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,9 +23,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.javonharper.familiar.models.Habit;
+import com.javonharper.familiar.daos.HabitController;
+import com.javonharper.familiar.models.HabitTimer;
+import com.javonharper.familiar.R;
 
-import java.util.Timer;
 import java.util.TimerTask;
 
 

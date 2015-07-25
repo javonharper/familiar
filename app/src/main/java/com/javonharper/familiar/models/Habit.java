@@ -1,4 +1,6 @@
-package com.javonharper.familiar;
+package com.javonharper.familiar.models;
+
+import com.javonharper.familiar.utils.FamiliarContract;
 
 public class Habit extends FamiliarContract.HabitContract {
     private Integer id;

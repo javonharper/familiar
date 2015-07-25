@@ -1,8 +1,10 @@
-package com.javonharper.familiar;
+package com.javonharper.familiar.models;
+
+import com.javonharper.familiar.models.Habit;
 
 import java.util.Comparator;
 
-class HabitComparator implements Comparator<Habit> {
+public class HabitComparator implements Comparator<Habit> {
     @Override
     public int compare(Habit habit1, Habit habit2) {
         int sort = compareByCompleted(habit1, habit2);

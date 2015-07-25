@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/app_background_color"
     android:orientation="vertical"
-    tools:context="com.javonharper.familiar.HabitShowActivity">
+    tools:context="com.javonharper.familiar.views.activities.HabitShowActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

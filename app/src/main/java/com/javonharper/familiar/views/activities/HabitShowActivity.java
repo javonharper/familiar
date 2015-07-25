@@ -1,4 +1,4 @@
-package com.javonharper.familiar;
+package com.javonharper.familiar.views.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,6 +13,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.javonharper.familiar.models.Habit;
+import com.javonharper.familiar.daos.HabitController;
+import com.javonharper.familiar.R;
 
 public class HabitShowActivity extends Activity {
 

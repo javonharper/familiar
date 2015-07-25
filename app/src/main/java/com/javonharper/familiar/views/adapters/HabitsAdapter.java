@@ -1,4 +1,4 @@
-package com.javonharper.familiar;
+package com.javonharper.familiar.views.adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.javonharper.familiar.R;
+import com.javonharper.familiar.models.Habit;
 
 import java.util.List;
 

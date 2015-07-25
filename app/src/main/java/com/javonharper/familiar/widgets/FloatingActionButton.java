@@ -1,4 +1,4 @@
-package com.javonharper.familiar;
+package com.javonharper.familiar.widgets;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
