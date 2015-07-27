@@ -1,9 +1,7 @@
 package com.javonharper.familiar.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,7 +19,7 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class HabitNewActivity extends Activity {
+public class HabitNewActivity extends BaseActivity {
 
     @Bind(R.id.name_label) TextView nameLabel;
     @Bind(R.id.name_edit) EditText nameEdit;
@@ -40,7 +38,7 @@ public class HabitNewActivity extends Activity {
         ButterKnife.bind(this);
         initializeTypefaces();
 
-        getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+        hideActionBarIcon();
         setTitle(R.string.add_habit);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);

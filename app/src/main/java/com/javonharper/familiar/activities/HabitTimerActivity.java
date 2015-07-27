@@ -1,6 +1,5 @@
 package com.javonharper.familiar.activities;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -9,7 +8,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,7 +32,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class HabitTimerActivity extends Activity {
+public class HabitTimerActivity extends BaseActivity {
     @Bind(R.id.habit_name) TextView habitName;
     @Bind(R.id.pause_container) LinearLayout pauseButtonContainer;
     @Bind(R.id.resume_container) LinearLayout resumeButtonContainer;
@@ -69,8 +67,7 @@ public class HabitTimerActivity extends Activity {
         ButterKnife.bind(this);
         initializeTypefaces();
 
-        getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
-
+        hideActionBarIcon();
 
         Integer habitId = getIntent().getIntExtra(HabitIndexActivity.HABIT_ID, 0);
 

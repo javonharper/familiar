@@ -1,9 +1,7 @@
 package com.javonharper.familiar.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,7 +19,7 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class HabitEditActivity extends Activity {
+public class HabitEditActivity extends BaseActivity {
     @Bind(R.id.name_label) TextView nameLabel;
     @Bind(R.id.times_per_duration_label) TextView timesPerDurationLabel;
     @Bind(R.id.duration_label) TextView durationLabel;
@@ -40,9 +38,6 @@ public class HabitEditActivity extends Activity {
 
         ButterKnife.bind(this);
 
-        initializeTypefaces();
-
-        getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
 
         final Integer habitId = Integer.valueOf(getIntent().getIntExtra(HabitIndexActivity.HABIT_ID, 0));
 
@@ -51,7 +46,8 @@ public class HabitEditActivity extends Activity {
 
         setTitle("Edit " + habit.getName());
         getActionBar().setDisplayHomeAsUpEnabled(true);
-
+        initializeTypefaces();
+        hideActionBarIcon();
         nameEdit.setText(habit.getName());
         durationEdit.setText(habit.getDuration().toString());
         timesPerDurationEdit.setText(habit.getTimesPerDuration().toString());

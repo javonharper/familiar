@@ -1,12 +1,10 @@
 package com.javonharper.familiar.activities;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Gravity;
@@ -33,26 +31,27 @@ import com.javonharper.familiar.R;
 import java.util.Collections;
 import java.util.List;
 
+import butterknife.Bind;
 
-public class HabitIndexActivity extends Activity {
+
+public class HabitIndexActivity extends BaseActivity {
+    @Bind(R.id.habit_list) ListView habitListView;
+
+    private HabitController controller;
 
     public static String HABIT_ID = "habitId";
     int prevVisibleItem;
     FloatingActionButton fabButton;
     private List<Habit> habits;
-    private HabitController controller;
-    private ListView habitListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_index);
-        getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+
+        initializeFABButton();
 
         controller = new HabitController(this);
-        initializeFABButton();
-        habitListView = (ListView) findViewById(R.id.habit_list);
-
     }
 
     private void initializeFABButton() {

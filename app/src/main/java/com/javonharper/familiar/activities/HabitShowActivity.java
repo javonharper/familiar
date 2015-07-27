@@ -1,11 +1,9 @@
 package com.javonharper.familiar.activities;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,7 +19,7 @@ import com.javonharper.familiar.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class HabitShowActivity extends Activity {
+public class HabitShowActivity extends BaseActivity {
     @Bind(R.id.name_label) TextView nameLabel;
     @Bind(R.id.duration_label) TextView durationLabel;
     @Bind(R.id.duration_value) TextView durationValue;
@@ -44,8 +42,7 @@ public class HabitShowActivity extends Activity {
         ButterKnife.bind(this);
         initializeTypefaces();
 
-        getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
-
+        hideActionBarIcon();
 
         Integer habitId = Integer.valueOf(getIntent().getIntExtra(HabitIndexActivity.HABIT_ID, 0));
 
