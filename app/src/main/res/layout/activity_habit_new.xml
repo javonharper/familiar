@@ -1,21 +1,15 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="fill_parent"
-    android:background="@color/white"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
 
-    android:layout_width="match_parent">
+            android:background="@color/white">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/spacing_normal"
-        android:paddingLeft="@dimen/spacing_normal"
-        android:paddingRight="@dimen/spacing_normal"
-        android:paddingTop="@dimen/spacing_normal"
-        android:background="@color/white"
-        tools:context="com.javonharper.familiar.activities.HabitNewActivity">
+        style="@style/base_activity_layout_style"
+        tools:context="com.javonharper.familiar.activities.HabitNewActivity"
+        >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -23,14 +17,9 @@
 
             <TextView
                 android:id="@+id/name_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/spacing_normal"
-
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="@dimen/font_normal"
-                android:text="@string/name" />
+                android:text="@string/habit_field_name"
+                style="@style/field_label"/>
 
         </LinearLayout>
 
@@ -42,11 +31,11 @@
                 android:id="@+id/name_edit"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_normal"
-                android:hint="@string/name_placeholder_text"
                 android:layout_marginBottom="@dimen/spacing_large"
-                android:inputType="textCapSentences" />
+                android:hint="@string/habit_field_name_placeholder"
+                android:inputType="textCapSentences"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal"/>
 
         </LinearLayout>
 
@@ -57,13 +46,9 @@
 
             <TextView
                 android:id="@+id/duration_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_normal"
                 android:layout_marginBottom="@dimen/spacing_normal"
-                android:textStyle="bold"
-                android:text="@string/duration_label_text" />
+                android:text="@string/habit_field_duration"
+                style="@style/field_label"/>
 
         </LinearLayout>
 
@@ -76,12 +61,12 @@
                 android:id="@+id/duration_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_normal"
-                android:hint="@string/duration_placeholder_text"
-                android:layout_weight="1"
                 android:layout_marginBottom="@dimen/spacing_large"
-                android:inputType="number" />
+                android:layout_weight="1"
+                android:hint="@string/habit_field_duration_placeholder"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal"/>
 
 
         </LinearLayout>
@@ -92,14 +77,9 @@
 
             <TextView
                 android:id="@+id/times_per_duration_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_normal"
                 android:layout_marginBottom="@dimen/spacing_normal"
-
-                android:textStyle="bold"
-                android:text="Frequency" />
+                android:text="Frequency"
+                style="@style/field_label"/>
 
         </LinearLayout>
 
@@ -111,11 +91,11 @@
                 android:id="@+id/times_per_duration_edit"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_normal"
-                android:hint="@string/times_per_duration_placeholder_text"
                 android:layout_marginBottom="@dimen/spacing_large"
-                android:inputType="number" />
+                android:hint="@string/habit_field_timers_per_duration_placeholder"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_normal"/>
 
         </LinearLayout>
     </LinearLayout>

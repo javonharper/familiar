@@ -47,7 +47,7 @@ public class HabitIndexActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         hideActionBarIcon();
-        
+
         createFloatingActionButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,7 +126,7 @@ public class HabitIndexActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 new AlertDialog.Builder(HabitIndexActivity.this)
-                        .setMessage(getString(R.string.reset_all_progress_prompt))
+                        .setMessage(getString(R.string.alert_message_reset_progress))
                         .setCancelable(true)
                         .setPositiveButton("Reset all progress", new DialogInterface.OnClickListener() {
                             @Override

@@ -91,7 +91,7 @@ public class HabitShowActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 new AlertDialog.Builder(HabitShowActivity.this)
-                        .setMessage(getString(R.string.reset_progress_prompt))
+                        .setMessage(getString(R.string.alert_message_reset_progress))
                         .setCancelable(true)
                         .setPositiveButton("Reset", new DialogInterface.OnClickListener() {
                             @Override

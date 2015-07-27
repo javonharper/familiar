@@ -39,7 +39,7 @@ public class HabitNewActivity extends BaseActivity {
         initializeTypefaces();
 
         hideActionBarIcon();
-        setTitle(R.string.add_habit);
+        setTitle(R.string.title_activity_habit_create);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
