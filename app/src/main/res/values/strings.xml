@@ -36,5 +36,4 @@
     <string name="title_activity_habit_timer">HabitTimerActivity</string>
     <string name="start_timer">Start timer</string>
     <string name="action_cancel">Cancel</string>
-
 </resources>

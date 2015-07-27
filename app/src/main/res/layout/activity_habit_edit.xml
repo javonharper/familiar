@@ -10,10 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/spacing_normal"
+        android:paddingLeft="@dimen/spacing_normal"
+        android:paddingRight="@dimen/spacing_normal"
+        android:paddingTop="@dimen/spacing_normal"
         android:background="@color/white"
         tools:context="com.javonharper.familiar.activities.HabitEditActivity">
 
@@ -26,8 +26,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:layout_marginBottom="@dimen/app_spacing"
-                android:textSize="@dimen/body_text_size"
+                android:layout_marginBottom="@dimen/spacing_normal"
+                android:textSize="@dimen/font_normal"
                 android:textStyle="bold"
                 android:text="@string/name" />
 
@@ -42,9 +42,9 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="@dimen/body_text_size"
+                android:textSize="@dimen/font_normal"
                 android:hint="@string/name_placeholder_text"
-                android:layout_marginBottom="@dimen/fieldset_spacing"
+                android:layout_marginBottom="@dimen/spacing_large"
                 android:inputType="textCapSentences" />
 
         </LinearLayout>
@@ -58,8 +58,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="@dimen/body_text_size"
-                android:layout_marginBottom="@dimen/app_spacing"
+                android:textSize="@dimen/font_normal"
+                android:layout_marginBottom="@dimen/spacing_normal"
                 android:textStyle="bold"
                 android:text="@string/duration_label_text" />
 
@@ -75,10 +75,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="@dimen/body_text_size"
+                android:textSize="@dimen/font_normal"
                 android:hint="@string/duration_placeholder_text"
                 android:layout_weight="1"
-                android:layout_marginBottom="@dimen/fieldset_spacing"
+                android:layout_marginBottom="@dimen/spacing_large"
                 android:inputType="number" />
 
         </LinearLayout>
@@ -92,8 +92,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="@dimen/body_text_size"
-                android:layout_marginBottom="@dimen/app_spacing"
+                android:textSize="@dimen/font_normal"
+                android:layout_marginBottom="@dimen/spacing_normal"
                 android:textStyle="bold"
                 android:text="Frequency" />
 
@@ -109,10 +109,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="@dimen/body_text_size"
+                android:textSize="@dimen/font_normal"
                 android:hint="@string/times_per_duration_placeholder_text"
                 android:layout_weight="1"
-                android:layout_marginBottom="@dimen/fieldset_spacing"
+                android:layout_marginBottom="@dimen/spacing_large"
                 android:inputType="number" />
 
         </LinearLayout>

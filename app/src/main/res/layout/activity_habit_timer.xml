@@ -38,8 +38,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:paddingLeft="@dimen/app_spacing"
-        android:paddingRight="@dimen/app_spacing">
+        android:paddingLeft="@dimen/spacing_normal"
+        android:paddingRight="@dimen/spacing_normal">
 
         <Button
             android:id="@+id/pause_button"
@@ -50,7 +50,7 @@
             android:text="Pause"
             android:textAllCaps="true"
             android:textStyle="bold"
-            android:textSize="@dimen/body_text_size"
+            android:textSize="@dimen/font_normal"
             android:drawableLeft="@drawable/pause_icon"
             android:paddingLeft="50dp"
             android:drawablePadding="-40dp" />
@@ -62,8 +62,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:paddingLeft="@dimen/app_spacing"
-        android:paddingRight="@dimen/app_spacing">
+        android:paddingLeft="@dimen/spacing_normal"
+        android:paddingRight="@dimen/spacing_normal">
 
         <Button
             android:id="@+id/resume_button"
@@ -74,7 +74,7 @@
             android:text="Resume"
             android:textAllCaps="true"
             android:textStyle="bold"
-            android:textSize="@dimen/body_text_size"
+            android:textSize="@dimen/font_normal"
             android:drawableLeft="@drawable/play_icon"
             android:paddingLeft="50dp"
             android:drawablePadding="-40dp" />
@@ -86,8 +86,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:paddingLeft="@dimen/app_spacing"
-        android:paddingRight="@dimen/app_spacing">
+        android:paddingLeft="@dimen/spacing_normal"
+        android:paddingRight="@dimen/spacing_normal">
 
         <Button
             android:id="@+id/done_button"
@@ -98,7 +98,7 @@
             android:text="Mark as done"
             android:textAllCaps="true"
             android:textStyle="bold"
-            android:textSize="@dimen/body_text_size"
+            android:textSize="@dimen/font_normal"
             android:drawableLeft="@drawable/check_icon"
             android:paddingLeft="50dp"
             android:drawablePadding="-40dp" />/>
@@ -116,9 +116,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/red_button"
             android:textColor="@color/white"
-            android:textSize="@dimen/body_text_size"
-            android:layout_marginLeft="@dimen/app_spacing"
-            android:layout_marginRight="@dimen/app_spacing"
+            android:textSize="@dimen/font_normal"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            android:layout_marginRight="@dimen/spacing_normal"
             android:textStyle="bold"
             android:textAllCaps="true"
             android:layout_weight="1"
