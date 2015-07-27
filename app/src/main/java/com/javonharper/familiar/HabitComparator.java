@@ -1,4 +1,4 @@
-package com.javonharper.familiar.models;
+package com.javonharper.familiar;
 
 import java.util.Comparator;
 

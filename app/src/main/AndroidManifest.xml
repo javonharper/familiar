@@ -13,7 +13,7 @@
         >
 
         <activity
-            android:name=".views.activities.HabitIndexActivity"
+            android:name=".activities.HabitIndexActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,21 +22,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".views.activities.HabitShowActivity"
+            android:name=".activities.HabitShowActivity"
             android:label="@string/title_activity_habit_show"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".views.activities.HabitNewActivity"
+            android:name=".activities.HabitNewActivity"
             android:label="@string/title_activity_habit_new"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".views.activities.HabitEditActivity"
+            android:name=".activities.HabitEditActivity"
             android:label="@string/title_activity_habit_edit"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".views.activities.HabitTimerActivity"
+            android:name=".activities.HabitTimerActivity"
             android:label="@string/title_activity_habit_timer"
             android:screenOrientation="portrait">
         </activity>

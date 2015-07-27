@@ -1,4 +1,4 @@
-package com.javonharper.familiar.utils;
+package com.javonharper.familiar;
 
 
 import android.provider.BaseColumns;

@@ -1,4 +1,4 @@
-package com.javonharper.familiar.views.activities;
+package com.javonharper.familiar.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,48 +11,50 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.javonharper.familiar.Habit;
+import com.javonharper.familiar.HabitController;
+import com.javonharper.familiar.HabitFormValidator;
 import com.javonharper.familiar.R;
-import com.javonharper.familiar.daos.HabitController;
-import com.javonharper.familiar.models.Habit;
-import com.javonharper.familiar.models.HabitFormValidator;
 
 import java.util.Map;
 
-public class HabitNewActivity extends Activity {
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
-    private TextView nameLabel;
-    private EditText nameEdit;
-    private TextView timesPerDurationLabel;
-    private EditText timesPerDurationEdit;
-    private TextView durationLabel;
-    private TextView durationEdit;
+public class HabitEditActivity extends Activity {
+    @Bind(R.id.name_label) TextView nameLabel;
+    @Bind(R.id.times_per_duration_label) TextView timesPerDurationLabel;
+    @Bind(R.id.duration_label) TextView durationLabel;
+    @Bind(R.id.name_edit) EditText nameEdit;
+    @Bind(R.id.times_per_duration_edit) EditText timesPerDurationEdit;
+    @Bind(R.id.duration_edit) TextView durationEdit;
+
 
     private HabitController controller;
+    private Habit habit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_habit_new);
-        getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+        setContentView(R.layout.activity_habit_edit);
 
-
-        setTitle(R.string.add_habit);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-
-        initializeView();
-
-        controller = new HabitController(this);
-    }
-
-    private void initializeView() {
-        nameLabel = (TextView) findViewById(R.id.name_label);
-        nameEdit = (EditText) findViewById(R.id.name_edit);
-        durationLabel = (TextView) findViewById(R.id.duration_label);
-        durationEdit = (TextView) findViewById(R.id.duration_edit);
-        timesPerDurationLabel = (TextView) findViewById(R.id.times_per_duration_label);
-        timesPerDurationEdit = (EditText) findViewById(R.id.times_per_duration_edit);
+        ButterKnife.bind(this);
 
         initializeTypefaces();
+
+        getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+
+        final Integer habitId = Integer.valueOf(getIntent().getIntExtra(HabitIndexActivity.HABIT_ID, 0));
+
+        controller = new HabitController(this);
+        habit = new HabitController(this).getHabit(habitId);
+
+        setTitle("Edit " + habit.getName());
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        nameEdit.setText(habit.getName());
+        durationEdit.setText(habit.getDuration().toString());
+        timesPerDurationEdit.setText(habit.getTimesPerDuration().toString());
     }
 
     private void initializeTypefaces() {
@@ -67,27 +69,24 @@ public class HabitNewActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.habit_new, menu);
+        getMenuInflater().inflate(R.menu.habit_edit, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         Intent intent;
+
         switch (id) {
             case android.R.id.home:
-                intent = new Intent(HabitNewActivity.this, HabitIndexActivity.class);
+                intent = new Intent(HabitEditActivity.this, HabitIndexActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 return true;
 
             case R.id.action_cancel:
-                HabitNewActivity.this.finish();
+                HabitEditActivity.this.finish();
                 return true;
 
             case R.id.action_create:
@@ -99,17 +98,16 @@ public class HabitNewActivity extends Activity {
                 validator.validate();
 
                 if (validator.isValid()) {
-                    Habit habit = new Habit();
                     habit.setName(newName);
                     habit.setTimesPerDuration(Integer.valueOf(newTimesPerDuration));
                     habit.setDuration(Integer.valueOf(newDuration));
 
-                    controller.createHabit(habit);
+                    controller.updateHabit(habit);
 
-                    String message = "Habit \"" + habit.getName() + "\" created.";
-                    Toast.makeText(HabitNewActivity.this, message, Toast.LENGTH_SHORT).show();
+                    String message = "Habit \"" + habit.getName() + "\" updated.";
+                    Toast.makeText(HabitEditActivity.this, message, Toast.LENGTH_SHORT).show();
 
-                    intent = new Intent(HabitNewActivity.this, HabitIndexActivity.class);
+                    intent = new Intent(HabitEditActivity.this, HabitIndexActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 } else {
@@ -127,9 +125,7 @@ public class HabitNewActivity extends Activity {
                     }
                 }
 
-
-//            case R.id.action_settings:
-//                return true;
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }

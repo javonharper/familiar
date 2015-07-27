@@ -1,4 +1,4 @@
-package com.javonharper.familiar.views.activities;
+package com.javonharper.familiar.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -14,18 +14,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.javonharper.familiar.Habit;
+import com.javonharper.familiar.HabitController;
 import com.javonharper.familiar.R;
-import com.javonharper.familiar.daos.HabitController;
-import com.javonharper.familiar.models.Habit;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class HabitShowActivity extends Activity {
-
-    private Habit habit;
-    private HabitController controller;
-
     @Bind(R.id.name_label) TextView nameLabel;
     @Bind(R.id.duration_label) TextView durationLabel;
     @Bind(R.id.duration_value) TextView durationValue;
@@ -33,10 +29,12 @@ public class HabitShowActivity extends Activity {
     @Bind(R.id.frequency_value) TextView frequencyValue;
     @Bind(R.id.habit_current_progress) TextView currentProgressValue;
     @Bind(R.id.times_this_week) TextView thisWeek;
-
     @Bind(R.id.increment_progress_button) Button incrementProgressButton;
     @Bind(R.id.start_timer_button) Button startTimerButton;
     @Bind(R.id.reset_progress) Button resetProgressButton;
+
+    private HabitController controller;
+    private Habit habit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

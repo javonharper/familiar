@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.javonharper.familiar.views.activities.HabitEditActivity" >
+    tools:context="com.javonharper.familiar.activities.HabitEditActivity" >
 
     <item android:id="@+id/action_cancel"
         android:icon="@drawable/close_icon"
@@ -11,9 +11,4 @@
         android:icon="@drawable/check_icon"
         android:title="@string/create"
         android:showAsAction="always"/>
-
-    <!--<item android:id="@+id/action_settings"-->
-        <!--android:title="@string/action_settings"-->
-        <!--android:orderInCategory="100"-->
-        <!--android:showAsAction="never" />-->
 </menu>

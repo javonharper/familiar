@@ -1,10 +1,8 @@
-package com.javonharper.familiar.data;
+package com.javonharper.familiar;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import com.javonharper.familiar.models.Habit;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 

@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.javonharper.familiar.views.activities.HabitNewActivity" >
+    tools:context="com.javonharper.familiar.activities.HabitNewActivity" >
 
     <item android:id="@+id/action_cancel"
         android:icon="@drawable/close_icon"

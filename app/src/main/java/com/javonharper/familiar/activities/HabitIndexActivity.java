@@ -1,4 +1,4 @@
-package com.javonharper.familiar.views.activities;
+package com.javonharper.familiar.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -23,11 +23,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.javonharper.familiar.views.widgets.FloatingActionButton;
-import com.javonharper.familiar.models.Habit;
-import com.javonharper.familiar.models.HabitComparator;
-import com.javonharper.familiar.daos.HabitController;
-import com.javonharper.familiar.views.adapters.HabitsAdapter;
+import com.javonharper.familiar.FloatingActionButton;
+import com.javonharper.familiar.Habit;
+import com.javonharper.familiar.HabitComparator;
+import com.javonharper.familiar.HabitController;
+import com.javonharper.familiar.HabitsAdapter;
 import com.javonharper.familiar.R;
 
 import java.util.Collections;

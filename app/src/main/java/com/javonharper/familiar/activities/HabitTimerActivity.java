@@ -1,4 +1,4 @@
-package com.javonharper.familiar.views.activities;
+package com.javonharper.familiar.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -23,31 +23,36 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.javonharper.familiar.models.Habit;
-import com.javonharper.familiar.daos.HabitController;
-import com.javonharper.familiar.models.HabitTimer;
+import com.javonharper.familiar.Habit;
+import com.javonharper.familiar.HabitController;
+import com.javonharper.familiar.HabitTimer;
 import com.javonharper.familiar.R;
 
 import java.util.TimerTask;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 
 public class HabitTimerActivity extends Activity {
+    @Bind(R.id.habit_name) TextView habitName;
+    @Bind(R.id.pause_container) LinearLayout pauseButtonContainer;
+    @Bind(R.id.resume_container) LinearLayout resumeButtonContainer;
+    @Bind(R.id.done_container) LinearLayout doneContainer;
+    @Bind(R.id.timer_active_container) LinearLayout timerActiveContainer;
+    @Bind(R.id.stop_button) TextView stopButton;
+    @Bind(R.id.resume_button) TextView resumeButton;
+    @Bind(R.id.done_button) TextView doneButton;
+    @Bind(R.id.fast_done_button) TextView fastDoneButton;
+    @Bind(R.id.fast_quit_button) TextView fastQuitButton;
+    @Bind(R.id.time_left) TextView timeLeft;
+
+    private HabitController controller;
+    private Habit habit;
 
     private static final String SECONDS_REMAINING = "SECONDS_REMAINING";
     Handler handler = new Handler();
-    private HabitController controller;
-    private Habit habit;
-    private TextView habitName;
-    private LinearLayout pauseButtonContainer;
-    private LinearLayout resumeButtonContainer;
-    private LinearLayout doneContainer;
-    private LinearLayout timerActiveContainer;
-    private TextView stopButton;
-    private TextView resumeButton;
-    private TextView doneButton;
-    private TextView fastDoneButton;
-    private TextView fastQuitButton;
-    private TextView timeLeft;
+
     private HabitTimer timer = HabitTimer.getInstance();
     private Integer secondsRemaining;
     private Vibrator vibes;
@@ -60,6 +65,10 @@ public class HabitTimerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_timer);
+
+        ButterKnife.bind(this);
+        initializeTypefaces();
+
         getActionBar().setIcon(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
 
 
@@ -72,7 +81,6 @@ public class HabitTimerActivity extends Activity {
 
         getActionBar().hide();
 
-        initializeView();
         vibes = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -348,25 +356,6 @@ public class HabitTimerActivity extends Activity {
 
     }
 
-    private void initializeView() {
-        timeLeft = (TextView) findViewById(R.id.time_left);
-        habitName = (TextView) findViewById(R.id.habit_name);
-        stopButton = (TextView) findViewById(R.id.stop_button);
-        resumeButton = (TextView) findViewById(R.id.resume_button);
-        doneButton = (TextView) findViewById(R.id.done_button);
-        fastDoneButton = (TextView) findViewById(R.id.fast_done_button);
-        fastQuitButton = (TextView) findViewById(R.id.fast_quit_button);
-
-        pauseButtonContainer = (LinearLayout) findViewById(R.id.pause_container);
-        resumeButtonContainer = (LinearLayout) findViewById(R.id.resume_container);
-        doneContainer = (LinearLayout) findViewById(R.id.done_container);
-        timerActiveContainer = (LinearLayout) findViewById(R.id.timer_active_container);
-
-        doneContainer.setVisibility(View.GONE);
-
-        initializeTypefaces();
-    }
-
     private void initializeTypefaces() {
         Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
         timeLeft.setTypeface(font);
@@ -380,17 +369,12 @@ public class HabitTimerActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.habit_timer, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
