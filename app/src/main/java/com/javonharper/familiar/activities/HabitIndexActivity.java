@@ -32,6 +32,7 @@ import java.util.Collections;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 
 public class HabitIndexActivity extends BaseActivity {
@@ -48,27 +49,14 @@ public class HabitIndexActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_index);
+        ButterKnife.bind(this);
 
+        hideActionBarIcon();
         initializeFABButton();
 
         controller = new HabitController(this);
     }
 
-    private void initializeFABButton() {
-        fabButton = new FloatingActionButton.Builder(this)
-                .withDrawable(getResources().getDrawable(R.drawable.new_icon))
-                .withButtonColor(getResources().getColor(R.color.green))
-                .withGravity(Gravity.BOTTOM | Gravity.RIGHT)
-                .withMargins(0, 0, 16, 16)
-                .create();
-        fabButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HabitIndexActivity.this, HabitNewActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
 
     @Override
     protected void onResume() {
@@ -243,5 +231,22 @@ public class HabitIndexActivity extends BaseActivity {
         }
 
         return true;
+    }
+
+
+    private void initializeFABButton() {
+        fabButton = new FloatingActionButton.Builder(this)
+                .withDrawable(getResources().getDrawable(R.drawable.new_icon))
+                .withButtonColor(getResources().getColor(R.color.green))
+                .withGravity(Gravity.BOTTOM | Gravity.RIGHT)
+                .withMargins(0, 0, 16, 16)
+                .create();
+        fabButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HabitIndexActivity.this, HabitNewActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

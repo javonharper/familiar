@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/app_background_color"
+    android:background="@color/white"
     android:keepScreenOn="true"
     tools:context="com.javonharper.familiar.activities.HabitTimerActivity">
 
@@ -42,7 +42,7 @@
         android:paddingRight="@dimen/app_spacing">
 
         <Button
-            android:id="@+id/stop_button"
+            android:id="@+id/pause_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
@@ -115,7 +115,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/red_button"
-            android:textColor="@color/button_text_color"
+            android:textColor="@color/white"
             android:textSize="@dimen/body_text_size"
             android:layout_marginLeft="@dimen/app_spacing"
             android:layout_marginRight="@dimen/app_spacing"
@@ -124,18 +124,6 @@
             android:layout_weight="1"
             android:text="quit"/>
 
-        <Button
-            android:id="@+id/fast_done_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/blue_button"
-            android:textColor="@color/button_text_color"
-            android:textSize="@dimen/body_text_size"
-            android:layout_marginRight="@dimen/app_spacing"
-            android:textStyle="bold"
-            android:textAllCaps="true"
-            android:layout_weight="1"
-            android:text="done"/>
     </LinearLayout>
 
 </LinearLayout>

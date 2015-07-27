@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background_color"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context="com.javonharper.familiar.activities.HabitShowActivity">
 
@@ -18,7 +18,7 @@
             android:layout_marginBottom="@dimen/app_spacing"
             android:gravity="center"
             android:text="@string/placeholder"
-            android:textColor="@color/app_text_color"
+            android:textColor="@color/black"
             android:textSize="@dimen/title_text_size"
             android:textStyle="bold" />
     </LinearLayout>
@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:text="XX"
                     android:textStyle="bold"
-                    android:textColor="@color/app_text_color"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/title_text_size" />
             </LinearLayout>
 
@@ -104,7 +104,7 @@
                     android:id="@+id/frequency_value"
                     android:text="X"
                     android:textStyle="bold"
-                    android:textColor="@color/app_text_color"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/title_text_size" />
             </LinearLayout>
 
@@ -138,7 +138,7 @@
 
             android:gravity="center"
             android:text="@string/placeholder"
-            android:textColor="@color/app_text_color"
+            android:textColor="@color/black"
             android:textSize="@dimen/title_text_size" />
 
         <TextView
@@ -162,7 +162,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/green_button"
-            android:textColor="@color/button_text_color"
+            android:textColor="@color/white"
             android:textSize="@dimen/body_text_size"
             android:layout_marginLeft="@dimen/app_spacing"
             android:layout_marginRight="@dimen/app_spacing"
@@ -187,7 +187,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/yellow_button"
-            android:textColor="@color/button_text_color"
+            android:textColor="@color/white"
             android:textSize="@dimen/caption_text_size"
             android:layout_marginLeft="@dimen/app_spacing"
             android:layout_marginRight="@dimen/app_spacing"
@@ -201,7 +201,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/blue_button"
-            android:textColor="@color/button_text_color"
+            android:textColor="@color/white"
             android:textSize="@dimen/caption_text_size"
             android:layout_marginRight="@dimen/app_spacing"
             android:textStyle="bold"

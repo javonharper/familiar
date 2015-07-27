@@ -28,20 +28,30 @@ import java.util.TimerTask;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class HabitTimerActivity extends BaseActivity {
-    @Bind(R.id.habit_name) TextView habitName;
-    @Bind(R.id.pause_container) LinearLayout pauseButtonContainer;
-    @Bind(R.id.resume_container) LinearLayout resumeButtonContainer;
-    @Bind(R.id.done_container) LinearLayout doneContainer;
-    @Bind(R.id.timer_active_container) LinearLayout timerActiveContainer;
-    @Bind(R.id.stop_button) TextView stopButton;
-    @Bind(R.id.resume_button) TextView resumeButton;
-    @Bind(R.id.done_button) TextView doneButton;
-    @Bind(R.id.fast_done_button) TextView fastDoneButton;
-    @Bind(R.id.fast_quit_button) TextView fastQuitButton;
-    @Bind(R.id.time_left) TextView timeLeft;
+    @Bind(R.id.habit_name)
+    TextView habitName;
+    @Bind(R.id.pause_container)
+    LinearLayout pauseButtonContainer;
+    @Bind(R.id.resume_container)
+    LinearLayout resumeButtonContainer;
+    @Bind(R.id.done_container)
+    LinearLayout doneContainer;
+    @Bind(R.id.timer_active_container)
+    LinearLayout timerActiveContainer;
+    @Bind(R.id.pause_button)
+    TextView stopButton;
+    @Bind(R.id.resume_button)
+    TextView resumeButton;
+    @Bind(R.id.done_button)
+    TextView doneButton;
+    @Bind(R.id.fast_quit_button)
+    TextView fastQuitButton;
+    @Bind(R.id.time_left)
+    TextView timeLeft;
 
     private HabitController controller;
     private Habit habit;
@@ -82,84 +92,6 @@ public class HabitTimerActivity extends BaseActivity {
         } else {
             notificationManager.cancel(TIMER_ID);
         }
-
-        stopButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                pauseTimer();
-            }
-        });
-
-        resumeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                resumeTimer();
-            }
-        });
-
-        doneButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Integer newCurrentProgress = habit.getCurrentProgress() + 1;
-                habit.setCurrentProgress(newCurrentProgress);
-                controller.updateHabit(habit);
-
-                notificationManager.cancel(TIMER_ID);
-
-
-                String message = "Nice! Your progress has been updated.";
-                Toast.makeText(HabitTimerActivity.this, message, Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(HabitTimerActivity.this, HabitIndexActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }
-        });
-
-        fastDoneButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Integer newCurrentProgress = habit.getCurrentProgress() + 1;
-                habit.setCurrentProgress(newCurrentProgress);
-                controller.updateHabit(habit);
-
-                notificationManager.cancel(TIMER_ID);
-                timer.stop();
-
-                String message = "Nice! Your progress has been updated.";
-                Toast.makeText(HabitTimerActivity.this, message, Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(HabitTimerActivity.this, HabitIndexActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }
-        });
-
-        fastQuitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                pauseTimer();
-                new AlertDialog.Builder(HabitTimerActivity.this)
-                        .setMessage("Do you really want to quit your session?")
-                        .setCancelable(true)
-                        .setPositiveButton("Quit", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                                notificationManager.cancel(TIMER_ID);
-                                finish();
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                resumeTimer();
-                            }
-                        })
-                        .show();
-            }
-        });
     }
 
     private boolean isTimerFinished() {
@@ -250,7 +182,6 @@ public class HabitTimerActivity extends BaseActivity {
         notificationBuilder.setWhen(0);
 
         Integer minutes = (secondsRemaining % 3600) / 60;
-        Integer seconds = secondsRemaining % 60;
 
         String contentText;
         if (secondsRemaining <= 0) {
@@ -334,7 +265,7 @@ public class HabitTimerActivity extends BaseActivity {
                             HabitTimerActivity.super.onBackPressed();
                         }
                     })
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             resumeTimer();
@@ -353,7 +284,6 @@ public class HabitTimerActivity extends BaseActivity {
         resumeButton.setTypeface(font);
         doneButton.setTypeface(font);
         fastQuitButton.setTypeface(font);
-        fastDoneButton.setTypeface(font);
     }
 
     private void playSound() {
@@ -361,6 +291,56 @@ public class HabitTimerActivity extends BaseActivity {
     }
 
     private void vibrate() {
-        ((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(100);
+        ((Vibrator) getSystemService(Context.VIBRATOR_SERVICE)).vibrate(100);
+    }
+
+    @OnClick(R.id.pause_button)
+    void onPauseButtonClicked(View view) {
+        pauseTimer();
+    }
+
+    @OnClick(R.id.resume_button)
+    void onResumeButtonClicked(View view) {
+        resumeTimer();
+    }
+
+    @OnClick(R.id.fast_quit_button)
+    void onFastQuitButtonClicked(View view) {
+        pauseTimer();
+        new AlertDialog.Builder(HabitTimerActivity.this)
+                .setMessage("Do you really want to quit your session?")
+                .setCancelable(true)
+                .setPositiveButton("Quit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        notificationManager.cancel(TIMER_ID);
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        resumeTimer();
+                    }
+                })
+                .show();
+    }
+
+    @OnClick(R.id.done_button)
+    public void onDoneButtonClicked(View view) {
+        Integer newCurrentProgress = habit.getCurrentProgress() + 1;
+        habit.setCurrentProgress(newCurrentProgress);
+        controller.updateHabit(habit);
+
+        notificationManager.cancel(TIMER_ID);
+
+
+        String message = "Nice! Your progress has been updated.";
+        Toast.makeText(HabitTimerActivity.this, message, Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(HabitTimerActivity.this, HabitIndexActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }
