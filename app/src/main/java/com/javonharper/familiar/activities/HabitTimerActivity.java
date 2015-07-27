@@ -12,8 +12,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -53,7 +51,6 @@ public class HabitTimerActivity extends BaseActivity {
 
     private HabitTimer timer = HabitTimer.getInstance();
     private Integer secondsRemaining;
-    private Vibrator vibes;
     private Integer TIMER_ID = 0;
 
     private NotificationManager notificationManager;
@@ -67,7 +64,7 @@ public class HabitTimerActivity extends BaseActivity {
         ButterKnife.bind(this);
         initializeTypefaces();
 
-        hideActionBarIcon();
+        getActionBar().hide();
 
         Integer habitId = getIntent().getIntExtra(HabitIndexActivity.HABIT_ID, 0);
 
@@ -76,9 +73,6 @@ public class HabitTimerActivity extends BaseActivity {
 
         secondsRemaining = getIntent().getIntExtra(HabitTimerActivity.SECONDS_REMAINING, habit.getDuration() * 60);
 
-        getActionBar().hide();
-
-        vibes = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         updateUI();
@@ -157,7 +151,7 @@ public class HabitTimerActivity extends BaseActivity {
                                 finish();
                             }
                         })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener(){
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 resumeTimer();
@@ -189,9 +183,8 @@ public class HabitTimerActivity extends BaseActivity {
     }
 
     private void timerDone() {
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.success);
-        mediaPlayer.start();
-        vibes.vibrate(100);
+        playSound();
+        vibrate();
 
         timer.stop();
         timeLeft.setText("DONE!");
@@ -220,7 +213,6 @@ public class HabitTimerActivity extends BaseActivity {
                     public void run() {
                         updateUI();
                         updateNotification();
-
                     }
                 });
             }
@@ -364,18 +356,11 @@ public class HabitTimerActivity extends BaseActivity {
         fastDoneButton.setTypeface(font);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.habit_timer, menu);
-        return true;
+    private void playSound() {
+        MediaPlayer.create(this, R.raw.success).start();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    private void vibrate() {
+        ((Vibrator)getSystemService(Context.VIBRATOR_SERVICE)).vibrate(100);
     }
 }

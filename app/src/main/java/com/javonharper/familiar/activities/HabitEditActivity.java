@@ -38,7 +38,6 @@ public class HabitEditActivity extends BaseActivity {
 
         ButterKnife.bind(this);
 
-
         final Integer habitId = Integer.valueOf(getIntent().getIntExtra(HabitIndexActivity.HABIT_ID, 0));
 
         controller = new HabitController(this);
