@@ -11,10 +11,4 @@
         android:icon="@drawable/edit_icon"
         android:title="@string/edit"
         android:showAsAction="always" />
-
-    <!--<item android:id="@+id/action_settings"-->
-        <!--android:title="@string/action_settings"-->
-        <!--android:orderInCategory="100"-->
-        <!--android:showAsAction="never" />-->
-
 </menu>

@@ -6,12 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -52,7 +47,14 @@ public class HabitIndexActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         hideActionBarIcon();
-        initializeFABButton();
+        
+        createFloatingActionButton().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HabitIndexActivity.this, HabitNewActivity.class);
+                startActivity(intent);
+            }
+        });
 
         controller = new HabitController(this);
     }
@@ -166,87 +168,5 @@ public class HabitIndexActivity extends BaseActivity {
 
         TextView subtext = (TextView) findViewById(R.id.empty_state_subtext);
         subtext.setTypeface(font);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.habit_index, menu);
-        return true;
-    }
-
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = getMenuInflater();
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-        menu.setHeaderTitle(habits.get(info.position).getName());
-        inflater.inflate(R.menu.context_menu, menu);
-    }
-
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-        int index = info.position;
-        final Habit habit = habits.get(index);
-
-        String optionTitle = (String) item.getTitle();
-        if (optionTitle.equals(getString(R.string.mark_task_done))) {
-
-            Integer newCurrentProgress = habit.getCurrentProgress() + 1;
-            habit.setCurrentProgress(newCurrentProgress);
-            controller.updateHabit(habit);
-
-            Intent intent = getIntent();
-            finish();
-            startActivity(intent);
-        } else if (optionTitle.equals(getString(R.string.edit))) {
-            Intent intent = new Intent(this, HabitEditActivity.class);
-            intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
-            startActivity(intent);
-        } else if (optionTitle.equals(getString(R.string.start_timer))) {
-            Intent intent = new Intent(this, HabitTimerActivity.class);
-            intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
-            startActivity(intent);
-        } else if (optionTitle.equals(getString(R.string.delete))) {
-            new AlertDialog.Builder(this)
-                    .setMessage("Delete \"" + habit.getName() + "\"?")
-                    .setCancelable(true)
-                    .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            controller.deleteHabit(habit.getId());
-
-                            String message = "\"" + habit.getName() + "\" deleted.";
-                            Toast.makeText(HabitIndexActivity.this, message, Toast.LENGTH_SHORT).show();
-
-                            Intent intent = new Intent(HabitIndexActivity.this, HabitIndexActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            intent.putExtra(HabitIndexActivity.HABIT_ID, habit.getId().intValue());
-                            startActivity(intent);
-                        }
-                    })
-                    .setNegativeButton("Cancel", null)
-                    .show();
-            return true;
-        }
-
-        return true;
-    }
-
-
-    private void initializeFABButton() {
-        fabButton = new FloatingActionButton.Builder(this)
-                .withDrawable(getResources().getDrawable(R.drawable.new_icon))
-                .withButtonColor(getResources().getColor(R.color.green))
-                .withGravity(Gravity.BOTTOM | Gravity.RIGHT)
-                .withMargins(0, 0, 16, 16)
-                .create();
-        fabButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HabitIndexActivity.this, HabitNewActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 }
