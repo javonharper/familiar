@@ -1,7 +1,6 @@
 package com.javonharper.familiar.activities;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,7 +35,6 @@ public class HabitNewActivity extends BaseActivity {
         setContentView(R.layout.activity_habit_new);
 
         ButterKnife.bind(this);
-        initializeTypefaces();
 
         hideActionBarIcon();
         setTitle(R.string.title_activity_habit_create);
@@ -44,16 +42,6 @@ public class HabitNewActivity extends BaseActivity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         controller = new HabitController(this);
-    }
-
-    private void initializeTypefaces() {
-        Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
-        nameLabel.setTypeface(font);
-        nameEdit.setTypeface(font);
-        durationLabel.setTypeface(font);
-        durationEdit.setTypeface(font);
-        timesPerDurationLabel.setTypeface(font);
-        timesPerDurationEdit.setTypeface(font);
     }
 
     @Override

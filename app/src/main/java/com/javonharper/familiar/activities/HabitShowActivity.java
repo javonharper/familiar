@@ -3,7 +3,6 @@ package com.javonharper.familiar.activities;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,16 +19,24 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class HabitShowActivity extends BaseActivity {
-    @Bind(R.id.name_label) TextView nameLabel;
-    @Bind(R.id.duration_label) TextView durationLabel;
-    @Bind(R.id.duration_value) TextView durationValue;
-    @Bind(R.id.frequency_label) TextView frequencyLabel;
-    @Bind(R.id.frequency_value) TextView frequencyValue;
-    @Bind(R.id.habit_current_progress) TextView currentProgressValue;
-    @Bind(R.id.times_this_week) TextView thisWeek;
-    @Bind(R.id.increment_progress_button) Button incrementProgressButton;
-    @Bind(R.id.start_timer_button) Button startTimerButton;
-    @Bind(R.id.reset_progress) Button resetProgressButton;
+    @Bind(R.id.name_label)
+    TextView nameLabel;
+    @Bind(R.id.duration_label)
+    TextView durationLabel;
+    @Bind(R.id.duration_value)
+    TextView durationValue;
+    @Bind(R.id.frequency_value)
+    TextView frequencyValue;
+    @Bind(R.id.habit_current_progress)
+    TextView currentProgressValue;
+    @Bind(R.id.times_this_week)
+    TextView thisWeek;
+    @Bind(R.id.increment_progress_button)
+    Button incrementProgressButton;
+    @Bind(R.id.start_timer_button)
+    Button startTimerButton;
+    @Bind(R.id.reset_progress)
+    Button resetProgressButton;
 
     private HabitController controller;
     private Habit habit;
@@ -40,7 +47,6 @@ public class HabitShowActivity extends BaseActivity {
         setContentView(R.layout.activity_habit_show);
 
         ButterKnife.bind(this);
-        initializeTypefaces();
 
         hideActionBarIcon();
 
@@ -134,20 +140,6 @@ public class HabitShowActivity extends BaseActivity {
             thisWeek.setText("sessions completed this week");
 
         }
-    }
-
-    private void initializeTypefaces() {
-        Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
-        currentProgressValue.setTypeface(font);
-        nameLabel.setTypeface(font);
-        durationLabel.setTypeface(font);
-        durationValue.setTypeface(font);
-        frequencyLabel.setTypeface(font);
-        frequencyValue.setTypeface(font);
-        startTimerButton.setTypeface(font);
-        incrementProgressButton.setTypeface(font);
-        resetProgressButton.setTypeface(font);
-        thisWeek.setTypeface(font);
     }
 
     @Override

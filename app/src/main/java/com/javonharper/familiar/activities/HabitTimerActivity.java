@@ -7,7 +7,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -72,7 +71,6 @@ public class HabitTimerActivity extends BaseActivity {
         setContentView(R.layout.activity_habit_timer);
 
         ButterKnife.bind(this);
-        initializeTypefaces();
 
         getActionBar().hide();
 
@@ -274,16 +272,6 @@ public class HabitTimerActivity extends BaseActivity {
                     .show();
         }
 
-    }
-
-    private void initializeTypefaces() {
-        Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
-        timeLeft.setTypeface(font);
-        habitName.setTypeface(font);
-        stopButton.setTypeface(font);
-        resumeButton.setTypeface(font);
-        doneButton.setTypeface(font);
-        fastQuitButton.setTypeface(font);
     }
 
     private void playSound() {

@@ -1,7 +1,6 @@
 package com.javonharper.familiar;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,14 +47,6 @@ public class HabitsAdapter extends BaseAdapter {
         TextView timesPerDuration = (TextView) convertView.findViewById(R.id.times_per_duration);
         TextView name = (TextView) convertView.findViewById(R.id.name_label);
         TextView durationView = (TextView) convertView.findViewById(R.id.duration);
-
-        Typeface font = Typeface.createFromAsset(context.getAssets(), context.getString(R.string.body_font));
-
-        progress.setTypeface(font);
-        sep.setTypeface(font);
-        timesPerDuration.setTypeface(font);
-        name.setTypeface(font);
-        durationView.setTypeface(font);
 
         progress.setText(habit.getCurrentProgress().toString());
         timesPerDuration.setText(habit.getTimesPerDuration().toString());

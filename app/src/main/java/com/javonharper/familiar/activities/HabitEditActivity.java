@@ -1,7 +1,6 @@
 package com.javonharper.familiar.activities;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,21 +44,10 @@ public class HabitEditActivity extends BaseActivity {
 
         setTitle("Edit " + habit.getName());
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        initializeTypefaces();
         hideActionBarIcon();
         nameEdit.setText(habit.getName());
         durationEdit.setText(habit.getDuration().toString());
         timesPerDurationEdit.setText(habit.getTimesPerDuration().toString());
-    }
-
-    private void initializeTypefaces() {
-        Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
-        nameLabel.setTypeface(font);
-        nameEdit.setTypeface(font);
-        durationLabel.setTypeface(font);
-        durationEdit.setTypeface(font);
-        timesPerDurationLabel.setTypeface(font);
-        timesPerDurationEdit.setTypeface(font);
     }
 
     @Override

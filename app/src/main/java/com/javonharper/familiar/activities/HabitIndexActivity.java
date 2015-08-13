@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +43,7 @@ public class HabitIndexActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_habit_index);
+
         ButterKnife.bind(this);
 
         hideActionBarIcon();
@@ -121,7 +121,6 @@ public class HabitIndexActivity extends BaseActivity {
         habitListView.addFooterView(footerView);
 
         Button resetButton = (Button) findViewById(R.id.reset_progress);
-        Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
 
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,8 +149,6 @@ public class HabitIndexActivity extends BaseActivity {
                         .show();
             }
         });
-        resetButton.setTypeface(font);
-
     }
 
     private void showEmptyStateView() {
@@ -162,12 +159,8 @@ public class HabitIndexActivity extends BaseActivity {
         insertPoint.removeAllViews();
         insertPoint.addView(view, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
-        Typeface font = Typeface.createFromAsset(getAssets(), getString(R.string.body_font));
-
         TextView header = (TextView) findViewById(R.id.empty_state_header);
-        header.setTypeface(font);
 
         TextView subtext = (TextView) findViewById(R.id.empty_state_subtext);
-        subtext.setTypeface(font);
     }
 }
