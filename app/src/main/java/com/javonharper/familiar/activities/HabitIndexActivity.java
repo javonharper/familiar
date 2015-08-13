@@ -37,7 +37,7 @@ public class HabitIndexActivity extends BaseActivity {
 
     public static String HABIT_ID = "habitId";
     int prevVisibleItem;
-    FloatingActionButton fabButton;
+    FloatingActionButton floatingActionButton;
     private List<Habit> habits;
 
     @Override
@@ -48,7 +48,8 @@ public class HabitIndexActivity extends BaseActivity {
 
         hideActionBarIcon();
 
-        createFloatingActionButton().setOnClickListener(new View.OnClickListener() {
+        floatingActionButton = createFloatingActionButton();
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HabitIndexActivity.this, HabitNewActivity.class);
@@ -87,9 +88,9 @@ public class HabitIndexActivity extends BaseActivity {
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 if (prevVisibleItem != firstVisibleItem) {
                     if (prevVisibleItem < firstVisibleItem) {
-                        fabButton.hideFloatingActionButton();
+                        floatingActionButton.hideFloatingActionButton();
                     } else {
-                        fabButton.showFloatingActionButton();
+                        floatingActionButton.showFloatingActionButton();
                     }
 
                     prevVisibleItem = firstVisibleItem;
