@@ -1,11 +1,14 @@
 package com.javonharper.familiar.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 
 import com.javonharper.familiar.FloatingActionButton;
 import com.javonharper.familiar.R;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public abstract class BaseActivity extends Activity {
     public void hideActionBarIcon() {
@@ -21,5 +24,10 @@ public abstract class BaseActivity extends Activity {
                 .create();
 
         return fab;
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }
