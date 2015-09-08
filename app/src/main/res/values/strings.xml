@@ -27,7 +27,7 @@
     <string name="habit_field_timers_per_duration_placeholder">How many days per week?</string>
 
     <!--Empty state screens-->
-    <string name="empty_state_title">No Habits!</string>
+    <string name="empty_state_title">No Habits</string>
     <string name="empty_state_subtext">Tap the button at the bottom of the screen to get started.</string>
 
     <!--Button text-->

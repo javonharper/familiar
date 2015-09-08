@@ -44,12 +44,12 @@ public class HabitsAdapter extends BaseAdapter {
 
         TextView progress = (TextView) convertView.findViewById(R.id.current_progress);
         TextView sep = (TextView) convertView.findViewById(R.id.seperator);
-        TextView timesPerDuration = (TextView) convertView.findViewById(R.id.times_per_duration);
+        TextView timesPerWeek = (TextView) convertView.findViewById(R.id.times_per_week);
         TextView name = (TextView) convertView.findViewById(R.id.name_label);
         TextView durationView = (TextView) convertView.findViewById(R.id.duration);
 
         progress.setText(habit.getCurrentProgress().toString());
-        timesPerDuration.setText(habit.getTimesPerDuration().toString());
+        timesPerWeek.setText(habit.getTimesPerWeek().toString());
         name.setText(habit.getName());
 
         Integer duration = habit.getDuration();
@@ -60,14 +60,14 @@ public class HabitsAdapter extends BaseAdapter {
             durationView.setText(habit.getDuration().toString() + "m");
         }
 
-        if (habit.getCurrentProgress() >= habit.getTimesPerDuration()) {
+        if (habit.getCurrentProgress() >= habit.getTimesPerWeek()) {
             progress.setTextColor(convertView.getResources().getColor(R.color.green));
-            timesPerDuration.setTextColor(convertView.getResources().getColor(R.color.green));
+            timesPerWeek.setTextColor(convertView.getResources().getColor(R.color.green));
             sep.setTextColor(convertView.getResources().getColor(R.color.green));
             name.setTextColor(convertView.getResources().getColor(R.color.gray));
         } else if (habit.getCurrentProgress() > 0) {
             progress.setTextColor(convertView.getResources().getColor(R.color.gray_dark));
-            timesPerDuration.setTextColor(convertView.getResources().getColor(R.color.gray_dark));
+            timesPerWeek.setTextColor(convertView.getResources().getColor(R.color.gray_dark));
             sep.setTextColor(convertView.getResources().getColor(R.color.gray_dark));
         }
 

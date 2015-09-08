@@ -34,9 +34,9 @@ public class HabitComparator implements Comparator<Habit> {
     }
 
     private int compareByFrequency(Habit habit1, Habit habit2) {
-        if (habit1.getTimesPerDuration() < habit2.getTimesPerDuration()) {
+        if (habit1.getTimesPerWeek() < habit2.getTimesPerWeek()) {
             return 1;
-        } else if (habit1.getTimesPerDuration() > habit2.getTimesPerDuration()) {
+        } else if (habit1.getTimesPerWeek() > habit2.getTimesPerWeek()) {
             return -1;
         } else {
             return 0;

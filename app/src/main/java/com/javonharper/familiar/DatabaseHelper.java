@@ -5,79 +5,42 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-
-    private static final int DATABASE_VERSION = 6;
-
     private static final String DATABASE_NAME = "Familiar.db";
-    private static final java.lang.String SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + Habit.TABLE_NAME + " (" +
-                    Habit._ID + " INTEGER PRIMARY KEY," +
-                    Habit.COLUMN_NAME_NAME + " TEXT, " +
-                    Habit.COLUMN_NAME_TIMES_PER_DURATION + " INTEGER, " +
-                    Habit.COLUMN_NAME_DURATION + " INTEGER, " +
-                    Habit.COLUMN_NAME_CURRENT_PROGRESS + " INTEGER" +
-                    Habit.COLUMN_NAME_DO_MONDAY + " INTEGER" +
-                    Habit.COLUMN_NAME_DO_TUESDAY + " INTEGER" +
-                    Habit.COLUMN_NAME_DO_WEDNESDAY + " INTEGER" +
-                    Habit.COLUMN_NAME_DO_THURSDAY + " INTEGER" +
-                    Habit.COLUMN_NAME_DO_FRIDAY + " INTEGER" +
-                    Habit.COLUMN_NAME_DO_SATURDAY + " INTEGER" +
-                    Habit.COLUMN_NAME_DO_SUNDAY + " INTEGER" +
-                    ")";
-    private static final java.lang.String SQL_DELETE_ENTRIES =
-            "DROP TABLE IF EXISTS " + Habit.TABLE_NAME;
-    private static DatabaseHelper instance = null;
+    private static final int DATABASE_VERSION = 1;
+    private static DatabaseHelper mInstance = null;
 
     private DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     public static DatabaseHelper getInstance(Context context) {
-        if (instance == null) {
-            instance = new DatabaseHelper(context.getApplicationContext());
+        if (mInstance == null) {
+            mInstance = new DatabaseHelper(context.getApplicationContext());
         }
 
-        return instance;
+        return mInstance;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(SQL_CREATE_ENTRIES);
+        db.execSQL(CREATE_HABITS_TABLE_SQL);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion < 4) {
-            addDuration(db);
-        }
-
-        if (oldVersion < 6) {
-            addDays(db);
-        }
+        db.execSQL(DROP_HABITS_TABLE_SQL);
+        db.execSQL(CREATE_HABITS_TABLE_SQL);
     }
 
-    public void addDuration(SQLiteDatabase db) {
-        final String ALTER_TBL =
-                "ALTER TABLE " + Habit.TABLE_NAME +
-                        " ADD COLUMN " + Habit.COLUMN_NAME_DURATION + " INTEGER;";
-        db.execSQL(ALTER_TBL);
-    }
+    private static final String CREATE_HABITS_TABLE_SQL =
+            "CREATE TABLE " + Habit.TABLE_NAME + " (" +
+                    Habit._ID + " INTEGER PRIMARY KEY," +
+                    Habit.COLUMN_NAME_NAME + " TEXT, " +
+                    Habit.COLUMN_NAME_TIMES_PER_WEEK + " INTEGER, " +
+                    Habit.COLUMN_NAME_DURATION + " INTEGER, " +
+                    Habit.COLUMN_NAME_CURRENT_PROGRESS + " INTEGER" +
+                    ")";
 
-    public void addDays(SQLiteDatabase db) {
-        final String MONDAY_ALTER_TBL ="ALTER TABLE " + Habit.TABLE_NAME + " ADD COLUMN " + Habit.COLUMN_NAME_DO_MONDAY + " INTEGER;";
-        final String TUESDAY_ALTER_TBL ="ALTER TABLE " + Habit.TABLE_NAME + " ADD COLUMN " + Habit.COLUMN_NAME_DO_TUESDAY + " INTEGER;";
-        final String WEDNESDAY_ALTER_TBL ="ALTER TABLE " + Habit.TABLE_NAME + " ADD COLUMN " + Habit.COLUMN_NAME_DO_WEDNESDAY + " INTEGER;";
-        final String THURSDAY_ALTER_TBL ="ALTER TABLE " + Habit.TABLE_NAME + " ADD COLUMN " + Habit.COLUMN_NAME_DO_THURSDAY + " INTEGER;";
-        final String FRIDAY_ALTER_TBL ="ALTER TABLE " + Habit.TABLE_NAME + " ADD COLUMN " + Habit.COLUMN_NAME_DO_FRIDAY + " INTEGER;";
-        final String SATURDAY_ALTER_TBL ="ALTER TABLE " + Habit.TABLE_NAME + " ADD COLUMN " + Habit.COLUMN_NAME_DO_SATURDAY + " INTEGER;";
-        final String SUNDAY_ALTER_TBL ="ALTER TABLE " + Habit.TABLE_NAME + " ADD COLUMN " + Habit.COLUMN_NAME_DO_SUNDAY + " INTEGER;";
-
-        db.execSQL(MONDAY_ALTER_TBL);
-        db.execSQL(TUESDAY_ALTER_TBL);
-        db.execSQL(WEDNESDAY_ALTER_TBL);
-        db.execSQL(THURSDAY_ALTER_TBL);
-        db.execSQL(FRIDAY_ALTER_TBL);
-        db.execSQL(SATURDAY_ALTER_TBL);
-        db.execSQL(SUNDAY_ALTER_TBL);
-    }
+    private static final String DROP_HABITS_TABLE_SQL =
+            "DROP TABLE IF EXISTS " + Habit.TABLE_NAME;
 }

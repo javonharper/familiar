@@ -19,11 +19,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class HabitEditActivity extends BaseActivity {
-    @Bind(R.id.name_label) TextView nameLabel;
-    @Bind(R.id.times_per_duration_label) TextView timesPerDurationLabel;
-    @Bind(R.id.duration_label) TextView durationLabel;
     @Bind(R.id.name_edit) EditText nameEdit;
-    @Bind(R.id.times_per_duration_edit) EditText timesPerDurationEdit;
+    @Bind(R.id.times_per_duration_edit) EditText timesPerWeekEdit;
     @Bind(R.id.duration_edit) TextView durationEdit;
 
 
@@ -47,7 +44,7 @@ public class HabitEditActivity extends BaseActivity {
         hideActionBarIcon();
         nameEdit.setText(habit.getName());
         durationEdit.setText(habit.getDuration().toString());
-        timesPerDurationEdit.setText(habit.getTimesPerDuration().toString());
+        timesPerWeekEdit.setText(habit.getTimesPerWeek().toString());
     }
 
     @Override
@@ -74,15 +71,15 @@ public class HabitEditActivity extends BaseActivity {
 
             case R.id.action_create:
                 String newName = nameEdit.getText().toString().trim();
-                String newTimesPerDuration = timesPerDurationEdit.getText().toString().trim();
+                String newTimesPerWeek = timesPerWeekEdit.getText().toString().trim();
                 String newDuration = durationEdit.getText().toString().trim();
 
-                HabitFormValidator validator = new HabitFormValidator(newName, newTimesPerDuration, newDuration);
+                HabitFormValidator validator = new HabitFormValidator(newName, newTimesPerWeek, newDuration);
                 validator.validate();
 
                 if (validator.isValid()) {
                     habit.setName(newName);
-                    habit.setTimesPerDuration(Integer.valueOf(newTimesPerDuration));
+                    habit.setTimesPerWeek(Integer.valueOf(newTimesPerWeek));
                     habit.setDuration(Integer.valueOf(newDuration));
 
                     controller.updateHabit(habit);
@@ -99,8 +96,8 @@ public class HabitEditActivity extends BaseActivity {
                         nameEdit.setError(errors.get(HabitFormValidator.NAME));
                     }
 
-                    if (errors.get(HabitFormValidator.TIMES_PER_DURATION) != null) {
-                        timesPerDurationEdit.setError(errors.get(HabitFormValidator.TIMES_PER_DURATION));
+                    if (errors.get(HabitFormValidator.TIMES_PER_WEEK) != null) {
+                        timesPerWeekEdit.setError(errors.get(HabitFormValidator.TIMES_PER_WEEK));
                     }
 
                     if (errors.get(HabitFormValidator.DURATION) != null) {

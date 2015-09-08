@@ -7,31 +7,31 @@ import java.util.Map;
 public class HabitFormValidator {
 
     public static String NAME = "name";
-    public static String TIMES_PER_DURATION = "timesPerDuration";
+    public static String TIMES_PER_WEEK = "timesPerWeek";
     public static String DURATION = "duration";
 
     private final String name;
-    private final String timesPerDuration;
+    private final String timesPerWeek;
     private final String duration;
 
     private String nameError;
-    private String timesPerDurationError;
+    private String timesPerWeekError;
     private String durationError;
 
-    public HabitFormValidator(String name, String timesPerDuration, String duration) {
+    public HabitFormValidator(String name, String timesPerWeek, String duration) {
         this.name = name;
-        this.timesPerDuration = timesPerDuration;
+        this.timesPerWeek = timesPerWeek;
         this.duration = duration;
     }
 
     public void validate() {
         nameError = validateName(name);
-        timesPerDurationError = validateTimesPerDuration(timesPerDuration);
+        timesPerWeekError = validateTimesPerWeek(timesPerWeek);
         durationError = validateDuration(duration);
     }
 
     public boolean isValid() {
-        if (nameError == null && timesPerDurationError == null && durationError == null) {
+        if (nameError == null && timesPerWeekError == null && durationError == null) {
             return true;
         } else {
             return false;
@@ -41,7 +41,7 @@ public class HabitFormValidator {
     public Map<String, String> getErrors() {
         HashMap errors = new HashMap<String, String>();
         errors.put(NAME, nameError);
-        errors.put(TIMES_PER_DURATION, timesPerDurationError);
+        errors.put(TIMES_PER_WEEK, timesPerWeekError);
         errors.put(DURATION, durationError);
         return errors;
     }
@@ -54,8 +54,8 @@ public class HabitFormValidator {
         }
     }
 
-    private String validateTimesPerDuration(String timesPerDuration) {
-        if (timesPerDuration.equals("")) {
+    private String validateTimesPerWeek(String timesPerWeek) {
+        if (timesPerWeek.equals("")) {
             return "Fill in times per week";
         } else {
             return null;

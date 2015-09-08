@@ -69,7 +69,7 @@ public class HabitShowActivity extends BaseActivity {
             durationValue.setText(duration.toString());
         }
 
-        frequencyValue.setText(habit.getTimesPerDuration().toString());
+        frequencyValue.setText(habit.getTimesPerWeek().toString());
 
         updateCurrentProgress();
 
@@ -124,12 +124,12 @@ public class HabitShowActivity extends BaseActivity {
             currentProgressValue.setText("Not started yet");
             currentProgressValue.setTextColor(getResources().getColor(R.color.black));
             thisWeek.setText("this week");
-        } else if (habit.getCurrentProgress() == habit.getTimesPerDuration()) {
+        } else if (habit.getCurrentProgress() == habit.getTimesPerWeek()) {
             currentProgressValue.setText("Done!");
             currentProgressValue.setTextColor(getResources().getColor(R.color.green));
             thisWeek.setText("for this week");
-        } else if (habit.getCurrentProgress() > habit.getTimesPerDuration()) {
-            currentProgressValue.setText("Done! (" + habit.getCurrentProgress() + "/" + habit.getTimesPerDuration() + ")");
+        } else if (habit.getCurrentProgress() > habit.getTimesPerWeek()) {
+            currentProgressValue.setText("Done! (" + habit.getCurrentProgress() + "/" + habit.getTimesPerWeek() + ")");
             currentProgressValue.setTextColor(getResources().getColor(R.color.green));
             thisWeek.setText("sessions completed this week");
         } else if (habit.getCurrentProgress() == 1) {

@@ -20,11 +20,8 @@ import butterknife.ButterKnife;
 
 public class HabitNewActivity extends BaseActivity {
 
-    @Bind(R.id.name_label) TextView nameLabel;
     @Bind(R.id.name_edit) EditText nameEdit;
-    @Bind(R.id.times_per_duration_label) TextView timesPerDurationLabel;
-    @Bind(R.id.times_per_duration_edit) EditText timesPerDurationEdit;
-    @Bind(R.id.duration_label) TextView durationLabel;
+    @Bind(R.id.times_per_duration_edit) EditText timesPerWeekEdit;
     @Bind(R.id.duration_edit) TextView durationEdit;
 
     private HabitController controller;
@@ -67,22 +64,23 @@ public class HabitNewActivity extends BaseActivity {
 
             case R.id.action_create:
                 String newName = nameEdit.getText().toString().trim();
-                String newTimesPerDuration = timesPerDurationEdit.getText().toString().trim();
+                String newTimesPerWeek = timesPerWeekEdit.getText().toString().trim();
                 String newDuration = durationEdit.getText().toString().trim();
 
-                HabitFormValidator validator = new HabitFormValidator(newName, newTimesPerDuration, newDuration);
+                HabitFormValidator validator = new HabitFormValidator(newName, newTimesPerWeek, newDuration);
                 validator.validate();
 
                 if (validator.isValid()) {
                     Habit habit = new Habit();
                     habit.setName(newName);
-                    habit.setTimesPerDuration(Integer.valueOf(newTimesPerDuration));
+                    habit.setTimesPerWeek(Integer.valueOf(newTimesPerWeek));
                     habit.setDuration(Integer.valueOf(newDuration));
 
                     controller.createHabit(habit);
 
                     String message = "Habit \"" + habit.getName() + "\" created.";
                     Toast.makeText(HabitNewActivity.this, message, Toast.LENGTH_SHORT).show();
+
 
                     intent = new Intent(HabitNewActivity.this, HabitIndexActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -93,8 +91,8 @@ public class HabitNewActivity extends BaseActivity {
                         nameEdit.setError(errors.get(HabitFormValidator.NAME));
                     }
 
-                    if (errors.get(HabitFormValidator.TIMES_PER_DURATION) != null) {
-                        timesPerDurationEdit.setError(errors.get(HabitFormValidator.TIMES_PER_DURATION));
+                    if (errors.get(HabitFormValidator.TIMES_PER_WEEK) != null) {
+                        timesPerWeekEdit.setError(errors.get(HabitFormValidator.TIMES_PER_WEEK));
                     }
 
                     if (errors.get(HabitFormValidator.DURATION) != null) {
