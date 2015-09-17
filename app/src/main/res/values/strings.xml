@@ -49,4 +49,7 @@
     <string name="minutes">minutes</string>
     <string name="times_per_week">times a week</string>
     <string name="start_timer">Start timer</string>
+    <string name="progress_reset_confirm">Progress reset for all habits.</string>
+    <string name="start_new_week">Start New Week</string>
+    <string name="start_fresh">Start Fresh</string>
 </resources>

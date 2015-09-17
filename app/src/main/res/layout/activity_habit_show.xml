@@ -194,7 +194,7 @@
             android:textStyle="bold"
             android:textAllCaps="true"
             android:layout_weight="1"
-            android:text="start fresh" />
+            android:text="@string/start_fresh" />
 
         <Button
             android:id="@+id/increment_progress_button"

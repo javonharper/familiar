@@ -6,11 +6,7 @@
     android:background="@color/white"
     tools:context=".HabitIndexActivity">
 
-    <LinearLayout
-        android:id="@+id/empty_state"
-        android:orientation="vertical" />
-
-
+    <include layout="@layout/empty_state"/>
 
     <ListView
         android:id="@+id/habit_list"

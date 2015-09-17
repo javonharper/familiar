@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/empty_state"
     android:orientation="vertical"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/spacing_normal"
-    android:padding="@dimen/spacing_normal">
+    android:layout_width="match_parent"
+    tools:showIn="@layout/activity_habit_index">
 
     <TextView
         android:id="@+id/empty_state_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="80dp"
-        android:text="@string/empty_state_title"
-        android:textSize="@dimen/font_large"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="@dimen/spacing_normal"
-        android:textColor="@color/black"/>
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:text="@string/empty_state_title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_large"/>
 
     <TextView
         android:id="@+id/empty_state_subtext"
-        android:paddingTop="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="normal"
-        android:textSize="@dimen/font_normal"
-        android:textColor="@color/gray"
-        android:text="@string/empty_state_subtext"
+        android:layout_below="@+id/empty_state_header"
         android:layout_gravity="center_horizontal"
-        android:gravity="center"/>
-</LinearLayout>
+        android:gravity="center"
+        android:text="@string/empty_state_subtext"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/font_normal"
+        android:textStyle="normal"/>
+</RelativeLayout>

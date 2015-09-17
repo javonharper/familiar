@@ -7,12 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.javonharper.familiar.FloatingActionButton;
@@ -30,14 +29,17 @@ import butterknife.ButterKnife;
 
 
 public class HabitIndexActivity extends BaseActivity {
-    @Bind(R.id.habit_list) ListView habitListView;
-
-    private HabitController controller;
-
     public static String HABIT_ID = "habitId";
+
+    @Bind(R.id.habit_list) ListView habitListView;
+    @Bind(R.id.empty_state) RelativeLayout emptyState;
+
+    private HabitController mController;
+    private List<Habit> mHabits;
+
+
     int prevVisibleItem;
     FloatingActionButton floatingActionButton;
-    private List<Habit> habits;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,26 +59,24 @@ public class HabitIndexActivity extends BaseActivity {
             }
         });
 
-        controller = new HabitController(this);
+        mController = new HabitController(this);
     }
-
 
     @Override
     protected void onResume() {
         super.onResume();
-        habits = controller.getAllHabits();
 
-        if (habits.size() == 0) {
-            showEmptyStateView();
-        } else {
+        mHabits = mController.getAllHabits();
+        initializeEmptyState();
+
+        if (mHabits.size() != 0) {
             addFooterView();
         }
 
-        Collections.sort(habits, new HabitComparator());
-        HabitsAdapter adapter = new HabitsAdapter(this, habits);
+        Collections.sort(mHabits, new HabitComparator());
+        HabitsAdapter adapter = new HabitsAdapter(this, mHabits);
 
         habitListView.setAdapter(adapter);
-
 
         habitListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -132,12 +132,12 @@ public class HabitIndexActivity extends BaseActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
 
-                                for (Habit habit : habits) {
+                                for (Habit habit : mHabits) {
                                     habit.setCurrentProgress(0);
-                                    controller.updateHabit(habit);
+                                    mController.updateHabit(habit);
                                 }
 
-                                String message = "Progress reset for all habits.";
+                                String message = getString(R.string.progress_reset_confirm);
                                 Toast.makeText(HabitIndexActivity.this, message, Toast.LENGTH_SHORT).show();
 
                                 Intent intent = getIntent();
@@ -151,16 +151,11 @@ public class HabitIndexActivity extends BaseActivity {
         });
     }
 
-    private void showEmptyStateView() {
-        LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.empty_state, null);
-
-        ViewGroup insertPoint = (ViewGroup) findViewById(R.id.empty_state);
-        insertPoint.removeAllViews();
-        insertPoint.addView(view, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-
-        TextView header = (TextView) findViewById(R.id.empty_state_header);
-
-        TextView subtext = (TextView) findViewById(R.id.empty_state_subtext);
+    private void initializeEmptyState() {
+        if (mHabits.size() == 0) {
+            emptyState.setVisibility(View.VISIBLE);
+        } else {
+            emptyState.setVisibility(View.GONE);
+        }
     }
 }

@@ -22,7 +22,7 @@
             android:layout_marginBottom="@dimen/spacing_normal"
             android:textStyle="bold"
             android:textAllCaps="true"
-            android:text="Start Fresh"
+            android:text="@string/start_new_week"
             android:drawableLeft="@drawable/sunrise_icon"
             android:paddingLeft="50dp"
             android:drawablePadding="-40dp" />
